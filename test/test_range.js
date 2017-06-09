@@ -49,4 +49,13 @@ describe('Ranges', function() {
         assert(!intrange.startsAfter(2));
         assert(intrange.startsAfter(intrangeUnbounded));
     })
+    it ('tests if intrange endsBefore', function () {
+        var intrange = new range.RangeClass({lower:1, upper:2});
+        var endsBeforeRange = new range.RangeClass({lower: 1, upper: 10});
+        var intrangeUnbounded = new range.RangeClass().empty();
+        assert(intrange.endsBefore(endsBeforeRange));
+        assert(intrange.endsBefore(2));
+        assert(!intrange.endsBefore(-10));
+        assert(intrange.endsBefore(intrangeUnbounded));
+    })
 });

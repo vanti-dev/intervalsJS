@@ -79,7 +79,7 @@ class RangeClass {
     startsAfter(other) {
         if (this.isValidRange(other)) {
             if (this.lower() === other.lower()) {
-                return other.lower() || this.lower();
+                return other.lowerInc() || !this.lowerInc();
             }
             else if (this.lower() == null) {
                 return false;
@@ -96,6 +96,29 @@ class RangeClass {
         }
         else {
             throw new Error("Unsupported type to test for starts after");
+        }
+    }
+
+    endsBefore(other) {
+        if (this.isValidRange(other)) {
+            if (this.upper() === other.upper()) {
+                return other.upperInc() || !this.upperInc();
+            }
+            else if (!this.upper()) {
+                return false;
+            }
+            else if (!other.upper()) {
+                return true;
+            }
+            else {
+                return this.upper() <= other.upper();
+            }
+        }
+        else if (this.isValidScalar(other)) {
+            return this.upper() <= other;
+        }
+        else {
+            throw new Error("Unsupported type to test for ends before");
         }
     }
 }
