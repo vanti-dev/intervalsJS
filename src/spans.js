@@ -36,16 +36,16 @@ class RangeClass {
     }
 
     replace(settings = {}) {
-        if (typeof settings.lower != undefined) {
+        if (settings.lower != undefined) {
             this._range.lower = settings.lower;
         }
-        if (typeof settings.upper != undefined) {
+        if (settings.upper != undefined) {
             this._range.upper = settings.upper;
         }
-        if (typeof settings.lowerInc != undefined) {
+        if (settings.lowerInc != undefined) {
             this._range.lowerInc = settings.lowerInc;
         }
-        if (typeof settings.upperInc != undefined) {
+        if (settings.upperInc != undefined) {
             this._range.upperInc = settings.upperInc;
         }
         return this;
@@ -174,19 +174,30 @@ class RangeClass {
         return new RangeClass({lower: a.lower(), upper: upper, lowerInc: a.lowerInc(), upperInc: upperInc});
     }
 
-    // difference(other) {
-    //     if (!this.isValidRange(other)) {
-    //         throw new Error("Unsupported type to test for difference");
-    //     }
-    //
-    //     if (!this || !other || !this.overlap(other)) {
-    //         return this;
-    //     }
-    //     else if (this.lower() > other.lower() && this.upper() < other.upper()) {
-    //         return this.empty()
-    //     }
-    //     else if ()
-    // }
+    difference(other) {
+        if (!this.isValidRange(other)) {
+            throw new Error("Unsupported type to test for difference");
+        }
+
+        if (!this || !other || !this.overlap(other)) {
+            return this;
+        }
+        else if (other.contains(this)) {
+            return this.empty()
+        }
+        else if (this.contains(other) && !(this.startsWith(other) || this.endsWith(other))) {
+            throw new Error("Other range must not be within this range")
+        }
+        else if (this.endsBefore(other)) {
+            return this.replace({upper:other.lower(), upperInc:!other.lowerInc()})
+        }
+        else if (this.startsAfter(other)) {
+            return this.replace({lower:other.upper(), lowerInc:!other.upperInc()})
+        }
+        else {
+            return self.empty();
+        }
+    }
 
     startsWith(other) {
         if (this.isValidRange(other)) {

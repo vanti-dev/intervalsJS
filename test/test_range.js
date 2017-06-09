@@ -116,4 +116,16 @@ describe('Ranges', function() {
         endswithRange.replace({upperInc: false});
         assert(!intrange.endsWith(endswithRange));
     })
+    it ('tests difference', function() {
+        var intrange = new range({lower:1, upper:10, upperInc: true, lowerInc: true});
+        var intrange2 = new range({lower: 10, upper: 15, lowerInc: true});
+        var difference = intrange.difference(intrange2);
+        assert(difference.lower() === 1);
+        assert(difference.upper() == 10);
+
+        intrange.replace({upper: 5});
+        intrange2.replace({lower: 1});
+        difference = intrange.difference(intrange2);
+        assert(difference._range.empty);
+    })
 });
