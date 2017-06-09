@@ -36,10 +36,18 @@ class RangeClass {
     }
 
     replace(settings = {}) {
-        this._range.lower = settings.lower || this._range.lower;
-        this._range.upper = settings.upper || this._range.upper;
-        this._range.lowerInc = settings.lowerInc || this._range.lowerInc;
-        this._range.upperInc = settings.upperInc || this._range.upperInc;
+        if (typeof settings.lower != undefined) {
+            this._range.lower = settings.lower;
+        }
+        if (typeof settings.upper != undefined) {
+            this._range.upper = settings.upper;
+        }
+        if (typeof settings.lowerInc != undefined) {
+            this._range.lowerInc = settings.lowerInc;
+        }
+        if (typeof settings.upperInc != undefined) {
+            this._range.upperInc = settings.upperInc;
+        }
         return this;
     }
 
@@ -118,6 +126,111 @@ class RangeClass {
         return a.upper() > b.lower() || a.upper() === b.lower() && a.upperInc() && b.lowerInc();
     }
 
+    adjacent(other) {
+        if (!this.isValidRange(other)) {
+            throw new Error("Unsupported type to test for inclusion");
+        }
+        else if (!this || !other) {
+            return false;
+        }
+        return (this.lower() == other.upper() && this.lowerInc() != other.upperInc())
+            || (this.upper() == other.lower() && this.upperInc() != other.lowerInc())
+    }
+
+    union(other) {
+        if (!this.isValidRange(other)) {
+            throw new Error("Unsupported type to test for union");
+        }
+        if (!this) { return other }
+        else if (!other) { return this }
+        var a, b;
+        if (!this.startsAfter(other)) {
+            a = this;
+            b = other;
+        }
+        else {
+            a = other;
+            b = this;
+        }
+
+        if (a.upper() <= b.lower() && !a.adjacent(b)) {
+            throw new Error("Ranges must be either adjacent or overlapping");
+        }
+
+        var upper, upperInc;
+        if (a.upper() == b.upper()) {
+            upper = a.upper();
+            upperInc = a.upperInc() || b.upperInc();
+        }
+        else if (a.upper() < b.upper()) {
+            upper = b.upper();
+            upperInc = b.upperInc();
+        }
+        else {
+            upper = a.upper();
+            upperInc = a.upperInc();
+        }
+
+        return new RangeClass({lower: a.lower(), upper: upper, lowerInc: a.lowerInc(), upperInc: upperInc});
+    }
+
+    // difference(other) {
+    //     if (!this.isValidRange(other)) {
+    //         throw new Error("Unsupported type to test for difference");
+    //     }
+    //
+    //     if (!this || !other || !this.overlap(other)) {
+    //         return this;
+    //     }
+    //     else if (this.lower() > other.lower() && this.upper() < other.upper()) {
+    //         return this.empty()
+    //     }
+    //     else if ()
+    // }
+
+    startsWith(other) {
+        if (this.isValidRange(other)) {
+            if (this.lowerInc() === other.lowerInc()) {
+                return this.lower() === other.lower()
+            }
+            else {
+                return false;
+            }
+        }
+        else if (this.isValidScalar(other)) {
+            if (this.lowerInc()) {
+                return this.lower() === other
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            throw new Error("Unsupported type to test for starts with");
+        }
+    }
+
+    endsWith(other) {
+        if (this.isValidRange(other)) {
+            if (this.upperInc() === other.upperInc()) {
+                return this.upper() === other.upper()
+            }
+            else {
+                return false;
+            }
+        }
+        else if (this.isValidScalar(other)) {
+            if (this.upperInc()) {
+                return this.upper() === other
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            throw new Error("Unsupported type to test for ends with");
+        }
+    }
     startsAfter(other) {
         if (this.isValidRange(other)) {
             if (this.lower() === other.lower()) {
@@ -165,6 +278,4 @@ class RangeClass {
     }
 }
 
-module.exports = {
-    RangeClass: RangeClass
-}
+module.exports = RangeClass
