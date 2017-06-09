@@ -67,14 +67,35 @@ class RangeClass {
         return typeof scalar === 'number';
     }
 
-    // contains(other) {
-    //     if (this.isValidRange(other)) {
-    //         if (!this) {
-    //             return false
-    //         }
-    //         else if (!other || )
-    //     }
-    // }
+    contains(other) {
+        if (this.isValidRange(other)) {
+            if (!this) {
+                return !other;
+            }
+            else if (!other || other.startsAfter(this) && other.endsBefore(this)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else if (this.isValidScalar(other)) {
+            var isInLower = true;
+            if (this.lower()) {
+                isInLower = (this.lower() < other);
+            }
+
+            var isInUpper = true;
+            if (this.upper()) {
+                isInUpper = (this.upper() >= other);
+            }
+
+            return isInLower && isInUpper;
+        }
+        else {
+            throw new Error("Unsupported type to test for inclusion");
+        }
+    }
 
     startsAfter(other) {
         if (this.isValidRange(other)) {

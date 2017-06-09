@@ -58,4 +58,17 @@ describe('Ranges', function() {
         assert(!intrange.endsBefore(-10));
         assert(intrange.endsBefore(intrangeUnbounded));
     })
+    it ('tests if intrange contains', function () {
+        var intrange = new range.RangeClass({lower:1, upper:10});
+        var contain = new range.RangeClass({lower: 1, upper: 10});
+        assert(intrange.contains(contain));
+        intrange.replace({lower:3, upper:12});
+        assert(!intrange.contains(contain));
+        intrange.replace({lower:-2, upper:9});
+        assert(!intrange.contains(contain));
+        var intrangeUnbounded = new range.RangeClass().empty();
+        assert(intrange.contains(5));
+        assert(!intrange.contains(-3));
+        assert(!intrange.contains(intrangeUnbounded));
+    })
 });
