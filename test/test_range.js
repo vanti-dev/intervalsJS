@@ -1,4 +1,4 @@
-var range = require("../range.js");
+var range = require("../src/spans.js");
 
 describe('intrange', function() {
     it('creates an empty intrange', function() {
