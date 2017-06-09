@@ -62,13 +62,25 @@ describe('Ranges', function() {
         var intrange = new range.RangeClass({lower:1, upper:10});
         var contain = new range.RangeClass({lower: 1, upper: 10});
         assert(intrange.contains(contain));
-        intrange.replace({lower:3, upper:12});
+        contain.replace({lower:3, upper:12});
         assert(!intrange.contains(contain));
-        intrange.replace({lower:-2, upper:9});
+        contain.replace({lower:-2, upper:9});
         assert(!intrange.contains(contain));
         var intrangeUnbounded = new range.RangeClass().empty();
         assert(intrange.contains(5));
         assert(!intrange.contains(-3));
         assert(!intrange.contains(intrangeUnbounded));
+    })
+
+    it ('tets if intrange overlaps', function() {
+        var intrange = new range.RangeClass({lower:1, upper:10, upperInc: true});
+        var overlaps = new range.RangeClass({lower: 10, upper: 80, lowerInc: true});
+        assert(intrange.overlap(overlaps));
+        overlaps.replace({lower:-2, upper:5});
+        assert(intrange.overlap(overlaps));
+        overlaps.replace({lower:12, upper:16});
+        assert(!intrange.overlap(overlaps));
+        var intrangeUnbounded = new range.RangeClass().empty();
+        assert(intrange.overlap(intrangeUnbounded));
     })
 });

@@ -97,6 +97,27 @@ class RangeClass {
         }
     }
 
+    overlap(other) {
+        var a, b;
+        if (!this || !other) {
+            return false;
+        }
+
+        if (this.endsBefore(other)) {
+            a = this;
+            b = other;
+        }
+        else {
+            a = other;
+            b = this;
+        }
+
+        if (!a.upper() || !b.lower()) {
+            return true;
+        }
+        return a.upper() > b.lower() || a.upper() === b.lower() && a.upperInc() && b.lowerInc();
+    }
+
     startsAfter(other) {
         if (this.isValidRange(other)) {
             if (this.lower() === other.lower()) {
