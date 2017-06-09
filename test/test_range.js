@@ -1,8 +1,10 @@
 var range = require("../src/spans.js");
+var assert = require('chai').assert;
 
-describe('intrange', function() {
-    it('creates an empty intrange', function() {
-        var intrange = range.intrange.empty();
+describe('ranges', function() {
+    console.log(range)
+    it('creates an empty range', function() {
+        var intrange = new range.RangeClass();
         assert(typeof intrange === "object" && intrange != null, 'Object created');
         assert(intrange.lower === null);
         assert(intrange.upper === null);

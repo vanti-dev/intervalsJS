@@ -1,17 +1,13 @@
-var exports = module.exports = {};
+class RangeClass {
 
-var RangeC = (function () {
-    "use strict";
-    var priv = new WeakMap();
-    var _ = function (instance) { return priv.get(instance);};
-
-    class RangeCClass {
-        constructor() {
-            var privateMembers = {};
-
-        }
+    constructor(lower, upper, lowerInc, upperInc) {
+        this.lower = lower || null;
+        this.upper = upper || null;
+        this.lowerInc = lowerInc || null;
+        this.upperInc = upperInc || null;
     }
-    return RangeCClass;
-} () );
+}
 
-exports.range = RangeC;
+module.exports = {
+    RangeClass: RangeClass
+}
