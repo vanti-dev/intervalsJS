@@ -128,4 +128,28 @@ describe('Ranges', function() {
         difference = intrange.difference(intrange2);
         assert(difference._range.empty);
     })
+
+    it ('tests intersection', function() {
+        var intrange = new range({lower: 1, upper: 5, lowerInc: true, upperInc: false});
+        var intrange2 = new range({lower: 1, upper: 10});
+        var intersection = intrange.intersection(intrange2);
+        assert(intrange.lower() === 1);
+        assert(intrange.upper() === 5);
+    })
+
+    it ('tests left of', function() {
+        var intrange = new range({lower: 1, upper: 5});
+        var intrange2 = new range({lower: 5, upper: 10});
+        assert(intrange.leftOf(intrange2));
+        intrange2.replace({lower: 3});
+        assert(!intrange.leftOf(intrange2));
+    })
+
+    it ('tests right of', function() {
+        var intrange = new range({lower: 5, upper: 10});
+        var intrange2 = new range({lower: 1, upper: 5});
+        assert(intrange.rightOf(intrange2));
+        intrange.replace({lower: 1});
+        assert(!intrange.rightOf(intrange2));
+    })
 });

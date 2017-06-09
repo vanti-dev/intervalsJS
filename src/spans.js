@@ -199,6 +199,21 @@ class RangeClass {
         }
     }
 
+    intersection(other) {
+        if (!this.isValidRange(other)) {
+            throw new Error("Unsupported type to test for intersection");
+        }
+
+        if (!this || !other || !this.overlap(other)) {
+            return this.empty();
+        }
+
+        var lowerEndSpan = this.startsAfter(other) ? this : other;
+        var upperEndSpan = this.endsBefore(other) ? this : other;
+
+        return lowerEndSpan.replace({upper: upperEndSpan.upper(), upperInc: upperEndSpan.upperInc()})
+    }
+
     startsWith(other) {
         if (this.isValidRange(other)) {
             if (this.lowerInc() === other.lowerInc()) {
@@ -286,6 +301,20 @@ class RangeClass {
         else {
             throw new Error("Unsupported type to test for ends before");
         }
+    }
+
+    leftOf(other) {
+        if (!this.isValidRange(other)) {
+            throw new Error("Unsupported type to test for left of");
+        }
+        return (this.endsBefore(other) && !this.overlap(other));
+    }
+
+    rightOf(other) {
+        if (!this.isValidRange(other)) {
+            throw new Error("Unsupported type to test for right of");
+        }
+        return other.leftOf(this);
     }
 }
 
