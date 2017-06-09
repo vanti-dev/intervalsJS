@@ -1,4 +1,4 @@
-var range = require("../src/spans.js");
+var range = require("../src/Range.js");
 var assert = require('chai').assert;
 
 describe('Ranges', function() {
