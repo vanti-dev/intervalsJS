@@ -8,7 +8,8 @@ class DiscreteRange extends RangeClass {
     /**
     @class DiscreteRange
     @extends RangeClass
-    @description Discrete ranges are a subset of ranges that work on discrete types. This includes `int` and `datetime.date`
+    @description Discrete ranges are a subset of ranges that work on discrete types. This includes `int` and `datetime.date`.
+    * Discrete ranges are iterable. Using: let x of intrange.
     @param {object} settings - The settings of the range.
     @param {scalar} settings.lower - The lower end of the range
     @param {scalar} settings.upper - The upper end of the range
@@ -35,16 +36,37 @@ class DiscreteRange extends RangeClass {
             this._range = _internalRange([lb, ub, true, false, false]);
             this.replace({upper: ub, lower: lb, lowerInc: true, upperInch: false});
         }
+
     }
     /**
     @memberof DiscreteRange
     @method next
     @description Increment the given value with the step defined for this class.
     @param {scalar} curr -Value to increment
+    @param {scalar} step - How much to step by each time. OPTIONAL (defaults to whatever is appropriate for the current range, for ints it is 1).
     @returns {scalar}
     */
-    next(curr) {
+    next(curr, step=1) {
+        if (!this) { return curr + step; }
         return curr + this.step;
+    }
+
+    [Symbol.iterator]() {
+        var nextFunc = this.next;
+        var start = this.prev(this.lower);
+        var last = this.last();
+        var step = this.step;
+        let iterator = {
+            next()  {
+                start = nextFunc(start, step);
+                var bool = (start) > last;
+                return {
+                    value: start,
+                    done: bool
+                };
+            }
+        };
+        return iterator;
     }
     /**
     @memberof DiscreteRange
