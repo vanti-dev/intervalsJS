@@ -1,4 +1,10 @@
 var utils = require("./_utils.js");
+/**
+*@typedef {(int|string|float)} scalar
+*@description A value representing a scalar. This depends on the type of range
+*currently being worked with. For an intRange its an int, for a strRange its a string,
+*and so on so forth.
+*/
 
 var _internalRange = utils.namedList(["lower","upper","lowerInc","upperInc", "empty"]);
 var _emptyInternalRange = _internalRange([null, null, false, false, true]);
