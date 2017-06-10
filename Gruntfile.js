@@ -19,7 +19,8 @@ module.exports = function(grunt) {
         dist: {
             src: ['src/*.js'],
             options: {
-                destination: 'docs'
+                destination: 'docs',
+                template: 'node_modules/docdash'
             }
         }
     },
