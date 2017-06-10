@@ -1,5 +1,7 @@
 var assert = require('chai').assert;
 var range = require("../main.js");
+var expect = require('chai').expect;
+
 describe('intRange', function() {
 
     it('tests length', function() {
@@ -10,9 +12,12 @@ describe('intRange', function() {
 
     it('tests offset', function() {
         var intrange = new range.intRange({lower: 5, upper: 10});
+        var notARange = null;
 
         intrange.offset(-5);
         assert(intrange.upper() === 5);
         assert(intrange.lower() === 0);
+
+        expect(() => intrange.offset('a')).to.throw(Error);
     });
 });

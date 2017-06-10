@@ -1,5 +1,6 @@
 var range = require("../main.js");
 var assert = require('chai').assert;
+var expect = require('chai').expect;
 
 describe('Basic Range Functionality', function() {
 
@@ -55,17 +56,22 @@ describe('Basic Range Functionality', function() {
         assert(intrange.startsAfter(0));
         assert(!intrange.startsAfter(3));
         assert(intrange.startsAfter(intrangeUnbounded));
+
+        expect(() => intrange.startsAfter('a')).to.throw(Error);
     });
 
     it('tests endsBefore', function () {
         var intrange = new range.intRange({lower:1, upper:3});
         var endsBeforeRange = new range.intRange({lower: 1, upper: 10});
+        var intrangeNoUB = new range.intRange({lower: 5});
         var intrangeUnbounded = new range.intRange().empty();
 
         assert(intrange.endsBefore(endsBeforeRange));
         assert(intrange.endsBefore(5));
         assert(!intrange.endsBefore(-10));
         assert(intrange.endsBefore(intrangeUnbounded));
+        assert(!intrangeNoUB.endsBefore(endsBeforeRange))
+        expect(() => intrange.endsBefore('a')).to.throw(Error);
     });
 
     it('tests contains', function () {
@@ -84,6 +90,8 @@ describe('Basic Range Functionality', function() {
         assert(intrange.contains(5));
         assert(!intrange.contains(-3));
         assert(!intrange.contains(intrangeUnbounded));
+
+        expect(() => intrange.contains('a')).to.throw(Error);
     });
 
 
@@ -111,6 +119,8 @@ describe('Basic Range Functionality', function() {
         assert(intrange.adjacent(adjacent));
         adjacent.replace({lower: 120, upper: 2000});
         assert(!intrange.adjacent(adjacent));
+
+        expect(() => intrange.adjacent(1)).to.throw(Error);
     });
 
 
@@ -121,6 +131,8 @@ describe('Basic Range Functionality', function() {
 
         assert(union.upper() === 12);
         assert(union.lower() == 1);
+
+        expect(() => intrange.union(1)).to.throw(Error);
     });
 
 
@@ -133,6 +145,8 @@ describe('Basic Range Functionality', function() {
 
         startswithRange.replace({lowerInc: false});
         assert(!intrange.startsWith(startswithRange));
+
+        expect(() => intrange.adjacent('a')).to.throw(Error);
     });
 
     it('tests endsWith', function() {
@@ -141,9 +155,13 @@ describe('Basic Range Functionality', function() {
 
         assert(intrange.endsWith(endswithRange));
         assert(intrange.endsWith(10));
+        assert(!intrange.endsWith(3));
 
         endswithRange.replace({upper: 9});
         assert(!intrange.endsWith(endswithRange));
+
+
+        expect(() => intrange.endsWith('a')).to.throw(Error);
     });
 
     it('tests difference', function() {
@@ -158,6 +176,8 @@ describe('Basic Range Functionality', function() {
         intrange2.replace({lower: 1});
         difference = intrange.difference(intrange2);
         assert(difference._range.empty);
+
+        expect(() => intrange.difference(1)).to.throw(Error);
     });
 
 
@@ -168,6 +188,8 @@ describe('Basic Range Functionality', function() {
 
         assert(intrange.lower() === 1);
         assert(intrange.upper() === 5);
+
+        expect(() => intrange.intersection(1)).to.throw(Error);
     });
 
 
@@ -179,6 +201,8 @@ describe('Basic Range Functionality', function() {
 
         intrange2.replace({lower: 3});
         assert(!intrange.leftOf(intrange2));
+
+        expect(() => intrange.leftOf(1)).to.throw(Error);
     });
 
 
@@ -190,6 +214,8 @@ describe('Basic Range Functionality', function() {
         intrange.replace({lower: 1});
 
         assert(!intrange.rightOf(intrange2));
+
+        expect(() => intrange.rightOf(1)).to.throw(Error);
     });
 
 });

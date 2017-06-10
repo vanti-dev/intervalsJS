@@ -1,9 +1,6 @@
 OffsetableRangeMixin =  {
     offsetType: null,
     offset: function(offset) {
-        if (!this) {
-            return this;
-        }
 
 
         if (offset && !this.isValidScalar(offset)) {
