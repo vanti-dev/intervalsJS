@@ -1,21 +1,21 @@
 var utils = require("./_utils.js");
 
 var _internalRange = utils.namedList(["lower","upper","lowerInc","upperInc", "empty"]);
-var _emptyInternalRange = _internalRange([null, null, false, false, true])
+var _emptyInternalRange = _internalRange([null, null, false, false, true]);
 
 class RangeClass {
 
     constructor(settings = {}) {
         if (settings.upper && settings.lower && settings.upper < settings.lower) {
-            throw new Error("Upper bound is less than lower bound!")
+            throw new Error("Upper bound is less than lower bound!");
         }
-        var settings = {
+         settings = {
             //Setting default values
             lower: settings.lower || null,
             upper: settings.upper || null,
             lowerInc: settings.lowerInc || true,
             upperInc: settings.upperInc || false
-        }
+        };
         this._range = _internalRange([settings.lower, settings.upper, settings.lowerInc, settings.upperInc, false]);
     }
 
@@ -25,27 +25,27 @@ class RangeClass {
     }
 
     replace(settings = {}) {
-        if (settings.lower != undefined) {
+        if (settings.lower !== undefined) {
             this._range.lower = settings.lower;
         }
-        if (settings.upper != undefined) {
+        if (settings.upper !== undefined) {
             this._range.upper = settings.upper;
         }
-        if (settings.lowerInc != undefined) {
+        if (settings.lowerInc !== undefined) {
             this._range.lowerInc = settings.lowerInc;
         }
-        if (settings.upperInc != undefined) {
+        if (settings.upperInc !== undefined) {
             this._range.upperInc = settings.upperInc;
         }
         return this;
     }
 
     lower() {
-        return (this._range.lower != null) ? this._range.lower : null;
+        return (this._range.lower !== null) ? this._range.lower : null;
     }
 
     upper() {
-        return (this._range.upper != null) ? this._range.upper : null;
+        return (this._range.upper !== null) ? this._range.upper : null;
     }
 
     lowerInc() {
@@ -62,7 +62,7 @@ class RangeClass {
 
     isValidScalar(scalar) {
         if (this.type === "int") {
-            return scalar%1 === 0
+            return scalar%1 === 0;
         }
         return typeof scalar === typeof this.upper();
     }
@@ -125,16 +125,15 @@ class RangeClass {
         else if (!this || !other) {
             return false;
         }
-        return (this.lower() == other.upper() && this.lowerInc() != other.upperInc())
-            || (this.upper() == other.lower() && this.upperInc() != other.lowerInc())
+        return (this.lower() == other.upper() && this.lowerInc() != other.upperInc()) || (this.upper() == other.lower() && this.upperInc() != other.lowerInc());
     }
 
     union(other) {
         if (!this.isValidRange(other)) {
             throw new Error("Unsupported type to test for union");
         }
-        if (!this) { return other }
-        else if (!other) { return this }
+        if (!this) { return other; }
+        else if (!other) { return this; }
         var a, b;
         if (!this.startsAfter(other)) {
             a = this;
@@ -175,16 +174,16 @@ class RangeClass {
             return this;
         }
         else if (other.contains(this)) {
-            return this.empty()
+            return this.empty();
         }
         else if (this.contains(other) && !(this.startsWith(other) || this.endsWith(other))) {
-            throw new Error("Other range must not be within this range")
+            throw new Error("Other range must not be within this range");
         }
         else if (this.endsBefore(other)) {
-            return this.replace({upper:other.lower(), upperInc:!other.lowerInc()})
+            return this.replace({upper:other.lower(), upperInc:!other.lowerInc()});
         }
         else if (this.startsAfter(other)) {
-            return this.replace({lower:other.upper(), lowerInc:!other.upperInc()})
+            return this.replace({lower:other.upper(), lowerInc:!other.upperInc()});
         }
         else {
             return self.empty();
@@ -203,13 +202,13 @@ class RangeClass {
         var lowerEndSpan = this.startsAfter(other) ? this : other;
         var upperEndSpan = this.endsBefore(other) ? this : other;
 
-        return lowerEndSpan.replace({upper: upperEndSpan.upper(), upperInc: upperEndSpan.upperInc()})
+        return lowerEndSpan.replace({upper: upperEndSpan.upper(), upperInc: upperEndSpan.upperInc()});
     }
 
     startsWith(other) {
         if (this.isValidRange(other)) {
             if (this.lowerInc() === other.lowerInc()) {
-                return this.lower() === other.lower()
+                return this.lower() === other.lower();
             }
             else {
                 return false;
@@ -217,7 +216,7 @@ class RangeClass {
         }
         else if (this.isValidScalar(other)) {
             if (this.lowerInc()) {
-                return this.lower() === other
+                return this.lower() === other;
             }
             else {
                 return false;
@@ -231,7 +230,7 @@ class RangeClass {
     endsWith(other) {
         if (this.isValidRange(other)) {
             if (this.upperInc() === other.upperInc()) {
-                return this.upper() === other.upper()
+                return this.upper() === other.upper();
             }
             else {
                 return false;
@@ -239,7 +238,7 @@ class RangeClass {
         }
         else if (this.isValidScalar(other)) {
             if (this.upperInc()) {
-                return this.upper() === other
+                return this.upper() === other;
             }
             else {
                 return false;
@@ -254,14 +253,14 @@ class RangeClass {
             if (this.lower() === other.lower()) {
                 return other.lowerInc() || !this.lowerInc();
             }
-            else if (this.lower() == null) {
+            else if (this.lower() === null) {
                 return false;
             }
-            else if (other.lower() == null) {
+            else if (other.lower() === null) {
                 return true;
             }
             else {
-                return this.lower() > other.lower()
+                return this.lower() > other.lower();
             }
         }
         else if (this.isValidScalar(other)) {
@@ -310,4 +309,4 @@ class RangeClass {
     }
 }
 
-module.exports = RangeClass
+module.exports = RangeClass;

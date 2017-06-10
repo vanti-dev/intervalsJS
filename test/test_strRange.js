@@ -21,7 +21,7 @@ describe('strRange', function() {
 
     it ('tests last', function () {
         var strRange = new range.strRange({lower: 'd', upper: 'k'});
-        
+
         assert(strRange.last() == 'j');
-    })
+    });
 });

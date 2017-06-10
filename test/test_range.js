@@ -6,8 +6,7 @@ describe('Basic Range Functionality', function() {
     it('Creates empty range', function() {
         var emptyIntrange = new range.intRange().empty();
 
-        assert(typeof emptyIntrange === "object"
-                && emptyIntrange != null, 'Object created');
+        assert(typeof emptyIntrange === "object" && emptyIntrange !== null, 'Object created');
         assert(emptyIntrange.lower() === null);
         assert(emptyIntrange.upper() === null);
     });

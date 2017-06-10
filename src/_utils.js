@@ -15,7 +15,7 @@ OffsetableRangeMixin =  {
 
         return this.replace({upper: upper, lower: lower});
     }
-}
+};
 
 var namedList = function(fields) {
     //Emulating pythons Named Tuples
@@ -33,4 +33,4 @@ var namedList = function(fields) {
 module.exports = {
     OffsetableRangeMixin: OffsetableRangeMixin,
     namedList: namedList
-}
+};

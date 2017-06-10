@@ -2,10 +2,10 @@ var RangeClass = require("./Range.js");
 var utils = require("./_utils");
 
 var _internalRange = utils.namedList(["lower","upper","lowerInc","upperInc", "empty"]);
-var _emptyInternalRange = _internalRange([null, null, false, false, true])
+var _emptyInternalRange = _internalRange([null, null, false, false, true]);
 
 class DiscreteRange extends RangeClass {
-    constructor(settings = {}, step) {
+    constructor(step, settings = {}) {
         super(settings);
         this.step = step;
         var lb = this.lower();
@@ -38,7 +38,7 @@ class DiscreteRange extends RangeClass {
             return null;
         }
         else {
-            return this.prev(this.upper())
+            return this.prev(this.upper());
         }
     }
 
@@ -54,7 +54,7 @@ class DiscreteRange extends RangeClass {
 
 class intRange extends DiscreteRange {
     constructor(settings = {}) {
-        super(settings, 1);
+        super(1, settings);
         Object.assign(this, utils.OffsetableRangeMixin);
         this.type = "int";
     }
@@ -66,7 +66,7 @@ class intRange extends DiscreteRange {
 
 class strRange extends DiscreteRange {
     constructor(settings={}) {
-        super(settings, 1);
+        super(1, settings);
         this.type = "ustr";
     }
     next(curr) {
@@ -76,10 +76,10 @@ class strRange extends DiscreteRange {
         var last = curr.substr(curr.length - 1);
 
         if (last.charCodeAt() === 65535) {
-                return this.next(curr.slice(0,-1)) + String.fromCharCode(0)
+                return this.next(curr.slice(0,-1)) + String.fromCharCode(0);
         }
         else {
-            return curr.slice(0,-1) + String.fromCharCode(last.charCodeAt()+1)
+            return curr.slice(0,-1) + String.fromCharCode(last.charCodeAt()+1);
         }
     }
 
@@ -94,14 +94,14 @@ class strRange extends DiscreteRange {
             return this.prev(curr.slice(0,-1)) + String.fromCharCode(65535);
         }
         else {
-            return curr.slice(0,-1) + String.fromCharCode(last.charCodeAt()-1)
+            return curr.slice(0,-1) + String.fromCharCode(last.charCodeAt()-1);
         }
     }
 }
 
 class dateRange extends DiscreteRange {
     constructor(settings = {}) {
-        super(settings, 1)
+        super(1, settings);
         this.type = "date";
         //Work from here
     }
@@ -109,7 +109,7 @@ class dateRange extends DiscreteRange {
 
 class PeriodRange extends dateRange {
     constructor(settings = {}) {
-        super(settings, 1);
+        super(1, settings);
         //Work from here
     }
 }
@@ -119,4 +119,4 @@ module.exports = {
     strRange: strRange,
     dateRange: dateRange,
     PeriodRange: PeriodRange
-}
+};
