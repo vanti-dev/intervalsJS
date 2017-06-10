@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">76.6% </span>
+        <span class="strong">77.55% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>36/47</span>
+        <span class='fraction'>38/49</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">74.07% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>10/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">76.6% </span>
+        <span class="strong">77.55% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>36/47</span>
+        <span class='fraction'>38/49</span>
       </div>
     </div>
   </div>
@@ -167,11 +167,52 @@
 122
 123
 124
-125</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -197,7 +238,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -205,11 +258,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -228,6 +288,7 @@
 <span class="cline-any cline-yes">37×</span>
 <span class="cline-any cline-yes">37×</span>
 <span class="cline-any cline-yes">37×</span>
+<span class="cline-any cline-yes">37×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -237,6 +298,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -298,6 +360,16 @@ var _internalRange = utils.namedList(["lower","upper","lowerInc","upperInc", "em
 var _emptyInternalRange = _internalRange([null, null, false, false, true]);
 &nbsp;
 class DiscreteRange extends RangeClass {
+    /**
+    @class DiscreteRange
+    @extends RangeClass
+    Discrete ranges are a subset of ranges that work on discrete types. This includes `int` and `datetime.date`
+    @param {object} settings - The settings of the range.
+    @param {object|scalar} settings.lower - The lower end of the range
+    @param {object|scalar} settings.upper - The upper end of the range
+    @param {object|scalar} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
+    @param {object|scalar} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    */
     constructor(step, settings = {}) {
         super(settings);
         this.step = step;
@@ -319,15 +391,33 @@ class DiscreteRange extends RangeClass {
             this.replace({upper: ub, lower: lb, lowerInc: true, upperInch: false});
         }
     }
-&nbsp;
+    /**
+    @memberof DiscreteRange
+    @method next
+    @description Increment the given value with the step defined for this class.
+    @param {scalar} curr -Value to increment
+    @returns {scalar}
+    */
     next(curr) {
         return curr + this.step;
     }
-&nbsp;
+    /**
+    @memberof DiscreteRange
+    @method prev
+    @description Decrement the given value with the step defined for this class.
+    @param {scalar} curr -Value to decrement
+    @returns {scalar}
+    */
     prev(curr) {
         return curr - this.step;
     }
-&nbsp;
+    /**
+    @memberof DiscreteRange
+    @method last
+    @description Returns the last element within this range. If the range has no
+    upper limit, `null` is returned.
+    @returns {scalar}
+    */
     last() {
         <span class="missing-if-branch" title="if path not taken" >I</span>if (!this || !this.upper) {
 <span class="cstat-no" title="statement not covered" >            return null;</span>
@@ -338,6 +428,7 @@ class DiscreteRange extends RangeClass {
     }
 &nbsp;
     endsWith(other) {
+        //Discrete ranges have a lst element even in cases where the UB is null
         if (this.isValidScalar(other)) {
             return this.last() === other;
         }
@@ -349,9 +440,10 @@ class DiscreteRange extends RangeClass {
 &nbsp;
 class intRange extends DiscreteRange {
     constructor(settings = {}) {
+        settings.type = "int";
         super(1, settings);
         Object.assign(this, utils.OffsetableRangeMixin);
-        this.type = "int";
+        this.type = settings.type;
     }
 &nbsp;
     length() {
@@ -361,8 +453,9 @@ class intRange extends DiscreteRange {
 &nbsp;
 class strRange extends DiscreteRange {
     constructor(settings={}) {
+        settings.type = "ustr";
         super(1, settings);
-        this.type = "ustr";
+        this.type = settings.type;
     }
     next(curr) {
         <span class="missing-if-branch" title="if path not taken" >I</span>if (!curr) {
@@ -421,7 +514,7 @@ module.exports = {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Jun 10 2017 16:47:35 GMT+1000 (AUS Eastern Standard Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Jun 10 2017 18:05:00 GMT+1000 (AUS Eastern Standard Time)
 </div>
 </div>
 <script src="../../prettify.js"></script>

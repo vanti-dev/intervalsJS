@@ -27,7 +27,16 @@ var namedList = function(fields) {
     };
 };
 
+var getType = function(data) {
+    if (typeof data === 'number') {
+        if (data%1 === 0) { return "int"; }
+        else { return "float"; }
+    }
+    else { return "ustr"; }
+};
+
 module.exports = {
     OffsetableRangeMixin: OffsetableRangeMixin,
-    namedList: namedList
+    namedList: namedList,
+    getType: getType
 };

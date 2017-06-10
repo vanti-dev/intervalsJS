@@ -24,13 +24,14 @@ describe('Basic Range Functionality', function() {
 
         assert(intrange.lower == 1);
         assert(intrange.upper == 3);
+
+        expect(() => intrange = new range.intRange({lower:'a', upper: 2})).to.throw(Error);
+        expect(() => intrange = new range.intRange({lower:3, upper: 'b'})).to.throw(Error);
     });
 
     it('Tests replace', function () {
         var intrange = new range.intRange({lower:1, upper:2});
-        console.log(intrange);
         intrange.replace({lower:3, upper:10});
-        console.log(intrange);
         assert(intrange.lower == 3);
         assert(intrange.upper == 10);
         assert(intrange.lowerInc);
@@ -153,7 +154,6 @@ describe('Basic Range Functionality', function() {
     it('tests endsWith', function() {
         var intrange = new range.intRange({lower:1, upper:10, upperInc: true});
         var endswithRange = new range.intRange({lower: 5, upper: 10, upperInc: true});
-        console.log(intrange);
         assert(intrange.endsWith(endswithRange));
         assert(intrange.endsWith(10));
         assert(!intrange.endsWith(3));

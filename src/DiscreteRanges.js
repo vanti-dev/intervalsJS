@@ -85,9 +85,10 @@ class DiscreteRange extends RangeClass {
 
 class intRange extends DiscreteRange {
     constructor(settings = {}) {
+        settings.type = "int";
         super(1, settings);
         Object.assign(this, utils.OffsetableRangeMixin);
-        this.type = "int";
+        this.type = settings.type;
     }
 
     length() {
@@ -97,8 +98,9 @@ class intRange extends DiscreteRange {
 
 class strRange extends DiscreteRange {
     constructor(settings={}) {
+        settings.type = "ustr";
         super(1, settings);
-        this.type = "ustr";
+        this.type = settings.type;
     }
     next(curr) {
         if (!curr) {

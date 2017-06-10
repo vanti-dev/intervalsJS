@@ -16,9 +16,18 @@ class RangeClass {
     @param {object|scalar} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
     */
     constructor(settings = {}) {
+        if (settings.lower && utils.getType(settings.lower) != settings.type) {
+            throw new Error("Invalid type for lower bound");
+        }
+
+        if (settings.upper && utils.getType(settings.upper) != settings.type) {
+            throw new Error("Invalid type for lower bound");
+        }
+
         if (settings.upper && settings.lower && settings.upper < settings.lower) {
             throw new Error("Upper bound is less than lower bound!");
         }
+
          settings = {
             //Setting default values
             lower: settings.lower || null,
@@ -26,6 +35,7 @@ class RangeClass {
             lowerInc: settings.lowerInc || true,
             upperInc: settings.upperInc || false
         };
+
         this._range = _internalRange([settings.lower, settings.upper, settings.lowerInc, settings.upperInc, false]);
         /**
         @memberof RangeClass
@@ -109,7 +119,7 @@ class RangeClass {
     */
     isValidScalar(scalar) {
         if (this.type === "int") {
-            return scalar%1 === 0;
+            return utils.getType(scalar) === this.type;
         }
         return typeof scalar === typeof this.upper;
     }
@@ -235,7 +245,7 @@ class RangeClass {
             upperInc = a.upperInc;
         }
 
-        return new RangeClass({lower: a.lower, upper: upper, lowerInc: a.lowerInc, upperInc: upperInc});
+        return new RangeClass({lower: a.lower, upper: upper, lowerInc: a.lowerInc, upperInc: upperInc, type: this.type});
     }
     /**
     @memberof RangeClass
