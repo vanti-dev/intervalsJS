@@ -1,18 +1,7 @@
 var RangeClass = require("./Range.js");
-var namedList = function(fields) {
-    //Emulating pythons Named Tuples
-    return function(arr) {
-        var obj = { };
+var utils = require("./_utils");
 
-        for(var i = 0; i < arr.length; i++) {
-            obj[fields[i]] = arr[i];
-        }
-
-        return obj;
-    };
-};
-
-var _internalRange = namedList(["lower","upper","lowerInc","upperInc", "empty"]);
+var _internalRange = utils.namedList(["lower","upper","lowerInc","upperInc", "empty"]);
 var _emptyInternalRange = _internalRange([null, null, false, false, true])
 
 class DiscreteRange extends RangeClass {
@@ -66,6 +55,7 @@ class DiscreteRange extends RangeClass {
 class intRange extends DiscreteRange {
     constructor(settings = {}) {
         super(settings, 1);
+        Object.assign(this, utils.OffsetableRangeMixin);
         this.type = "int";
     }
 

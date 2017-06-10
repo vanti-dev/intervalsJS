@@ -1,17 +1,6 @@
-var namedList = function(fields) {
-    //Emulating pythons Named Tuples
-    return function(arr) {
-        var obj = { };
+var utils = require("./_utils.js");
 
-        for(var i = 0; i < arr.length; i++) {
-            obj[fields[i]] = arr[i];
-        }
-
-        return obj;
-    };
-};
-
-var _internalRange = namedList(["lower","upper","lowerInc","upperInc", "empty"]);
+var _internalRange = utils.namedList(["lower","upper","lowerInc","upperInc", "empty"]);
 var _emptyInternalRange = _internalRange([null, null, false, false, true])
 
 class RangeClass {
@@ -24,7 +13,7 @@ class RangeClass {
             //Setting default values
             lower: settings.lower || null,
             upper: settings.upper || null,
-            lowerInc: settings.lowerInc || false,
+            lowerInc: settings.lowerInc || true,
             upperInc: settings.upperInc || false
         }
         this._range = _internalRange([settings.lower, settings.upper, settings.lowerInc, settings.upperInc, false]);
@@ -52,11 +41,11 @@ class RangeClass {
     }
 
     lower() {
-        return this._range.lower || null;
+        return (this._range.lower != null) ? this._range.lower : null;
     }
 
     upper() {
-        return this._range.upper || null;
+        return (this._range.upper != null) ? this._range.upper : null;
     }
 
     lowerInc() {

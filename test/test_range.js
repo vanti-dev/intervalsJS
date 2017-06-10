@@ -22,7 +22,7 @@ describe('Basic Range Functionality', function() {
     it ('Tests bounds', function() {
         var intrange = new range.intRange({lower:1, upper:3});
 
-        assert(intrange.lower() == 2);
+        assert(intrange.lower() == 1);
         assert(intrange.upper() == 3);
     });
 
@@ -32,7 +32,7 @@ describe('Basic Range Functionality', function() {
 
         assert(intrange.lower() == 3);
         assert(intrange.upper() == 10);
-        assert(!intrange.lowerInc());
+        assert(intrange.lowerInc());
 
         intrange.replace({lowerInc:true, upperInc:true});
         assert(intrange.upperInc());
@@ -121,7 +121,7 @@ describe('Basic Range Functionality', function() {
         var union = intrange.union(intrange2);
 
         assert(union.upper() === 12);
-        assert(union.lower() == 2);
+        assert(union.lower() == 1);
     });
 
 
@@ -189,7 +189,7 @@ describe('Basic Range Functionality', function() {
 
         assert(intrange.rightOf(intrange2));
         intrange.replace({lower: 1});
-        
+
         assert(!intrange.rightOf(intrange2));
     });
 
