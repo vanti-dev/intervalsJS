@@ -20,7 +20,8 @@ module.exports = function(grunt) {
             src: ['src/*.js'],
             options: {
                 destination: 'docs',
-                template: 'node_modules/docdash'
+                template: 'node_modules/docdash',
+                readme: 'README.md'
             }
         }
     },
