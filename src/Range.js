@@ -10,10 +10,10 @@ class RangeClass {
     Ranges are strict about types. This means that both `lower` and `upper` must
     be of the given class or subclass, or `null`
     @param {object} settings - The settings of the range.
-    @param settings.lower - The lower end of the range
-    @param settings.upper - The upper end of the range
-    @param settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
-    @param settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @param {variable} settings.lower - The lower end of the range
+    @param {variable} settings.upper - The upper end of the range
+    @param {variable} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
+    @param {variable} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
     */
     constructor(settings = {}) {
         if (settings.upper && settings.lower && settings.upper < settings.lower) {
@@ -27,10 +27,25 @@ class RangeClass {
             upperInc: settings.upperInc || false
         };
         this._range = _internalRange([settings.lower, settings.upper, settings.lowerInc, settings.upperInc, false]);
-
+        /**
+        @memberof RangeClass
+        @description The lower boundary of the set.
+        */
         this.lower = this._range.lower;
+        /**
+        @memberof RangeClass
+        @description The upper boundary of the set.
+        */
         this.upper = this._range.upper;
+        /**
+        @memberof RangeClass
+        @description ``true`` if the lower bound is included in the range. Otherwise false.
+        */
         this.lowerInc = this._range.lowerInc;
+        /**
+        @memberof RangeClass
+        @description ``true`` if the lower bound is included in the range. Otherwise false.
+        */
         this.upperInc = this._range.upperInc;
     }
     /**
@@ -73,10 +88,21 @@ class RangeClass {
         return this;
     }
 
+    /**
+    @memberof RangeClass
+    @method isValidRange
+    @description Returns ``true`` if `object` is a valid range of the same type as this. Otherwise ``false``
+    @param {range} obj - A range to check
+    */
     isValidRange(obj) {
         return obj instanceof RangeClass;
     }
-
+    /**
+    @memberof RangeClass
+    @method isValidScalar
+    @description Returns ``true`` if `object` is a valid scalar of the same type as this. Otherwise ``false``
+    @param {scalar} scalar - A scalar to check
+    */
     isValidScalar(scalar) {
         if (this.type === "int") {
             return scalar%1 === 0;
@@ -84,6 +110,12 @@ class RangeClass {
         return typeof scalar === typeof this.upper;
     }
 
+    /**
+    @memberof RangeClass
+    @method contains
+    @description Returns ``true`` if this contains other. Other may be either range of same type or scalar of same type as the boundaries.
+    @param {variable} other - Check whether this contains other.
+    */
     contains(other) {
         if (this.isValidRange(other)) {
             if (!this) {
@@ -113,7 +145,12 @@ class RangeClass {
             throw new Error("Unsupported type to test for inclusion");
         }
     }
-
+    /**
+    @memberof RangeClass
+    @method overlap
+    @description Returns ``true`` if this shares any points with other.
+    @param {range} other - Check whether this shares any points with other.
+    */
     overlap(other) {
         var a, b;
         if (!this || !other) {
@@ -134,7 +171,12 @@ class RangeClass {
         }
         return a.upper > b.lower || a.upper === b.lower && a.upperInc && b.lowerInc;
     }
-
+    /**
+    @memberof RangeClass
+    @method adjacent
+    @description Returns ``true`` if ranges are directly next to each other but do not overlap.
+    @param {range} other - Check whether this is adjacent to other.
+    */
     adjacent(other) {
         if (!this.isValidRange(other)) {
             throw new Error("Unsupported type to test for inclusion");
@@ -144,7 +186,13 @@ class RangeClass {
         }
         return (this.lower == other.upper && this.lowerInc != other.upperInc) || (this.upper == other.lower && this.upperInc != other.lowerInc);
     }
-
+    /**
+    @memberof RangeClass
+    @method union
+    @description Returns a new set, containing the two ranges merged together.
+    *note: wo ranges can not be merged if the resulting range would be split in two.
+    @param {range} other - The range to merge.
+    */
     union(other) {
         if (!this.isValidRange(other)) {
             throw new Error("Unsupported type to test for union");
@@ -181,7 +229,13 @@ class RangeClass {
 
         return new RangeClass({lower: a.lower, upper: upper, lowerInc: a.lowerInc, upperInc: upperInc});
     }
-
+    /**
+    @memberof RangeClass
+    @method difference
+    @description Compute the difference between this and a given range.
+    *note: The difference can not be computed if the resulting range would be split in two seperate ranges.
+    @param {range} other - The range to find the difference with.
+    */
     difference(other) {
         if (!this.isValidRange(other)) {
             throw new Error("Unsupported type to test for difference");
@@ -206,7 +260,13 @@ class RangeClass {
             return self.empty();
         }
     }
-
+    /**
+    @memberof RangeClass
+    @method intersection
+    @description Returns a new range containing all points shared by both ranges. If no points are shared an empty range is returned
+    *note: The difference can not be computed if the resulting range would be split in two seperate ranges.
+    @param {range} other - The range to intersect with.
+    */
     intersection(other) {
         if (!this.isValidRange(other)) {
             throw new Error("Unsupported type to test for intersection");
@@ -221,7 +281,12 @@ class RangeClass {
 
         return lowerEndSpan.replace({upper: upperEndSpan.upper, upperInc: upperEndSpan.upperInc});
     }
-
+    /**
+    @memberof RangeClass
+    @method startsWith
+    @description Test if this range starts with other. other may either be range or scalar.
+    @param {variable} other - Range or scalar to test.
+    */
     startsWith(other) {
         if (this.isValidRange(other)) {
             if (this.lowerInc === other.lowerInc) {
@@ -243,7 +308,12 @@ class RangeClass {
             throw new Error("Unsupported type to test for starts with");
         }
     }
-
+    /**
+    @memberof RangeClass
+    @method endsWith
+    @description Test if this range ends with other. other may either be range or scalar.
+    @param {variable} other - Range or scalar to test.
+    */
     endsWith(other) {
         if (this.isValidRange(other)) {
             if (this.upperInc === other.upperInc) {
@@ -265,6 +335,12 @@ class RangeClass {
             throw new Error("Unsupported type to test for ends with");
         }
     }
+    /**
+    @memberof RangeClass
+    @method startsAfter
+    @description Test if this range starts after other. Other may be either a range or a scalar.
+    @param {variable} other - Range or scalar to test.
+    */
     startsAfter(other) {
         if (this.isValidRange(other)) {
             if (this.lower === other.lower) {
@@ -287,7 +363,12 @@ class RangeClass {
             throw new Error("Unsupported type to test for starts after");
         }
     }
-
+    /**
+    @memberof RangeClass
+    @method endsBefore
+    @description Test if this range ends before other. Other may be either a range or a scalar.
+    @param {variable} other - Range or scalar to test.
+    */
     endsBefore(other) {
         if (this.isValidRange(other)) {
             if (this.upper === other.upper) {
@@ -310,14 +391,24 @@ class RangeClass {
             throw new Error("Unsupported type to test for ends before");
         }
     }
-
+    /**
+    @memberof RangeClass
+    @method leftOf
+    @description Test if the range is strictly left of `other`.
+    @param {range} other - Range to test.
+    */
     leftOf(other) {
         if (!this.isValidRange(other)) {
             throw new Error("Unsupported type to test for left of");
         }
         return (this.endsBefore(other) && !this.overlap(other));
     }
-
+    /**
+    @memberof RangeClass
+    @method rightOf
+    @description Test if the range is strictly right of `other`.
+    @param {range} other - Range to test.
+    */
     rightOf(other) {
         if (!this.isValidRange(other)) {
             throw new Error("Unsupported type to test for right of");

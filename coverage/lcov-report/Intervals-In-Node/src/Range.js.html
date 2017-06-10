@@ -372,7 +372,33 @@
 327
 328
 329
-330</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -402,9 +428,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">41×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">41×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">41×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">41×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">41×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -445,10 +486,21 @@
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">78×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -713,10 +765,10 @@ class RangeClass {
     Ranges are strict about types. This means that both `lower` and `upper` must
     be of the given class or subclass, or `null`
     @param {object} settings - The settings of the range.
-    @param settings.lower - The lower end of the range
-    @param settings.upper - The upper end of the range
-    @param settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
-    @param settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @param {variable} settings.lower - The lower end of the range
+    @param {variable} settings.upper - The upper end of the range
+    @param {variable} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
+    @param {variable} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
     */
     constructor(settings = {}) {
         <span class="missing-if-branch" title="if path not taken" >I</span>if (settings.upper &amp;&amp; settings.lower &amp;&amp; settings.upper &lt; settings.lower) {
@@ -730,10 +782,25 @@ class RangeClass {
             upperInc: settings.upperInc || false
         };
         this._range = _internalRange([settings.lower, settings.upper, settings.lowerInc, settings.upperInc, false]);
-&nbsp;
+        /**
+        @memberof RangeClass
+        @description The lower boundary of the set.
+        */
         this.lower = this._range.lower;
+        /**
+        @memberof RangeClass
+        @description The upper boundary of the set.
+        */
         this.upper = this._range.upper;
+        /**
+        @memberof RangeClass
+        @description ``true`` if the lower bound is included in the range. Otherwise false.
+        */
         this.lowerInc = this._range.lowerInc;
+        /**
+        @memberof RangeClass
+        @description ``true`` if the lower bound is included in the range. Otherwise false.
+        */
         this.upperInc = this._range.upperInc;
     }
     /**
@@ -776,10 +843,21 @@ class RangeClass {
         return this;
     }
 &nbsp;
+    /**
+    @memberof RangeClass
+    @method isValidRange
+    @description Returns ``true`` if `object` is a valid range. Otherwise ``false``
+    @param {object} obj - A range to check
+    */
     isValidRange(obj) {
         return obj instanceof RangeClass;
     }
-&nbsp;
+    /**
+    @memberof RangeClass
+    @method isValidScalar
+    @description Returns ``true`` if `object` is a valid scalar. Otherwise ``false``
+    @param {scalar} scalar - A scalar to check
+    */
     isValidScalar(scalar) {
         <span class="missing-if-branch" title="else path not taken" >E</span>if (this.type === "int") {
             return scalar%1 === 0;
@@ -1036,7 +1114,7 @@ module.exports = RangeClass;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Jun 10 2017 16:15:06 GMT+1000 (AUS Eastern Standard Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Jun 10 2017 16:26:12 GMT+1000 (AUS Eastern Standard Time)
 </div>
 </div>
 <script src="../../prettify.js"></script>
