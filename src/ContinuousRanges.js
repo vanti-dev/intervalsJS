@@ -1,5 +1,5 @@
 var RangeClass = require("./Range.js");
-var utils = require("./_utils");
+var utils = require("./utils");
 
 var _internalRange = utils.namedList(["lower","upper","lowerInc","upperInc", "empty"]);
 var _emptyInternalRange = _internalRange([null, null, false, false, true]);
@@ -15,6 +15,7 @@ class floatRange extends RangeClass {
     @param {object|scalar} settings.upper - The upper end of the range
     @param {object|scalar} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
     @param {object|scalar} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @mixes OffsetableRangeMixin
     */
     constructor(settings = {}) {
         settings.type = "float";

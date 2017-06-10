@@ -1,5 +1,25 @@
 OffsetableRangeMixin =  {
+    /**
+    * This provides methods used for event offsetting a range.
+    * It also includes the offsetType member.
+    *
+    * @mixin OffsetableRangeMixin
+    */
+
+    /**
+    * @member offsetType
+    * @memberof OffsetableRangeMixin
+    * @description The type of value used to offset
+    */
     offsetType: null,
+
+    /**
+    @memberof OffsetableRangeMixin
+    @method offset
+    @description Offset the range by the given value.
+    @param {scalar} offset -How much to offset by
+    @returns {range}
+    */
     offset: function(offset) {
 
 
