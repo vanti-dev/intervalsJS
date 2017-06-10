@@ -77,4 +77,7 @@ class floatRange extends RangeClass {
     }
 }
 
-module.exports = intRange;
+module.exports = {
+    intRange: intRange,
+    floatRange: floatRange
+}
