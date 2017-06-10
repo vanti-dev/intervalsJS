@@ -4,7 +4,7 @@
   "description": "An implementation of PostgreSQL 'intervals' in node.js",
   "main": "range.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha"
+    "test": "mocha"
   },
   "author": "Jasper Miles",
   "license": "ISC",
