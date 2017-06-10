@@ -64,6 +64,32 @@ class intRange extends DiscreteRange {
     }
 }
 
+class strRange extends DiscreteRange {
+    constructor(settings={}) {
+        super(settings, 1);
+        this.type = "ustr";
+    }
+    //Add methods
+}
+
+class dateRange extends DiscreteRange {
+    constructor(settings = {}) {
+        super(settings, 1)
+        this.type = "date";
+        //Work from here
+    }
+}
+
+class PeriodRange extends dateRange {
+    constructor(settings = {}) {
+        super(settings, 1);
+        //Work from here
+    }
+}
+
 module.exports = {
-    intRange: intRange
+    intRange: intRange,
+    strRange: strRange,
+    dateRange: dateRange,
+    PeriodRange: PeriodRange
 }

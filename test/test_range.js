@@ -1,4 +1,4 @@
-var range = require("../src/DiscreteRanges.js");
+var range = require("../main.js");
 var assert = require('chai').assert;
 
 describe('Basic Range Functionality', function() {
