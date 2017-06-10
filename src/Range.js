@@ -72,6 +72,9 @@ class RangeClass {
     }
 
     isValidScalar(scalar) {
+        if (this.type === "int") {
+            return scalar%1 === 0
+        }
         return typeof scalar === 'number';
     }
 
