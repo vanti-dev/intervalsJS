@@ -7,8 +7,8 @@ OffsetableRangeMixin =  {
             throw new Error("Invalid type for offset");
         }
 
-        var lower = (this.lower()) ? this.lower()+offset : null;
-        var upper = (this.upper()) ? this.upper()+offset : null;
+        var lower = this.lower ? this.lower+offset : null;
+        var upper = this.upper ? this.upper+offset : null;
 
         return this.replace({upper: upper, lower: lower});
     }

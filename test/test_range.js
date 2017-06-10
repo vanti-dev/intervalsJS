@@ -8,35 +8,36 @@ describe('Basic Range Functionality', function() {
         var emptyIntrange = new range.intRange().empty();
 
         assert(typeof emptyIntrange === "object" && emptyIntrange !== null, 'Object created');
-        assert(emptyIntrange.lower() === null);
-        assert(emptyIntrange.upper() === null);
+        assert(emptyIntrange.lower === null);
+        assert(emptyIntrange.upper === null);
     });
 
     it('Tests default bounds', function() {
         var emptyIntrange = new range.intRange().empty();
 
-        assert(!emptyIntrange.lowerInc());
-        assert(!emptyIntrange.upperInc());
+        assert(emptyIntrange.lowerInc);
+        assert(!emptyIntrange.upperInc);
     });
 
     it('Tests bounds', function() {
         var intrange = new range.intRange({lower:1, upper:3});
 
-        assert(intrange.lower() == 1);
-        assert(intrange.upper() == 3);
+        assert(intrange.lower == 1);
+        assert(intrange.upper == 3);
     });
 
     it('Tests replace', function () {
         var intrange = new range.intRange({lower:1, upper:2});
+        console.log(intrange);
         intrange.replace({lower:3, upper:10});
-
-        assert(intrange.lower() == 3);
-        assert(intrange.upper() == 10);
-        assert(intrange.lowerInc());
+        console.log(intrange);
+        assert(intrange.lower == 3);
+        assert(intrange.upper == 10);
+        assert(intrange.lowerInc);
 
         intrange.replace({lowerInc:true, upperInc:true});
-        assert(intrange.upperInc());
-        assert(intrange.lowerInc());
+        assert(intrange.upperInc);
+        assert(intrange.lowerInc);
     });
 
     it('tests if the ranges are valid', function () {
@@ -70,7 +71,7 @@ describe('Basic Range Functionality', function() {
         assert(intrange.endsBefore(5));
         assert(!intrange.endsBefore(-10));
         assert(intrange.endsBefore(intrangeUnbounded));
-        assert(!intrangeNoUB.endsBefore(endsBeforeRange))
+        assert(!intrangeNoUB.endsBefore(endsBeforeRange));
         expect(() => intrange.endsBefore('a')).to.throw(Error);
     });
 
@@ -129,8 +130,8 @@ describe('Basic Range Functionality', function() {
         var intrange2 = new range.intRange({lower: 2, upper: 12});
         var union = intrange.union(intrange2);
 
-        assert(union.upper() === 12);
-        assert(union.lower() == 1);
+        assert(union.upper === 12);
+        assert(union.lower == 1);
 
         expect(() => intrange.union(1)).to.throw(Error);
     });
@@ -152,7 +153,7 @@ describe('Basic Range Functionality', function() {
     it('tests endsWith', function() {
         var intrange = new range.intRange({lower:1, upper:10, upperInc: true});
         var endswithRange = new range.intRange({lower: 5, upper: 10, upperInc: true});
-
+        console.log(intrange);
         assert(intrange.endsWith(endswithRange));
         assert(intrange.endsWith(10));
         assert(!intrange.endsWith(3));
@@ -169,8 +170,8 @@ describe('Basic Range Functionality', function() {
         var intrange2 = new range.intRange({lower: 10, upper: 15, lowerInc: true});
         var difference = intrange.difference(intrange2);
 
-        assert(difference.lower() === 1);
-        assert(difference.upper() == 10);
+        assert(difference.lower === 1);
+        assert(difference.upper == 10);
 
         intrange.replace({upper: 5});
         intrange2.replace({lower: 1});
@@ -186,8 +187,8 @@ describe('Basic Range Functionality', function() {
         var intrange2 = new range.intRange({lower: 1, upper: 10});
         var intersection = intrange.intersection(intrange2);
 
-        assert(intrange.lower() === 1);
-        assert(intrange.upper() === 5);
+        assert(intrange.lower === 1);
+        assert(intrange.upper === 5);
 
         expect(() => intrange.intersection(1)).to.throw(Error);
     });
@@ -216,6 +217,7 @@ describe('Basic Range Functionality', function() {
         assert(!intrange.rightOf(intrange2));
 
         expect(() => intrange.rightOf(1)).to.throw(Error);
+
     });
 
 });

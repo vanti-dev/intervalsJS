@@ -8,20 +8,22 @@ class DiscreteRange extends RangeClass {
     constructor(step, settings = {}) {
         super(settings);
         this.step = step;
-        var lb = this.lower();
-        if (this.lower() && !this.lowerInc()) {
+        var lb = this.lower;
+        if (this.lower && !this.lowerInc) {
             lb = this.next(lb);
         }
 
-        var ub = this.upper();
-        if (this.upper() && this.upperInc()) {
+        var ub = this.upper;
+        if (this.upper && this.upperInc) {
             ub = this.next(ub);
         }
-        if (this.lower() && this.upper() && lb >= ub) {
+        if (this.lower && this.upper && lb >= ub) {
             this._range = _emptyInternalRange;
+            this.replace({upper: null, lower: null, lowerInc: false, upperInc: false});
         }
         else {
             this._range = _internalRange([lb, ub, true, false, false]);
+            this.replace({upper: ub, lower: lb, lowerInc: true, upperInch: false});
         }
     }
 
@@ -34,11 +36,11 @@ class DiscreteRange extends RangeClass {
     }
 
     last() {
-        if (!this || !this.upper()) {
+        if (!this || !this.upper) {
             return null;
         }
         else {
-            return this.prev(this.upper());
+            return this.prev(this.upper);
         }
     }
 
@@ -60,7 +62,7 @@ class intRange extends DiscreteRange {
     }
 
     length() {
-        return this.upper() - this.lower();
+        return this.upper - this.lower;
     }
 }
 

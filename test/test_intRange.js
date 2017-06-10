@@ -15,8 +15,8 @@ describe('intRange', function() {
         var notARange = null;
 
         intrange.offset(-5);
-        assert(intrange.upper() === 5);
-        assert(intrange.lower() === 0);
+        assert(intrange.upper === 5);
+        assert(intrange.lower === 0);
 
         expect(() => intrange.offset('a')).to.throw(Error);
     });

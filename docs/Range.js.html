@@ -1,4 +1,32 @@
-var utils = require("./_utils.js");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Range.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Range.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var utils = require("./_utils.js");
 
 var _internalRange = utils.namedList(["lower","upper","lowerInc","upperInc", "empty"]);
 var _emptyInternalRange = _internalRange([null, null, false, false, true]);
@@ -16,7 +44,7 @@ class RangeClass {
     @param settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
     */
     constructor(settings = {}) {
-        if (settings.upper && settings.lower && settings.upper < settings.lower) {
+        if (settings.upper &amp;&amp; settings.lower &amp;&amp; settings.upper &lt; settings.lower) {
             throw new Error("Upper bound is less than lower bound!");
         }
          settings = {
@@ -89,7 +117,7 @@ class RangeClass {
             if (!this) {
                 return !other;
             }
-            else if (!other || other.startsAfter(this) && other.endsBefore(this)) {
+            else if (!other || other.startsAfter(this) &amp;&amp; other.endsBefore(this)) {
                 return true;
             }
             else {
@@ -99,7 +127,7 @@ class RangeClass {
         else if (this.isValidScalar(other)) {
             var isInLower = true;
             if (this.lower) {
-                isInLower = (this.lower < other);
+                isInLower = (this.lower &lt; other);
             }
 
             var isInUpper = true;
@@ -107,7 +135,7 @@ class RangeClass {
                 isInUpper = (this.upper >= other);
             }
 
-            return isInLower && isInUpper;
+            return isInLower &amp;&amp; isInUpper;
         }
         else {
             throw new Error("Unsupported type to test for inclusion");
@@ -132,7 +160,7 @@ class RangeClass {
         if (!a.upper || !b.lower) {
             return true;
         }
-        return a.upper > b.lower || a.upper === b.lower && a.upperInc && b.lowerInc;
+        return a.upper > b.lower || a.upper === b.lower &amp;&amp; a.upperInc &amp;&amp; b.lowerInc;
     }
 
     adjacent(other) {
@@ -142,7 +170,7 @@ class RangeClass {
         else if (!this || !other) {
             return false;
         }
-        return (this.lower == other.upper && this.lowerInc != other.upperInc) || (this.upper == other.lower && this.upperInc != other.lowerInc);
+        return (this.lower == other.upper &amp;&amp; this.lowerInc != other.upperInc) || (this.upper == other.lower &amp;&amp; this.upperInc != other.lowerInc);
     }
 
     union(other) {
@@ -161,7 +189,7 @@ class RangeClass {
             b = this;
         }
 
-        if (a.upper <= b.lower && !a.adjacent(b)) {
+        if (a.upper &lt;= b.lower &amp;&amp; !a.adjacent(b)) {
             throw new Error("Ranges must be either adjacent or overlapping");
         }
 
@@ -170,7 +198,7 @@ class RangeClass {
             upper = a.upper;
             upperInc = a.upperInc || b.upperInc;
         }
-        else if (a.upper < b.upper) {
+        else if (a.upper &lt; b.upper) {
             upper = b.upper;
             upperInc = b.upperInc;
         }
@@ -193,7 +221,7 @@ class RangeClass {
         else if (other.contains(this)) {
             return this.empty();
         }
-        else if (this.contains(other) && !(this.startsWith(other) || this.endsWith(other))) {
+        else if (this.contains(other) &amp;&amp; !(this.startsWith(other) || this.endsWith(other))) {
             throw new Error("Other range must not be within this range");
         }
         else if (this.endsBefore(other)) {
@@ -300,11 +328,11 @@ class RangeClass {
                 return true;
             }
             else {
-                return this.upper <= other.upper;
+                return this.upper &lt;= other.upper;
             }
         }
         else if (this.isValidScalar(other)) {
-            return this.upper <= other;
+            return this.upper &lt;= other;
         }
         else {
             throw new Error("Unsupported type to test for ends before");
@@ -315,7 +343,7 @@ class RangeClass {
         if (!this.isValidRange(other)) {
             throw new Error("Unsupported type to test for left of");
         }
-        return (this.endsBefore(other) && !this.overlap(other));
+        return (this.endsBefore(other) &amp;&amp; !this.overlap(other));
     }
 
     rightOf(other) {
@@ -327,3 +355,26 @@ class RangeClass {
 }
 
 module.exports = RangeClass;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="RangeClass.html">RangeClass</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jun 10 2017 16:15:06 GMT+1000 (AUS Eastern Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
