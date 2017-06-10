@@ -15,7 +15,7 @@ describe('Basic Range Functionality', function() {
     it('Tests default bounds', function() {
         var emptyIntrange = new range.intRange().empty();
 
-        assert(emptyIntrange.lowerInc);
+        assert(!emptyIntrange.lowerInc);
         assert(!emptyIntrange.upperInc);
     });
 
@@ -178,6 +178,10 @@ describe('Basic Range Functionality', function() {
         difference = intrange.difference(intrange2);
         assert(difference._range.empty);
 
+        intrange.replace({lower:10, upper:15, lowerInc: true, upperInc: true});
+        intrange2.replace({lower:1, upper:10, upperInc: true, lowerInc:true});
+        difference = intrange.difference(intrange2);
+
         expect(() => intrange.difference(1)).to.throw(Error);
     });
 
@@ -189,6 +193,11 @@ describe('Basic Range Functionality', function() {
 
         assert(intrange.lower === 1);
         assert(intrange.upper === 5);
+
+        intrange2.replace({lower: 50, upper: 100});
+        intersection = intrange.intersection(intrange2);
+        assert(intersection.empty);
+
 
         expect(() => intrange.intersection(1)).to.throw(Error);
     });

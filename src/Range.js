@@ -67,6 +67,10 @@ class RangeClass {
     */
     empty() {
         this._range = _emptyInternalRange;
+        this.lower = this._range.lower;
+        this.upper = this._range.upper;
+        this.lowerInc = this._range.lowerInc;
+        this.upperInc = this._range.upperInc;
         return this;
     }
 
@@ -272,9 +276,6 @@ class RangeClass {
         }
         else if (this.startsAfter(other)) {
             return this.replace({lower:other.upper, lowerInc:!other.upperInc});
-        }
-        else {
-            return self.empty();
         }
     }
     /**
