@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DiscreteRange - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DiscreteRange.html">DiscreteRange</a><ul class='methods'><li data-type='method'><a href="DiscreteRange.html#.last">last</a></li><li data-type='method'><a href="DiscreteRange.html#.next">next</a></li><li data-type='method'><a href="DiscreteRange.html#.prev">prev</a></li></ul></li><li><a href="RangeClass.html">RangeClass</a><ul class='methods'><li data-type='method'><a href="RangeClass.html#.adjacent">adjacent</a></li><li data-type='method'><a href="RangeClass.html#.contains">contains</a></li><li data-type='method'><a href="RangeClass.html#.difference">difference</a></li><li data-type='method'><a href="RangeClass.html#.empty">empty</a></li><li data-type='method'><a href="RangeClass.html#.endsBefore">endsBefore</a></li><li data-type='method'><a href="RangeClass.html#.endsWith">endsWith</a></li><li data-type='method'><a href="RangeClass.html#.intersection">intersection</a></li><li data-type='method'><a href="RangeClass.html#.isValidRange">isValidRange</a></li><li data-type='method'><a href="RangeClass.html#.isValidScalar">isValidScalar</a></li><li data-type='method'><a href="RangeClass.html#.leftOf">leftOf</a></li><li data-type='method'><a href="RangeClass.html#.overlap">overlap</a></li><li data-type='method'><a href="RangeClass.html#.replace">replace</a></li><li data-type='method'><a href="RangeClass.html#.rightOf">rightOf</a></li><li data-type='method'><a href="RangeClass.html#.startsAfter">startsAfter</a></li><li data-type='method'><a href="RangeClass.html#.startsWith">startsWith</a></li><li data-type='method'><a href="RangeClass.html#.union">union</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">DiscreteRange</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        DiscreteRange
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    <h4 class="name" id="DiscreteRange"><span class="type-signature"></span>new DiscreteRange<span class="signature">(settings)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>settings</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The settings of the range.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>lower</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+|
+
+<span class="param-type">scalar</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The lower end of the range</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>upper</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+|
+
+<span class="param-type">scalar</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The upper end of the range</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lowerInc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+|
+
+<span class="param-type">scalar</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">``true`` if lower end should be included in range. Defaults to ``true``.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>upperInc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+|
+
+<span class="param-type">scalar</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">``true`` if upper end should be included in range. Defautls to ``false``.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="RangeClass.html">RangeClass</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".last"><span class="type-signature">(static) </span>last<span class="signature">()</span><span class="type-signature"> &rarr; {scalar}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line59">line 59</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Returns the last element within this range. If the range has no
+    upper limit, `null` is returned.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">scalar</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".next"><span class="type-signature">(static) </span>next<span class="signature">(curr)</span><span class="type-signature"> &rarr; {scalar}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line39">line 39</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Increment the given value with the step defined for this class.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>curr</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">scalar</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Value to increment</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">scalar</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".prev"><span class="type-signature">(static) </span>prev<span class="signature">(curr)</span><span class="type-signature"> &rarr; {scalar}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line49">line 49</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Decrement the given value with the step defined for this class.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>curr</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">scalar</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Value to decrement</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">scalar</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jun 10 2017 16:59:23 GMT+1000 (AUS Eastern Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

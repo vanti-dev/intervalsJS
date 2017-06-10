@@ -10,10 +10,10 @@ class RangeClass {
     Ranges are strict about types. This means that both `lower` and `upper` must
     be of the given class or subclass, or `null`
     @param {object} settings - The settings of the range.
-    @param {variable} settings.lower - The lower end of the range
-    @param {variable} settings.upper - The upper end of the range
-    @param {variable} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
-    @param {variable} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @param {object|scalar} settings.lower - The lower end of the range
+    @param {object|scalar} settings.upper - The upper end of the range
+    @param {object|scalar} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
+    @param {object|scalar} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
     */
     constructor(settings = {}) {
         if (settings.upper && settings.lower && settings.upper < settings.lower) {
@@ -52,6 +52,7 @@ class RangeClass {
     @memberof RangeClass
     @method empty
     @description Returns an empty set. An empty set in unbounded and only contains the empty set.
+    @returns {range} An empty set.
     */
     empty() {
         this._range = _emptyInternalRange;
@@ -67,6 +68,7 @@ class RangeClass {
     @param settings.upper - The upper end of the range
     @param settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
     @param settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @returns {range} A set with the given arguments replaced.
     */
     replace(settings = {}) {
         if (settings.lower !== undefined) {
@@ -93,6 +95,7 @@ class RangeClass {
     @method isValidRange
     @description Returns ``true`` if `object` is a valid range of the same type as this. Otherwise ``false``
     @param {range} obj - A range to check
+    @returns {boolean}
     */
     isValidRange(obj) {
         return obj instanceof RangeClass;
@@ -102,6 +105,7 @@ class RangeClass {
     @method isValidScalar
     @description Returns ``true`` if `object` is a valid scalar of the same type as this. Otherwise ``false``
     @param {scalar} scalar - A scalar to check
+    @returns {boolean}
     */
     isValidScalar(scalar) {
         if (this.type === "int") {
@@ -114,7 +118,8 @@ class RangeClass {
     @memberof RangeClass
     @method contains
     @description Returns ``true`` if this contains other. Other may be either range of same type or scalar of same type as the boundaries.
-    @param {variable} other - Check whether this contains other.
+    @param {object|scalar} other - Check whether this contains other.
+    @returns {boolean}
     */
     contains(other) {
         if (this.isValidRange(other)) {
@@ -150,6 +155,7 @@ class RangeClass {
     @method overlap
     @description Returns ``true`` if this shares any points with other.
     @param {range} other - Check whether this shares any points with other.
+    @returns {boolean}
     */
     overlap(other) {
         var a, b;
@@ -176,6 +182,7 @@ class RangeClass {
     @method adjacent
     @description Returns ``true`` if ranges are directly next to each other but do not overlap.
     @param {range} other - Check whether this is adjacent to other.
+    @returns {boolean}
     */
     adjacent(other) {
         if (!this.isValidRange(other)) {
@@ -192,6 +199,7 @@ class RangeClass {
     @description Returns a new set, containing the two ranges merged together.
     *note: wo ranges can not be merged if the resulting range would be split in two.
     @param {range} other - The range to merge.
+    @returns {range} Both of the sets merged together
     */
     union(other) {
         if (!this.isValidRange(other)) {
@@ -235,6 +243,7 @@ class RangeClass {
     @description Compute the difference between this and a given range.
     *note: The difference can not be computed if the resulting range would be split in two seperate ranges.
     @param {range} other - The range to find the difference with.
+    @returns {range} The difference between the two sets.
     */
     difference(other) {
         if (!this.isValidRange(other)) {
@@ -266,6 +275,7 @@ class RangeClass {
     @description Returns a new range containing all points shared by both ranges. If no points are shared an empty range is returned
     *note: The difference can not be computed if the resulting range would be split in two seperate ranges.
     @param {range} other - The range to intersect with.
+    @returns {range} A range containing all common points of the two objects
     */
     intersection(other) {
         if (!this.isValidRange(other)) {
@@ -285,7 +295,8 @@ class RangeClass {
     @memberof RangeClass
     @method startsWith
     @description Test if this range starts with other. other may either be range or scalar.
-    @param {variable} other - Range or scalar to test.
+    @param {object|scalar} other - Range or scalar to test.
+    @returns {boolean}
     */
     startsWith(other) {
         if (this.isValidRange(other)) {
@@ -312,7 +323,8 @@ class RangeClass {
     @memberof RangeClass
     @method endsWith
     @description Test if this range ends with other. other may either be range or scalar.
-    @param {variable} other - Range or scalar to test.
+    @param {object|scalar} other - Range or scalar to test.
+    @returns {boolean}
     */
     endsWith(other) {
         if (this.isValidRange(other)) {
@@ -339,7 +351,8 @@ class RangeClass {
     @memberof RangeClass
     @method startsAfter
     @description Test if this range starts after other. Other may be either a range or a scalar.
-    @param {variable} other - Range or scalar to test.
+    @param {object|scalar} other - Range or scalar to test.
+    @returns {boolean}
     */
     startsAfter(other) {
         if (this.isValidRange(other)) {
@@ -367,7 +380,8 @@ class RangeClass {
     @memberof RangeClass
     @method endsBefore
     @description Test if this range ends before other. Other may be either a range or a scalar.
-    @param {variable} other - Range or scalar to test.
+    @param {object|scalar} other - Range or scalar to test.
+    @returns {boolean}
     */
     endsBefore(other) {
         if (this.isValidRange(other)) {
@@ -396,6 +410,7 @@ class RangeClass {
     @method leftOf
     @description Test if the range is strictly left of `other`.
     @param {range} other - Range to test.
+    @returns {boolean}
     */
     leftOf(other) {
         if (!this.isValidRange(other)) {
@@ -408,6 +423,7 @@ class RangeClass {
     @method rightOf
     @description Test if the range is strictly right of `other`.
     @param {range} other - Range to test.
+    @returns {boolean}
     */
     rightOf(other) {
         if (!this.isValidRange(other)) {
