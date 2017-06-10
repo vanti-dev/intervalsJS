@@ -79,6 +79,15 @@ class RangeClass {
         this.upperInc = this._range.upperInc;
         return this;
     }
+    /**
+    @memberof RangeClass
+    @method isEmpty
+    @description Returns ``true`` if the range is empty.
+    @returns {boolean}
+    */
+    isEmpty() {
+        return this._range.empty;
+    }
 
     /**
     @memberof RangeClass
@@ -132,6 +141,26 @@ class RangeClass {
         return utils.getType(scalar) === this.type;
     }
 
+    /**
+    @memberof RangeClass
+    @method isEqual
+    @description Returns ``true`` if this is the same range as other.
+    @param {range} scalar - A range to check for equality.
+    @returns {boolean}
+    */
+    isEqual(other) {
+        if (!this || !other || !this.isValidRange(other)) {
+            return false;
+        }
+        else {
+            for (var item in this._range) {
+                if (this._range[item] != other._range[item]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
     /**
     @memberof RangeClass
     @method contains

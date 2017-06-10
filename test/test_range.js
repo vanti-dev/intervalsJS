@@ -8,8 +8,7 @@ describe('Basic Range Functionality', function() {
         var emptyIntrange = new range.intRange().empty();
 
         assert(typeof emptyIntrange === "object" && emptyIntrange !== null, 'Object created');
-        assert(emptyIntrange.lower === null);
-        assert(emptyIntrange.upper === null);
+        assert(emptyIntrange.isEmpty());
     });
 
     it('Tests default bounds', function() {
@@ -39,6 +38,19 @@ describe('Basic Range Functionality', function() {
         intrange.replace({lowerInc:true, upperInc:true});
         assert(intrange.upperInc);
         assert(intrange.lowerInc);
+    });
+
+    it('tests equality', function() {
+        var intrange = new range.intRange({lower: 10, upper:24});
+        var intrange2 = new range.intRange({lower: 10, upper: 24});
+
+        assert(intrange.isEqual(intrange2));
+
+        intrange2.replace({lower: -8});
+        assert(!intrange.isEqual(intrange2));
+
+        intrange.replace({lower: -8, upperInc: true});
+        assert(!intrange.isEqual(intrange2));
     });
 
     it('tests if the ranges are valid', function () {
@@ -176,7 +188,7 @@ describe('Basic Range Functionality', function() {
         intrange.replace({upper: 5});
         intrange2.replace({lower: 1});
         difference = intrange.difference(intrange2);
-        assert(difference._range.empty);
+        assert(difference.isEmpty());
 
         intrange.replace({lower:10, upper:15, lowerInc: true, upperInc: true});
         intrange2.replace({lower:1, upper:10, upperInc: true, lowerInc:true});
