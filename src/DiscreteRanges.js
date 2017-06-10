@@ -8,7 +8,7 @@ class DiscreteRange extends RangeClass {
     /**
     @class DiscreteRange
     @extends RangeClass
-    Discrete ranges are a subset of ranges that work on discrete types. This includes `int` and `datetime.date`
+    @description Discrete ranges are a subset of ranges that work on discrete types. This includes `int` and `datetime.date`
     @param {object} settings - The settings of the range.
     @param {object|scalar} settings.lower - The lower end of the range
     @param {object|scalar} settings.upper - The upper end of the range
@@ -84,13 +84,32 @@ class DiscreteRange extends RangeClass {
 }
 
 class intRange extends DiscreteRange {
+    /**
+    @class intRange
+    @extends DiscreteRange
+    @description Range that operates on int.
+    @param {object} settings - The settings of the range.
+    @param {object|scalar} settings.lower - The lower end of the range
+    @param {object|scalar} settings.upper - The upper end of the range
+    @param {object|scalar} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
+    @param {object|scalar} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    */
     constructor(settings = {}) {
         settings.type = "int";
         super(1, settings);
         Object.assign(this, utils.OffsetableRangeMixin);
+        /**
+        @memberof intRange
+        @description The type of values in the range.
+        */
         this.type = settings.type;
     }
-
+    /**
+    @memberof intRange
+    @method length
+    @description Return the length of the range
+    @returns {scalar}
+    */
     length() {
         return this.upper - this.lower;
     }

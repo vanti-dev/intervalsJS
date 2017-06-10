@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DiscreteRange.html">DiscreteRange</a><ul class='methods'><li data-type='method'><a href="DiscreteRange.html#.last">last</a></li><li data-type='method'><a href="DiscreteRange.html#.next">next</a></li><li data-type='method'><a href="DiscreteRange.html#.prev">prev</a></li></ul></li><li><a href="RangeClass.html">RangeClass</a><ul class='methods'><li data-type='method'><a href="RangeClass.html#.adjacent">adjacent</a></li><li data-type='method'><a href="RangeClass.html#.contains">contains</a></li><li data-type='method'><a href="RangeClass.html#.difference">difference</a></li><li data-type='method'><a href="RangeClass.html#.empty">empty</a></li><li data-type='method'><a href="RangeClass.html#.endsBefore">endsBefore</a></li><li data-type='method'><a href="RangeClass.html#.endsWith">endsWith</a></li><li data-type='method'><a href="RangeClass.html#.intersection">intersection</a></li><li data-type='method'><a href="RangeClass.html#.isValidRange">isValidRange</a></li><li data-type='method'><a href="RangeClass.html#.isValidScalar">isValidScalar</a></li><li data-type='method'><a href="RangeClass.html#.leftOf">leftOf</a></li><li data-type='method'><a href="RangeClass.html#.overlap">overlap</a></li><li data-type='method'><a href="RangeClass.html#.replace">replace</a></li><li data-type='method'><a href="RangeClass.html#.rightOf">rightOf</a></li><li data-type='method'><a href="RangeClass.html#.startsAfter">startsAfter</a></li><li data-type='method'><a href="RangeClass.html#.startsWith">startsWith</a></li><li data-type='method'><a href="RangeClass.html#.union">union</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DiscreteRange.html">DiscreteRange</a><ul class='methods'><li data-type='method'><a href="DiscreteRange.html#.last">last</a></li><li data-type='method'><a href="DiscreteRange.html#.next">next</a></li><li data-type='method'><a href="DiscreteRange.html#.prev">prev</a></li></ul></li><li><a href="intRange.html">intRange</a><ul class='methods'><li data-type='method'><a href="intRange.html#.length">length</a></li></ul></li><li><a href="RangeClass.html">RangeClass</a><ul class='methods'><li data-type='method'><a href="RangeClass.html#.adjacent">adjacent</a></li><li data-type='method'><a href="RangeClass.html#.contains">contains</a></li><li data-type='method'><a href="RangeClass.html#.difference">difference</a></li><li data-type='method'><a href="RangeClass.html#.empty">empty</a></li><li data-type='method'><a href="RangeClass.html#.endsBefore">endsBefore</a></li><li data-type='method'><a href="RangeClass.html#.endsWith">endsWith</a></li><li data-type='method'><a href="RangeClass.html#.intersection">intersection</a></li><li data-type='method'><a href="RangeClass.html#.isValidRange">isValidRange</a></li><li data-type='method'><a href="RangeClass.html#.isValidScalar">isValidScalar</a></li><li data-type='method'><a href="RangeClass.html#.leftOf">leftOf</a></li><li data-type='method'><a href="RangeClass.html#.overlap">overlap</a></li><li data-type='method'><a href="RangeClass.html#.replace">replace</a></li><li data-type='method'><a href="RangeClass.html#.rightOf">rightOf</a></li><li data-type='method'><a href="RangeClass.html#.startsAfter">startsAfter</a></li><li data-type='method'><a href="RangeClass.html#.startsWith">startsWith</a></li><li data-type='method'><a href="RangeClass.html#.union">union</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -43,11 +43,6 @@
         RangeClass
         </h2>
         
-            <div class="class-description">RangeClass
-    Abstract base class of all ranges.
-    Ranges are strict about types. This means that both `lower` and `upper` must
-    be of the given class or subclass, or `null`</div>
-        
     
 </header>
 
@@ -56,8 +51,6 @@
     
         
 
-    
-    <h2>Constructor</h2>
     
 
     <h4 class="name" id="RangeClass"><span class="type-signature"></span>new RangeClass<span class="signature">(settings)</span><span class="type-signature"></span></h4>
@@ -72,7 +65,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line18">line 18</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line7">line 7</a>
     </li></ul></dd>
     
 
@@ -110,6 +103,12 @@
 
 
 
+
+<div class="description">
+    Abstract base class of all ranges.
+    Ranges are strict about types. This means that both `lower` and `upper` must
+    be of the given class or subclass, or `null`
+</div>
 
 
 
@@ -194,9 +193,6 @@
             <td class="type">
             
                 
-<span class="param-type">object</span>
-|
-
 <span class="param-type">scalar</span>
 
 
@@ -220,9 +216,6 @@
             <td class="type">
             
                 
-<span class="param-type">object</span>
-|
-
 <span class="param-type">scalar</span>
 
 
@@ -246,9 +239,6 @@
             <td class="type">
             
                 
-<span class="param-type">object</span>
-|
-
 <span class="param-type">scalar</span>
 
 
@@ -272,9 +262,6 @@
             <td class="type">
             
                 
-<span class="param-type">object</span>
-|
-
 <span class="param-type">scalar</span>
 
 
@@ -286,6 +273,29 @@
             
 
             <td class="description last">``true`` if upper end should be included in range. Defautls to ``false``.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">scalar</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The type of the range.</td>
         </tr>
 
     
@@ -343,7 +353,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line44">line 44</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line45">line 45</a>
     </li></ul></dd>
     
 
@@ -406,7 +416,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line54">line 54</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -469,7 +479,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line49">line 49</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line50">line 50</a>
     </li></ul></dd>
     
 
@@ -532,7 +542,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line59">line 59</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line60">line 60</a>
     </li></ul></dd>
     
 
@@ -605,7 +615,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line190">line 190</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line191">line 191</a>
     </li></ul></dd>
     
 
@@ -756,7 +766,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line127">line 127</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line128">line 128</a>
     </li></ul></dd>
     
 
@@ -910,7 +920,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line250">line 250</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line251">line 251</a>
     </li></ul></dd>
     
 
@@ -1065,7 +1075,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line61">line 61</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line62">line 62</a>
     </li></ul></dd>
     
 
@@ -1171,7 +1181,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line389">line 389</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line390">line 390</a>
     </li></ul></dd>
     
 
@@ -1325,7 +1335,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line332">line 332</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line333">line 333</a>
     </li></ul></dd>
     
 
@@ -1479,7 +1489,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line282">line 282</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line283">line 283</a>
     </li></ul></dd>
     
 
@@ -1634,7 +1644,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line103">line 103</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line104">line 104</a>
     </li></ul></dd>
     
 
@@ -1785,7 +1795,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line113">line 113</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line114">line 114</a>
     </li></ul></dd>
     
 
@@ -1936,7 +1946,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line418">line 418</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line419">line 419</a>
     </li></ul></dd>
     
 
@@ -2087,7 +2097,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line163">line 163</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line164">line 164</a>
     </li></ul></dd>
     
 
@@ -2238,7 +2248,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line72">line 72</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line73">line 73</a>
     </li></ul></dd>
     
 
@@ -2491,7 +2501,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line431">line 431</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line432">line 432</a>
     </li></ul></dd>
     
 
@@ -2642,7 +2652,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line360">line 360</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line361">line 361</a>
     </li></ul></dd>
     
 
@@ -2796,7 +2806,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line304">line 304</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line305">line 305</a>
     </li></ul></dd>
     
 
@@ -2950,7 +2960,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line206">line 206</a>
+        <a href="Range.js.html">Range.js</a>, <a href="Range.js.html#line207">line 207</a>
     </li></ul></dd>
     
 
@@ -3106,7 +3116,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jun 10 2017 18:05:00 GMT+1000 (AUS Eastern Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jun 10 2017 18:13:03 GMT+1000 (AUS Eastern Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

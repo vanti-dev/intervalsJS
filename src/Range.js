@@ -6,14 +6,15 @@ var _emptyInternalRange = _internalRange([null, null, false, false, true]);
 class RangeClass {
     /**
     @class RangeClass
-    Abstract base class of all ranges.
+    @description Abstract base class of all ranges.
     Ranges are strict about types. This means that both `lower` and `upper` must
     be of the given class or subclass, or `null`
     @param {object} settings - The settings of the range.
-    @param {object|scalar} settings.lower - The lower end of the range
-    @param {object|scalar} settings.upper - The upper end of the range
-    @param {object|scalar} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
-    @param {object|scalar} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @param {scalar} settings.lower - The lower end of the range
+    @param {scalar} settings.upper - The upper end of the range
+    @param {scalar} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
+    @param {scalar} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @param {scalar} settings.type - The type of the range.
     */
     constructor(settings = {}) {
         if (settings.lower && utils.getType(settings.lower) != settings.type) {
