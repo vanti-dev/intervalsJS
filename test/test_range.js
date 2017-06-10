@@ -1,4 +1,4 @@
-var range = require("../src/Range.js");
+var range = require("../src/DiscreteRanges.js");
 var assert = require('chai').assert;
 
 describe('Ranges', function() {
@@ -15,9 +15,9 @@ describe('Ranges', function() {
     });
 
     it ('tests bounds intrage', function() {
-        var intrange = new range({lower:1, upper:2});
-        assert(intrange.lower() == 1);
-        assert(intrange.upper() == 2);
+        var intrange = new range({lower:1, upper:3});
+        assert(intrange.lower() == 2);
+        assert(intrange.upper() == 3);
     });
     it ('tests replace range', function () {
         var intrange = new range({lower:1, upper:2});
@@ -41,20 +41,20 @@ describe('Ranges', function() {
     })
 
     it ('tests if intrange startsAfter', function () {
-        var intrange = new range({lower:1, upper:2});
+        var intrange = new range({lower:1, upper:5});
         var startsAfterRange = new range({lower: -2, upper: 10});
         var intrangeUnbounded = new range().empty();
         assert(intrange.startsAfter(startsAfterRange));
         assert(intrange.startsAfter(0));
-        assert(!intrange.startsAfter(2));
+        assert(!intrange.startsAfter(3));
         assert(intrange.startsAfter(intrangeUnbounded));
     })
     it ('tests if intrange endsBefore', function () {
-        var intrange = new range({lower:1, upper:2});
+        var intrange = new range({lower:1, upper:3});
         var endsBeforeRange = new range({lower: 1, upper: 10});
         var intrangeUnbounded = new range().empty();
         assert(intrange.endsBefore(endsBeforeRange));
-        assert(intrange.endsBefore(2));
+        assert(intrange.endsBefore(5));
         assert(!intrange.endsBefore(-10));
         assert(intrange.endsBefore(intrangeUnbounded));
     })
@@ -97,7 +97,7 @@ describe('Ranges', function() {
         var intrange2 = new range({lower: 2, upper: 12});
         var union = intrange.union(intrange2);
         assert(union.upper() === 12);
-        assert(union.lower() ==1);
+        assert(union.lower() == 2);
     })
 
     it ('tests startsWith', function() {
@@ -108,12 +108,12 @@ describe('Ranges', function() {
         startswithRange.replace({lowerInc: false});
         assert(!intrange.startsWith(startswithRange));
     })
-    it ('tests startsWith', function() {
+    it ('tests endsWith', function() {
         var intrange = new range({lower:1, upper:10, upperInc: true});
         var endswithRange = new range({lower: 5, upper: 10, upperInc: true});
         assert(intrange.endsWith(endswithRange));
         assert(intrange.endsWith(10));
-        endswithRange.replace({upperInc: false});
+        endswithRange.replace({upper: 9});
         assert(!intrange.endsWith(endswithRange));
     })
     it ('tests difference', function() {
