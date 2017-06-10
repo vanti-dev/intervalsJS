@@ -1,33 +1,30 @@
 var range = require("../src/DiscreteRanges.js");
 var assert = require('chai').assert;
 
-describe('Ranges', function() {
-    it('Creates empty intrange', function() {
+describe('Basic Range Functionality', function() {
+    it('Creates empty range', function() {
         var emptyIntrange = new range.intRange().empty();
         assert(typeof emptyIntrange === "object" && emptyIntrange != null, 'Object created');
         assert(emptyIntrange.lower() === null);
         assert(emptyIntrange.upper() === null);
     });
-    it ('tests default bounds', function() {
+    it ('Tests default bounds', function() {
         var emptyIntrange = new range.intRange().empty();
         assert(!emptyIntrange.lowerInc());
         assert(!emptyIntrange.upperInc());
     });
 
-    it ('tests bounds intrage', function() {
+    it ('Tests bounds', function() {
         var intrange = new range.intRange({lower:1, upper:3});
         assert(intrange.lower() == 2);
         assert(intrange.upper() == 3);
     });
-    it ('tests replace range', function () {
+    it ('Tests replace', function () {
         var intrange = new range.intRange({lower:1, upper:2});
         intrange.replace({lower:3, upper:10});
         assert(intrange.lower() == 3);
         assert(intrange.upper() == 10);
         assert(!intrange.lowerInc());
-    });
-    it ('tests replace includes', function () {
-        var intrange = new range.intRange({lower:1, upper:2});
         intrange.replace({lowerInc:true, upperInc:true});
         assert(intrange.upperInc());
         assert(intrange.lowerInc());
@@ -40,7 +37,7 @@ describe('Ranges', function() {
         assert(intrange.isValidRange(intrange));
     })
 
-    it ('tests if intrange startsAfter', function () {
+    it ('tests startsAfter', function () {
         var intrange = new range.intRange({lower:1, upper:5});
         var startsAfterRange = new range.intRange({lower: -2, upper: 10});
         var intrangeUnbounded = new range.intRange().empty();
@@ -49,7 +46,7 @@ describe('Ranges', function() {
         assert(!intrange.startsAfter(3));
         assert(intrange.startsAfter(intrangeUnbounded));
     })
-    it ('tests if intrange endsBefore', function () {
+    it ('tests endsBefore', function () {
         var intrange = new range.intRange({lower:1, upper:3});
         var endsBeforeRange = new range.intRange({lower: 1, upper: 10});
         var intrangeUnbounded = new range.intRange().empty();
@@ -58,7 +55,7 @@ describe('Ranges', function() {
         assert(!intrange.endsBefore(-10));
         assert(intrange.endsBefore(intrangeUnbounded));
     })
-    it ('tests if intrange contains', function () {
+    it ('tests contains', function () {
         var intrange = new range.intRange({lower:1, upper:10});
         var contain = new range.intRange({lower: 1, upper: 10});
         assert(intrange.contains(contain));
@@ -72,7 +69,7 @@ describe('Ranges', function() {
         assert(!intrange.contains(intrangeUnbounded));
     })
 
-    it ('tets if intrange overlaps', function() {
+    it ('tets overlaps', function() {
         var intrange = new range.intRange({lower:1, upper:10, upperInc: true});
         var overlaps = new range.intRange({lower: 10, upper: 80, lowerInc: true});
         assert(intrange.overlap(overlaps));
@@ -84,7 +81,7 @@ describe('Ranges', function() {
         assert(intrange.overlap(intrangeUnbounded));
     })
 
-    it ('tests if intranges are adjacent', function() {
+    it ('tests adjacent', function() {
         var intrange = new range.intRange({lower:1, upper:10});
         var adjacent = new range.intRange({lower: 10, upper: 80, lowerInc: true});
         assert(intrange.adjacent(adjacent));
@@ -92,7 +89,7 @@ describe('Ranges', function() {
         assert(!intrange.adjacent(adjacent));
     })
 
-    it ('tests intrange union', function() {
+    it ('tests union', function() {
         var intrange = new range.intRange({lower:1, upper:10});
         var intrange2 = new range.intRange({lower: 2, upper: 12});
         var union = intrange.union(intrange2);
