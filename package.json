@@ -4,11 +4,11 @@
   "description": "An implementation of PostgreSQL 'intervals' in node.js",
   "main": "range.js",
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "author": "Jasper Miles",
   "license": "ISC",
-  "devDependencies": {
+  "Dependencies": {
     "mocha": "3.4.2",
     "chai": "4.0.2"
   },
