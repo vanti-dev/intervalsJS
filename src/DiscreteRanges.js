@@ -68,16 +68,12 @@ class intRange extends DiscreteRange {
         super(settings, 1);
         this.type = "int";
     }
-}
 
-class floatRange extends RangeClass {
-    constructor(settings = {}) {
-        super(settings);
-        this.type = "float";
+    length() {
+        return this.upper() - this.lower();
     }
 }
 
 module.exports = {
-    intRange: intRange,
-    floatRange: floatRange
+    intRange: intRange
 }
