@@ -21,7 +21,8 @@ module.exports = function(grunt) {
             options: {
                 destination: 'docs',
                 template: 'node_modules/docdash',
-                readme: 'README.md'
+                readme: 'README.md',
+                package: 'package.json'
             }
         }
     },
