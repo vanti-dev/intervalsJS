@@ -33,7 +33,7 @@ class RangeClass {
             //Setting default values
             lower: settings.lower || null,
             upper: settings.upper || null,
-            lowerInc: settings.lowerInc || true,
+            lowerInc: (settings.lowerInc === false) ? settings.lowerInc : true,
             upperInc: settings.upperInc || false
         };
 
@@ -119,10 +119,7 @@ class RangeClass {
     @returns {boolean}
     */
     isValidScalar(scalar) {
-        if (this.type === "int") {
-            return utils.getType(scalar) === this.type;
-        }
-        return typeof scalar === typeof this.upper;
+        return utils.getType(scalar) === this.type;
     }
 
     /**

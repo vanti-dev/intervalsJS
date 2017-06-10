@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">82.05% </span>
+        <span class="strong">83.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>128/156</span>
+        <span class='fraction'>130/156</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">77.11% </span>
+        <span class="strong">78.31% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>128/166</span>
+        <span class='fraction'>130/166</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>17/17</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">83.12% </span>
+        <span class="strong">84.42% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>128/154</span>
+        <span class='fraction'>130/154</span>
       </div>
     </div>
   </div>
@@ -489,7 +489,8 @@
 444
 445
 446
-447</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+447
+448</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -507,19 +508,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">41×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">44×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">43×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">41×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">41×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">41×</span>
+<span class="cline-any cline-yes">42×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -527,27 +529,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">41×</span>
+<span class="cline-any cline-yes">42×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">41×</span>
+<span class="cline-any cline-yes">42×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">41×</span>
+<span class="cline-any cline-yes">42×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">41×</span>
+<span class="cline-any cline-yes">42×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">41×</span>
+<span class="cline-any cline-yes">42×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -943,22 +945,23 @@ var _emptyInternalRange = _internalRange([null, null, false, false, true]);
 class RangeClass {
     /**
     @class RangeClass
-    Abstract base class of all ranges.
+    @description Abstract base class of all ranges.
     Ranges are strict about types. This means that both `lower` and `upper` must
     be of the given class or subclass, or `null`
     @param {object} settings - The settings of the range.
-    @param {object|scalar} settings.lower - The lower end of the range
-    @param {object|scalar} settings.upper - The upper end of the range
-    @param {object|scalar} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
-    @param {object|scalar} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @param {scalar} settings.lower - The lower end of the range
+    @param {scalar} settings.upper - The upper end of the range
+    @param {scalar} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
+    @param {scalar} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @param {scalar} settings.type - The type of the range.
     */
     constructor(settings = {}) {
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (settings.lower &amp;&amp; utils.getType(settings.lower) != settings.type) {
-<span class="cstat-no" title="statement not covered" >            throw new Error("Invalid type for lower bound");</span>
+        if (settings.lower &amp;&amp; utils.getType(settings.lower) != settings.type) {
+            throw new Error("Invalid type for lower bound");
         }
 &nbsp;
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (settings.upper &amp;&amp; utils.getType(settings.upper) != settings.type) {
-<span class="cstat-no" title="statement not covered" >            throw new Error("Invalid type for lower bound");</span>
+        if (settings.upper &amp;&amp; utils.getType(settings.upper) != settings.type) {
+            throw new Error("Invalid type for lower bound");
         }
 &nbsp;
         <span class="missing-if-branch" title="if path not taken" >I</span>if (settings.upper &amp;&amp; settings.lower &amp;&amp; settings.upper &lt; settings.lower) {
@@ -1387,7 +1390,7 @@ module.exports = RangeClass;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Jun 10 2017 18:05:00 GMT+1000 (AUS Eastern Standard Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Jun 10 2017 18:18:49 GMT+1000 (AUS Eastern Standard Time)
 </div>
 </div>
 <script src="../../prettify.js"></script>

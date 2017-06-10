@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>DiscreteRange - Documentation</title>
+    <title>floatRange - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">DiscreteRange</h1>
+    <h1 class="page-title">floatRange</h1>
     
 
     
@@ -40,7 +40,7 @@
 <header>
     
         <h2>
-        DiscreteRange
+        floatRange
         </h2>
         
     
@@ -53,7 +53,7 @@
 
     
 
-    <h4 class="name" id="DiscreteRange"><span class="type-signature"></span>new DiscreteRange<span class="signature">(settings)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="floatRange"><span class="type-signature"></span>new floatRange<span class="signature">(settings)</span><span class="type-signature"></span></h4>
 
     
 
@@ -65,7 +65,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line8">line 8</a>
+        <a href="ContinuousRanges.js.html">ContinuousRanges.js</a>, <a href="ContinuousRanges.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -105,7 +105,7 @@
 
 
 <div class="description">
-    Discrete ranges are a subset of ranges that work on discrete types. This includes `int` and `datetime.date`
+    Range that operates on float.
 </div>
 
 
@@ -336,18 +336,12 @@
     
 
     
-
-    
-        <h3 class="subsection-title">Methods</h3>
+        <h3 class="subsection-title">Members</h3>
 
         
             
+<h4 class="name" id=".this.type"><span class="type-signature">(static) </span>this.type<span class="type-signature"></span></h4>
 
-    
-
-    <h4 class="name" id=".last"><span class="type-signature">(static) </span>last<span class="signature">()</span><span class="type-signature"> &rarr; {scalar}</span></h4>
-
-    
 
 
 
@@ -357,7 +351,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line59">line 59</a>
+        <a href="ContinuousRanges.js.html">ContinuousRanges.js</a>, <a href="ContinuousRanges.js.html#line27">line 27</a>
     </li></ul></dd>
     
 
@@ -397,8 +391,7 @@
 
 
 <div class="description">
-    Returns the last element within this range. If the range has no
-    upper limit, `null` is returned.
+    The type of values in the range.
 </div>
 
 
@@ -408,344 +401,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
         
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">scalar</span>
-
-
-    </dd>
-</dl>
-
     
 
-
-        
-            
-
-    
-
-    <h4 class="name" id=".next"><span class="type-signature">(static) </span>next<span class="signature">(curr)</span><span class="type-signature"> &rarr; {scalar}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line39">line 39</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    Increment the given value with the step defined for this class.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>curr</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">scalar</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Value to increment</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">scalar</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".prev"><span class="type-signature">(static) </span>prev<span class="signature">(curr)</span><span class="type-signature"> &rarr; {scalar}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line49">line 49</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    Decrement the given value with the step defined for this class.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>curr</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">scalar</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Value to decrement</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">scalar</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-        
     
 
     

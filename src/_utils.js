@@ -29,8 +29,8 @@ var namedList = function(fields) {
 
 var getType = function(data) {
     if (typeof data === 'number') {
-        if (data%1 === 0) { return "int"; }
-        else { return "float"; }
+        if ((!isNaN(data) && data.toString().indexOf('.') != -1)) { return "float"; }
+        else if (data%1 === 0) { return "int"; }
     }
     else { return "ustr"; }
 };
