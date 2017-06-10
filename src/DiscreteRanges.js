@@ -69,7 +69,34 @@ class strRange extends DiscreteRange {
         super(settings, 1);
         this.type = "ustr";
     }
-    //Add methods
+    next(curr) {
+        if (!curr) {
+            return "";
+        }
+        var last = curr.substr(curr.length - 1);
+
+        if (last.charCodeAt() === 65535) {
+                return this.next(curr.slice(0,-1)) + String.fromCharCode(0)
+        }
+        else {
+            return curr.slice(0,-1) + String.fromCharCode(last.charCodeAt()+1)
+        }
+    }
+
+    prev(curr) {
+        if (!curr) {
+            return "";
+        }
+
+        var last = curr.substr(curr.length - 1);
+
+        if (last.charCodeAt() === 0) {
+            return this.prev(curr.slice(0,-1)) + String.fromCharCode(65535);
+        }
+        else {
+            return curr.slice(0,-1) + String.fromCharCode(last.charCodeAt()-1)
+        }
+    }
 }
 
 class dateRange extends DiscreteRange {

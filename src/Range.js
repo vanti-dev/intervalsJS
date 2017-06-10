@@ -64,7 +64,7 @@ class RangeClass {
         if (this.type === "int") {
             return scalar%1 === 0
         }
-        return typeof scalar === 'number';
+        return typeof scalar === typeof this.upper();
     }
 
     contains(other) {
