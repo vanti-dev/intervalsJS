@@ -10,10 +10,10 @@ class DiscreteRange extends RangeClass {
     @extends RangeClass
     @description Discrete ranges are a subset of ranges that work on discrete types. This includes `int` and `datetime.date`
     @param {object} settings - The settings of the range.
-    @param {object|scalar} settings.lower - The lower end of the range
-    @param {object|scalar} settings.upper - The upper end of the range
-    @param {object|scalar} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
-    @param {object|scalar} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @param {scalar} settings.lower - The lower end of the range
+    @param {scalar} settings.upper - The upper end of the range
+    @param {scalar} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
+    @param {scalar} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
     */
     constructor(step, settings = {}) {
         super(settings);
@@ -89,10 +89,10 @@ class intRange extends DiscreteRange {
     @extends DiscreteRange
     @description Range that operates on int.
     @param {object} settings - The settings of the range.
-    @param {object|scalar} settings.lower - The lower end of the range
-    @param {object|scalar} settings.upper - The upper end of the range
-    @param {object|scalar} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
-    @param {object|scalar} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @param {int} settings.lower - The lower end of the range
+    @param {int} settings.upper - The upper end of the range
+    @param {int} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
+    @param {int} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
     */
     constructor(settings = {}) {
         settings.type = "int";
@@ -116,11 +116,32 @@ class intRange extends DiscreteRange {
 }
 
 class strRange extends DiscreteRange {
+    /**
+    @class strRange
+    @extends DiscreteRange
+    @description Range that operates on strings.
+    @param {object} settings - The settings of the range.
+    @param {string} settings.lower - The lower end of the range
+    @param {string} settings.upper - The upper end of the range
+    @param {string} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
+    @param {string} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    */
     constructor(settings={}) {
         settings.type = "ustr";
         super(1, settings);
+        /**
+        @memberof strRange
+        @description The type of values in the range.
+        */
         this.type = settings.type;
     }
+    /**
+    @memberof strRange
+    @method next
+    @description Increment the given value with the step defined for this class.
+    @param {string} curr - Value to increment
+    @returns {scalar}
+    */
     next(curr) {
         if (!curr) {
             return "";
@@ -134,7 +155,13 @@ class strRange extends DiscreteRange {
             return curr.slice(0,-1) + String.fromCharCode(last.charCodeAt()+1);
         }
     }
-
+    /**
+    @memberof strRange
+    @method prev
+    @description decrement the given value with the step defined for this class.
+    @param {string} curr - Value to decrement
+    @returns {string}
+    */
     prev(curr) {
         if (!curr) {
             return "";

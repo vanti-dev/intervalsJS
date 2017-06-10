@@ -108,7 +108,7 @@ class RangeClass {
     /**
     @memberof RangeClass
     @method isValidRange
-    @description Returns ``true`` if `object` is a valid range of the same type as this. Otherwise ``false``
+    @description Returns ``true`` if `obj` is a valid range of the same type as this. Otherwise ``false``
     @param {range} obj - A range to check
     @returns {boolean}
     */
@@ -118,7 +118,7 @@ class RangeClass {
     /**
     @memberof RangeClass
     @method isValidScalar
-    @description Returns ``true`` if `object` is a valid scalar of the same type as this. Otherwise ``false``
+    @description Returns ``true`` if `scalar` is a valid scalar of the same type as this. Otherwise ``false``
     @param {scalar} scalar - A scalar to check
     @returns {boolean}
     */
@@ -130,7 +130,7 @@ class RangeClass {
     @memberof RangeClass
     @method contains
     @description Returns ``true`` if this contains other. Other may be either range of same type or scalar of same type as the boundaries.
-    @param {object|scalar} other - Check whether this contains other.
+    @param {range|scalar} other - Check whether this contains other.
     @returns {boolean}
     */
     contains(other) {
@@ -304,7 +304,7 @@ class RangeClass {
     @memberof RangeClass
     @method startsWith
     @description Test if this range starts with other. other may either be range or scalar.
-    @param {object|scalar} other - Range or scalar to test.
+    @param {range|scalar} other - Range or scalar to test.
     @returns {boolean}
     */
     startsWith(other) {
@@ -332,7 +332,7 @@ class RangeClass {
     @memberof RangeClass
     @method endsWith
     @description Test if this range ends with other. other may either be range or scalar.
-    @param {object|scalar} other - Range or scalar to test.
+    @param {range|scalar} other - Range or scalar to test.
     @returns {boolean}
     */
     endsWith(other) {
@@ -360,7 +360,7 @@ class RangeClass {
     @memberof RangeClass
     @method startsAfter
     @description Test if this range starts after other. Other may be either a range or a scalar.
-    @param {object|scalar} other - Range or scalar to test.
+    @param {range|scalar} other - Range or scalar to test.
     @returns {boolean}
     */
     startsAfter(other) {
@@ -389,7 +389,7 @@ class RangeClass {
     @memberof RangeClass
     @method endsBefore
     @description Test if this range ends before other. Other may be either a range or a scalar.
-    @param {object|scalar} other - Range or scalar to test.
+    @param {range|scalar} other - Range or scalar to test.
     @returns {boolean}
     */
     endsBefore(other) {

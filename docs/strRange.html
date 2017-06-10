@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>intRange - Documentation</title>
+    <title>strRange - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">intRange</h1>
+    <h1 class="page-title">strRange</h1>
     
 
     
@@ -40,7 +40,7 @@
 <header>
     
         <h2>
-        intRange
+        strRange
         </h2>
         
     
@@ -53,7 +53,7 @@
 
     
 
-    <h4 class="name" id="intRange"><span class="type-signature"></span>new intRange<span class="signature">(settings)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="strRange"><span class="type-signature"></span>new strRange<span class="signature">(settings)</span><span class="type-signature"></span></h4>
 
     
 
@@ -65,7 +65,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line87">line 87</a>
+        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line119">line 119</a>
     </li></ul></dd>
     
 
@@ -105,7 +105,7 @@
 
 
 <div class="description">
-    Range that operates on int.
+    Range that operates on strings.
 </div>
 
 
@@ -191,7 +191,7 @@
             <td class="type">
             
                 
-<span class="param-type">int</span>
+<span class="param-type">string</span>
 
 
             
@@ -214,7 +214,7 @@
             <td class="type">
             
                 
-<span class="param-type">int</span>
+<span class="param-type">string</span>
 
 
             
@@ -237,7 +237,7 @@
             <td class="type">
             
                 
-<span class="param-type">int</span>
+<span class="param-type">string</span>
 
 
             
@@ -260,7 +260,7 @@
             <td class="type">
             
                 
-<span class="param-type">int</span>
+<span class="param-type">string</span>
 
 
             
@@ -339,7 +339,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line105">line 105</a>
+        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line136">line 136</a>
     </li></ul></dd>
     
 
@@ -400,7 +400,7 @@
 
     
 
-    <h4 class="name" id=".length"><span class="type-signature">(static) </span>length<span class="signature">()</span><span class="type-signature"> &rarr; {scalar}</span></h4>
+    <h4 class="name" id=".next"><span class="type-signature">(static) </span>next<span class="signature">(curr)</span><span class="type-signature"> &rarr; {scalar}</span></h4>
 
     
 
@@ -412,7 +412,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line107">line 107</a>
+        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line138">line 138</a>
     </li></ul></dd>
     
 
@@ -452,7 +452,7 @@
 
 
 <div class="description">
-    Return the length of the range
+    Increment the given value with the step defined for this class.
 </div>
 
 
@@ -463,6 +463,55 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>curr</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Value to increment</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -489,6 +538,157 @@
     <dd>
         
 <span class="param-type">scalar</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".prev"><span class="type-signature">(static) </span>prev<span class="signature">(curr)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line158">line 158</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    decrement the given value with the step defined for this class.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>curr</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Value to decrement</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
 
 
     </dd>

@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DiscreteRange.html">DiscreteRange</a><ul class='methods'><li data-type='method'><a href="DiscreteRange.html#.last">last</a></li><li data-type='method'><a href="DiscreteRange.html#.next">next</a></li><li data-type='method'><a href="DiscreteRange.html#.prev">prev</a></li></ul></li><li><a href="floatRange.html">floatRange</a></li><li><a href="intRange.html">intRange</a><ul class='methods'><li data-type='method'><a href="intRange.html#.length">length</a></li></ul></li><li><a href="RangeClass.html">RangeClass</a><ul class='methods'><li data-type='method'><a href="RangeClass.html#.adjacent">adjacent</a></li><li data-type='method'><a href="RangeClass.html#.contains">contains</a></li><li data-type='method'><a href="RangeClass.html#.difference">difference</a></li><li data-type='method'><a href="RangeClass.html#.empty">empty</a></li><li data-type='method'><a href="RangeClass.html#.endsBefore">endsBefore</a></li><li data-type='method'><a href="RangeClass.html#.endsWith">endsWith</a></li><li data-type='method'><a href="RangeClass.html#.intersection">intersection</a></li><li data-type='method'><a href="RangeClass.html#.isValidRange">isValidRange</a></li><li data-type='method'><a href="RangeClass.html#.isValidScalar">isValidScalar</a></li><li data-type='method'><a href="RangeClass.html#.leftOf">leftOf</a></li><li data-type='method'><a href="RangeClass.html#.overlap">overlap</a></li><li data-type='method'><a href="RangeClass.html#.replace">replace</a></li><li data-type='method'><a href="RangeClass.html#.rightOf">rightOf</a></li><li data-type='method'><a href="RangeClass.html#.startsAfter">startsAfter</a></li><li data-type='method'><a href="RangeClass.html#.startsWith">startsWith</a></li><li data-type='method'><a href="RangeClass.html#.union">union</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DiscreteRange.html">DiscreteRange</a><ul class='methods'><li data-type='method'><a href="DiscreteRange.html#.last">last</a></li><li data-type='method'><a href="DiscreteRange.html#.next">next</a></li><li data-type='method'><a href="DiscreteRange.html#.prev">prev</a></li></ul></li><li><a href="floatRange.html">floatRange</a></li><li><a href="intRange.html">intRange</a><ul class='methods'><li data-type='method'><a href="intRange.html#.length">length</a></li></ul></li><li><a href="RangeClass.html">RangeClass</a><ul class='methods'><li data-type='method'><a href="RangeClass.html#.adjacent">adjacent</a></li><li data-type='method'><a href="RangeClass.html#.contains">contains</a></li><li data-type='method'><a href="RangeClass.html#.difference">difference</a></li><li data-type='method'><a href="RangeClass.html#.empty">empty</a></li><li data-type='method'><a href="RangeClass.html#.endsBefore">endsBefore</a></li><li data-type='method'><a href="RangeClass.html#.endsWith">endsWith</a></li><li data-type='method'><a href="RangeClass.html#.intersection">intersection</a></li><li data-type='method'><a href="RangeClass.html#.isValidRange">isValidRange</a></li><li data-type='method'><a href="RangeClass.html#.isValidScalar">isValidScalar</a></li><li data-type='method'><a href="RangeClass.html#.leftOf">leftOf</a></li><li data-type='method'><a href="RangeClass.html#.overlap">overlap</a></li><li data-type='method'><a href="RangeClass.html#.replace">replace</a></li><li data-type='method'><a href="RangeClass.html#.rightOf">rightOf</a></li><li data-type='method'><a href="RangeClass.html#.startsAfter">startsAfter</a></li><li data-type='method'><a href="RangeClass.html#.startsWith">startsWith</a></li><li data-type='method'><a href="RangeClass.html#.union">union</a></li></ul></li><li><a href="strRange.html">strRange</a><ul class='methods'><li data-type='method'><a href="strRange.html#.next">next</a></li><li data-type='method'><a href="strRange.html#.prev">prev</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -147,7 +147,7 @@ class RangeClass {
     /**
     @memberof RangeClass
     @method isValidRange
-    @description Returns ``true`` if `object` is a valid range of the same type as this. Otherwise ``false``
+    @description Returns ``true`` if `obj` is a valid range of the same type as this. Otherwise ``false``
     @param {range} obj - A range to check
     @returns {boolean}
     */
@@ -157,7 +157,7 @@ class RangeClass {
     /**
     @memberof RangeClass
     @method isValidScalar
-    @description Returns ``true`` if `object` is a valid scalar of the same type as this. Otherwise ``false``
+    @description Returns ``true`` if `scalar` is a valid scalar of the same type as this. Otherwise ``false``
     @param {scalar} scalar - A scalar to check
     @returns {boolean}
     */
@@ -169,7 +169,7 @@ class RangeClass {
     @memberof RangeClass
     @method contains
     @description Returns ``true`` if this contains other. Other may be either range of same type or scalar of same type as the boundaries.
-    @param {object|scalar} other - Check whether this contains other.
+    @param {range|scalar} other - Check whether this contains other.
     @returns {boolean}
     */
     contains(other) {
@@ -343,7 +343,7 @@ class RangeClass {
     @memberof RangeClass
     @method startsWith
     @description Test if this range starts with other. other may either be range or scalar.
-    @param {object|scalar} other - Range or scalar to test.
+    @param {range|scalar} other - Range or scalar to test.
     @returns {boolean}
     */
     startsWith(other) {
@@ -371,7 +371,7 @@ class RangeClass {
     @memberof RangeClass
     @method endsWith
     @description Test if this range ends with other. other may either be range or scalar.
-    @param {object|scalar} other - Range or scalar to test.
+    @param {range|scalar} other - Range or scalar to test.
     @returns {boolean}
     */
     endsWith(other) {
@@ -399,7 +399,7 @@ class RangeClass {
     @memberof RangeClass
     @method startsAfter
     @description Test if this range starts after other. Other may be either a range or a scalar.
-    @param {object|scalar} other - Range or scalar to test.
+    @param {range|scalar} other - Range or scalar to test.
     @returns {boolean}
     */
     startsAfter(other) {
@@ -428,7 +428,7 @@ class RangeClass {
     @memberof RangeClass
     @method endsBefore
     @description Test if this range ends before other. Other may be either a range or a scalar.
-    @param {object|scalar} other - Range or scalar to test.
+    @param {range|scalar} other - Range or scalar to test.
     @returns {boolean}
     */
     endsBefore(other) {
@@ -494,7 +494,7 @@ module.exports = RangeClass;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jun 10 2017 19:41:51 GMT+1000 (AUS Eastern Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jun 10 2017 19:55:08 GMT+1000 (AUS Eastern Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
