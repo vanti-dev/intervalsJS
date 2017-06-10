@@ -243,7 +243,7 @@ class RangeClass {
     /**
     @memberof RangeClass
     @method union
-    @description Returns a new set, containing the two ranges merged together.
+    @description Merges two ranges. (In place)
     *note: wo ranges can not be merged if the resulting range would be split in two.
     @param {range} other - The range to merge.
     @returns {range} Both of the sets merged together
@@ -287,7 +287,7 @@ class RangeClass {
     /**
     @memberof RangeClass
     @method difference
-    @description Compute the difference between this and a given range.
+    @description Compute the difference between this and a given range. (in place)
     *note: The difference can not be computed if the resulting range would be split in two seperate ranges.
     @param {range} other - The range to find the difference with.
     @returns {range} The difference between the two sets.
@@ -316,7 +316,7 @@ class RangeClass {
     /**
     @memberof RangeClass
     @method intersection
-    @description Returns a new range containing all points shared by both ranges. If no points are shared an empty range is returned
+    @description Returns a new range containing all points shared by both ranges. If no points are shared an empty range is returned. (in place)
     *note: The difference can not be computed if the resulting range would be split in two seperate ranges.
     @param {range} other - The range to intersect with.
     @returns {range} A range containing all common points of the two objects

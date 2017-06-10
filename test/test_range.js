@@ -141,10 +141,10 @@ describe('Basic Range Functionality', function() {
     it('tests union', function() {
         var intrange = new range.intRange({lower:1, upper:10});
         var intrange2 = new range.intRange({lower: 2, upper: 12});
-        var union = intrange.union(intrange2);
 
-        assert(union.upper === 12);
-        assert(union.lower == 1);
+
+        assert(intrange.union(intrange2).upper === 12);
+        assert(intrange.union(intrange2).lower === 1);
 
         expect(() => intrange.union(1)).to.throw(Error);
     });
@@ -179,36 +179,30 @@ describe('Basic Range Functionality', function() {
 
     it('tests difference', function() {
         var intrange = new range.intRange({lower:1, upper:10, upperInc: true, lowerInc: true});
-        var intrange2 = new range.intRange({lower: 10, upper: 15, lowerInc: true});
-        var difference = intrange.difference(intrange2);
+        var intrange2 = new range.intRange({lower: 8, upper: 15, lowerInc: true});
+        intrange.difference(intrange2);
 
-        assert(difference.lower === 1);
-        assert(difference.upper == 10);
+        assert(intrange.lower === 1);
+        assert(intrange.upper == 8);
 
         intrange.replace({upper: 5});
         intrange2.replace({lower: 1});
-        difference = intrange.difference(intrange2);
-        assert(difference.isEmpty());
-
-        intrange.replace({lower:10, upper:15, lowerInc: true, upperInc: true});
-        intrange2.replace({lower:1, upper:10, upperInc: true, lowerInc:true});
-        difference = intrange.difference(intrange2);
+        assert(intrange.difference(intrange2).isEmpty());
 
         expect(() => intrange.difference(1)).to.throw(Error);
     });
 
 
     it('tests intersection', function() {
-        var intrange = new range.intRange({lower: 1, upper: 5, lowerInc: true, upperInc: false});
+        var intrange = new range.intRange({lower: 3, upper: 5, lowerInc: true, upperInc: false});
         var intrange2 = new range.intRange({lower: 1, upper: 10});
-        var intersection = intrange.intersection(intrange2);
+        intrange.intersection(intrange2);
 
-        assert(intrange.lower === 1);
+        assert(intrange.lower === 3);
         assert(intrange.upper === 5);
 
         intrange2.replace({lower: 50, upper: 100});
-        intersection = intrange.intersection(intrange2);
-        assert(intersection.empty);
+        assert(intrange.intersection(intrange2).isEmpty());
 
 
         expect(() => intrange.intersection(1)).to.throw(Error);
