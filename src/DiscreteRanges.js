@@ -49,20 +49,21 @@ class DiscreteRange extends RangeClass {
     @returns {scalar}
     */
     next(curr, step=1, type="") {
-        if (!this) { return curr + step; }
-        if (type === "date") { return curr.add(1, step); }
+        if (type === "date") {  return curr.add(1, step); }
         return curr + step;
     }
 
     [Symbol.iterator]() {
         var nextFunc = this.next;
-        var start = this.prev(this.lower);
         var last = this.last();
         var step = this.step;
+        var type = this.type;
+        var start = this.prev(this.lower, step, type);
+        console.log(nextFunc(start ,step, type));
         let iterator = {
             next()  {
-                start = nextFunc(start, step);
-                var bool = (start) > last;
+                start = nextFunc(start, step, type);
+                var bool = type === 'date' ? start.isAfter(last) : (start) > last;
                 return {
                     value: start,
                     done: bool
@@ -78,7 +79,8 @@ class DiscreteRange extends RangeClass {
     @param {scalar} curr -Value to decrement
     @returns {scalar}
     */
-    prev(curr) {
+    prev(curr, step, type) {
+        if (type === "date") { return curr.subtract(1, step); }
         return curr - this.step;
     }
     /**
@@ -93,7 +95,7 @@ class DiscreteRange extends RangeClass {
             return null;
         }
         else {
-            return this.prev(this.upper);
+            return this.prev(this.upper, this.step, this.type);
         }
     }
 

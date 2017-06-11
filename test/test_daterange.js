@@ -27,4 +27,12 @@ describe('dateRange', function() {
 
         assert(dateRange.isEqual(seconddateRange));
     });
+
+    it("Tests iteration", function() {
+        var dateRange = new range.dateRange({lower: "2000-01-01", upper: "2000-01-28"});
+
+        for (let x of dateRange) {
+            console.log(x);
+        }
+    });
 });
