@@ -1,5 +1,6 @@
 var RangeClass = require("./Range.js");
 var utils = require("./utils");
+var moment = require("moment");
 
 var _internalRange = utils.namedList(["lower","upper","lowerInc","upperInc", "empty"]);
 var _emptyInternalRange = _internalRange([null, null, false, false, true]);
@@ -202,10 +203,39 @@ class strRange extends DiscreteRange {
 }
 
 class dateRange extends DiscreteRange {
+    /**
+    @class dateRange
+    @extends DiscreteRange
+    @description Range that operates on dates.
+    @param {object} settings - The settings of the range.
+    @param {string} settings.lower - The lower end of the range - Formatted as either "YYYY-MM-DD" or "MM-DD-YYYY"
+    @param {string} settings.upper - The upper end of the range - Formatted as either "YYYY-MM-DD" or "MM-DD-YYYY"
+    @param {string} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
+    @param {string} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    */
+
     constructor(settings = {}) {
+        if (!utils.isValidDate(settings.lower)) {
+            throw new Error("Invalid type of lower bound");
+        }
+
+        if (!utils.isValidDate(settings.upper)) {
+            throw new Error("Invalid type of upper bound");
+        }
+        settings.type = "date";
         super(1, settings);
-        this.type = "date";
-        //Work from here
+        /**
+        @memberof dateRange
+        @description The type of values in the range.
+        */
+        this.type = settings.type;
+        Object.assign(this, utils.OffsetableRangeMixin);
+        this.offsetType = "duration";
+        /**
+        @memberof dateRange
+        @description How far to step when iterating.
+        */
+        this.step = moment.duration(1, 'day');
     }
 }
 

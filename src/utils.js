@@ -1,3 +1,4 @@
+var moment = require("moment");
 OffsetableRangeMixin =  {
     /**
     * This provides methods used for event offsetting a range.
@@ -22,13 +23,18 @@ OffsetableRangeMixin =  {
     */
     offset: function(offset) {
 
-
+        var upper, lower;
         if (offset && !this.isValidScalar(offset)) {
             throw new Error("Invalid type for offset");
         }
-
-        var lower = this.lower ? this.lower+offset : null;
-        var upper = this.upper ? this.upper+offset : null;
+        if (this.type === "date") {
+             upper = this.upper ? this.upper.add(offset) : null;
+             lower = this.lower ? this.lower.add(offset) : null;
+        }
+        else {
+            upper = this.upper ? this.upper+offset : null;
+            lower = this.lower ? this.lower+offset : null;
+        }
 
         return this.replace({upper: upper, lower: lower});
     }
@@ -52,11 +58,19 @@ var getType = function(data) {
         if ((!isNaN(data) && data.toString().indexOf('.') != -1)) { return "float"; }
         else if (data%1 === 0) { return "int"; }
     }
-    else { return "ustr"; }
+    else {
+        if (moment.isDuration(data) || isValidDate(data)) { return "date";}
+        return "ustr";
+    }
+};
+
+var isValidDate = function(data) {
+    return moment(data, "MM-DD-YYYY").isValid() || moment(data, "YYYY-MM-DD").isValid();
 };
 
 module.exports = {
     OffsetableRangeMixin: OffsetableRangeMixin,
     namedList: namedList,
-    getType: getType
+    getType: getType,
+    isValidDate: isValidDate
 };

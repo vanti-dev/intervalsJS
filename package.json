@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "chai": "4.0.2",
-    "docdash": "^0.4.0",
+    "docdash": "0.4.0",
     "grunt": "1.0.1",
     "grunt-contrib-jshint": "1.1.0",
     "grunt-contrib-watch": "^1.0.0",
@@ -19,6 +19,7 @@
     "istanbul": "0.4.5",
     "jsdoc": "3.4.3",
     "mocha": "3.4.2",
+    "moment": "2.18.1",
     "nyc": "11.0.2"
   },
   "repository": {

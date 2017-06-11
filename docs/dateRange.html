@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>floatRange - Documentation</title>
+    <title>dateRange - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">floatRange</h1>
+    <h1 class="page-title">dateRange</h1>
     
 
     
@@ -40,7 +40,7 @@
 <header>
     
         <h2>
-        floatRange
+        dateRange
         </h2>
         
     
@@ -53,7 +53,7 @@
 
     
 
-    <h4 class="name" id="floatRange"><span class="type-signature"></span>new floatRange<span class="signature">(settings)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="dateRange"><span class="type-signature"></span>new dateRange<span class="signature">(settings)</span><span class="type-signature"></span></h4>
 
     
 
@@ -65,7 +65,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ContinuousRanges.js.html">ContinuousRanges.js</a>, <a href="ContinuousRanges.js.html#line9">line 9</a>
+        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line206">line 206</a>
     </li></ul></dd>
     
 
@@ -81,14 +81,6 @@
 
     
 
-    
-        <dt class="mixes">Mixes In:</dt>
-
-        <dd class="mixes"><ul>
-        
-            <li><a href="OffsetableRangeMixin.html">OffsetableRangeMixin</a></li>
-        
-        </ul></dd>
     
 
     
@@ -113,7 +105,7 @@
 
 
 <div class="description">
-    Range that operates on float.
+    Range that operates on dates.
 </div>
 
 
@@ -199,10 +191,7 @@
             <td class="type">
             
                 
-<span class="param-type">object</span>
-|
-
-<span class="param-type"><a href="global.html#scalar">scalar</a></span>
+<span class="param-type">string</span>
 
 
             
@@ -212,7 +201,7 @@
 
             
 
-            <td class="description last">The lower end of the range</td>
+            <td class="description last">The lower end of the range - Formatted as either "YYYY-MM-DD" or "MM-DD-YYYY"</td>
         </tr>
 
     
@@ -225,10 +214,7 @@
             <td class="type">
             
                 
-<span class="param-type">object</span>
-|
-
-<span class="param-type"><a href="global.html#scalar">scalar</a></span>
+<span class="param-type">string</span>
 
 
             
@@ -238,7 +224,7 @@
 
             
 
-            <td class="description last">The upper end of the range</td>
+            <td class="description last">The upper end of the range - Formatted as either "YYYY-MM-DD" or "MM-DD-YYYY"</td>
         </tr>
 
     
@@ -251,10 +237,7 @@
             <td class="type">
             
                 
-<span class="param-type">object</span>
-|
-
-<span class="param-type"><a href="global.html#scalar">scalar</a></span>
+<span class="param-type">string</span>
 
 
             
@@ -277,10 +260,7 @@
             <td class="type">
             
                 
-<span class="param-type">object</span>
-|
-
-<span class="param-type"><a href="global.html#scalar">scalar</a></span>
+<span class="param-type">string</span>
 
 
             
@@ -329,7 +309,7 @@
 
 
     <ul>
-        <li><a href="RangeClass.html">RangeClass</a></li>
+        <li><a href="DiscreteRange.html">DiscreteRange</a></li>
     </ul>
 
 
@@ -348,6 +328,69 @@
 
         
             
+<h4 class="name" id=".this.step"><span class="type-signature">(static) </span>this.step<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line238">line 238</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    How far to step when iterating.
+</div>
+
+
+
+
+
+
+
+
+        
+            
 <h4 class="name" id=".this.type"><span class="type-signature">(static) </span>this.type<span class="type-signature"></span></h4>
 
 
@@ -359,7 +402,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ContinuousRanges.js.html">ContinuousRanges.js</a>, <a href="ContinuousRanges.js.html#line28">line 28</a>
+        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line231">line 231</a>
     </li></ul></dd>
     
 
@@ -410,242 +453,8 @@
 
 
         
-            
-<h4 class="name" id="offsetType"><span class="type-signature"></span>offsetType<span class="type-signature"></span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line10">line 10</a>
-    </li></ul></dd>
     
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <dt class="mixes">Mixes In:</dt>
-
-        <dd class="mixes"><ul>
-        
-            <li><a href="OffsetableRangeMixin.html#.offsetType">OffsetableRangeMixin.offsetType</a></li>
-        
-        </ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    The type of value used to offset
-</div>
-
-
-
-
-
-
-
-
-        
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id="offset"><span class="type-signature"></span>offset<span class="signature">(offset)</span><span class="type-signature"> &rarr; {range}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line17">line 17</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <dt class="mixes">Mixes In:</dt>
-
-        <dd class="mixes"><ul>
-        
-            <li><a href="OffsetableRangeMixin.html#.offset">OffsetableRangeMixin.offset</a></li>
-        
-        </ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    Offset the range by the given value.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>offset</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#scalar">scalar</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">How much to offset by</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">range</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-        
     
 
     
