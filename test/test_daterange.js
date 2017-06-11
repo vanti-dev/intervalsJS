@@ -122,9 +122,7 @@ describe('dateRange', function() {
     it("Tests length", function() {
         var dateRange = new range.dateRange({lower: "2000-01-01", upper:"2000-02-01"});
         assert(dateRange.length() === 31);
-
-        dateRange = new range.dateRange({lower: "2000-3-18", upper:"2000-04-5"});
-
+        
         expect(() => new range.dateRange({lower: "2000-3-18"}).length().to.throw(Error));
     });
 
