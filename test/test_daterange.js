@@ -10,7 +10,9 @@ describe('dateRange', function() {
 
         assert(dateRange);
         assert(dateRange.isEqual(equaldateRange));
-        expect(() => new range.dateRange({lower: 12, upper :5})).to.throw(Error);
+
+        expect(() => new range.dateRange({lower: 1})).to.throw(Error);
+        expect(() => new range.dateRange({upper: 5})).to.throw(Error);
     });
 
     it("Tests offset", function() {
@@ -34,6 +36,8 @@ describe('dateRange', function() {
         var dateRangeComp = new range.dateRange({lower: "1999-12-27", upper:"2000-01-03"});
 
         assert(dateRange.isEqual(dateRangeComp));
+
+        expect(() => dateRange.fromDate("2000-01-01", "zeeblezorp")).to.throw(Error);
 
         dateRange = dateRange.fromDate("2000-01-02", "week");
         assert(dateRange.isEqual(dateRangeComp));

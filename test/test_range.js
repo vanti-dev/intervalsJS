@@ -12,10 +12,17 @@ describe('Basic Range Functionality', function() {
     });
 
     it('Tests default bounds', function() {
+        var intrange = new range.intRange();
         var emptyIntrange = new range.intRange().empty();
+        var testrange = new range.intRange({lower: 2, lowerInc: false});
+        var secondtest = new range.intRange({lower: 3, upper: 3});
 
+        assert(intrange.lowerInc);
+        assert(!intrange.upperInc);
         assert(!emptyIntrange.lowerInc);
         assert(!emptyIntrange.upperInc);
+        assert(testrange.lower === 3);
+        assert(secondtest.isEmpty());
     });
 
     it('Tests bounds', function() {
@@ -26,6 +33,8 @@ describe('Basic Range Functionality', function() {
 
         expect(() => intrange = new range.intRange({lower:'a', upper: 2})).to.throw(Error);
         expect(() => intrange = new range.intRange({lower:3, upper: 'b'})).to.throw(Error);
+
+        expect(() => intrange = new range.intRange({lower:5, upper: 2})).to.throw(Error);
     });
 
     it('Tests replace', function () {
@@ -51,6 +60,7 @@ describe('Basic Range Functionality', function() {
 
         intrange.replace({lower: -8, upperInc: true});
         assert(!intrange.isEqual(intrange2));
+        assert(!intrange.isEqual(2));
     });
 
     it('tests if the ranges are valid', function () {
@@ -109,7 +119,7 @@ describe('Basic Range Functionality', function() {
     });
 
 
-    it('tets overlaps', function() {
+    it('tests overlaps', function() {
         var intrange = new range.intRange({lower:1, upper:10, upperInc: true});
         var overlaps = new range.intRange({lower: 10, upper: 80, lowerInc: true});
 
@@ -123,6 +133,9 @@ describe('Basic Range Functionality', function() {
 
         var intrangeUnbounded = new range.intRange().empty();
         assert(intrange.overlap(intrangeUnbounded));
+
+        assert(!intrange.overlap());
+
     });
 
 
@@ -146,6 +159,16 @@ describe('Basic Range Functionality', function() {
         assert(intrange.union(intrange2).upper === 12);
         assert(intrange.union(intrange2).lower === 1);
 
+        assert(intrange2.union(intrange).upper === 12);
+        assert(intrange2.union(intrange).lower === 1);
+
+        intrange2.replace({upper: 10});
+        assert(intrange.union(intrange2).upper === 10);
+        assert(intrange.union(intrange2).lower === 1);
+
+        intrange2.replace({lower: 11, upper: 18});
+        expect(() => intrange.union(intrange2)).to.throw(Error);
+
         expect(() => intrange.union(1)).to.throw(Error);
     });
 
@@ -160,7 +183,7 @@ describe('Basic Range Functionality', function() {
         startswithRange.replace({lowerInc: false});
         assert(!intrange.startsWith(startswithRange));
 
-        expect(() => intrange.adjacent('a')).to.throw(Error);
+        expect(() => intrange.startsWith('a')).to.throw(Error);
     });
 
     it('tests endsWith', function() {
@@ -170,7 +193,7 @@ describe('Basic Range Functionality', function() {
         assert(intrange.endsWith(10));
         assert(!intrange.endsWith(3));
 
-        endswithRange.replace({upper: 9});
+        endswithRange.replace({upperInc: true});
         assert(!intrange.endsWith(endswithRange));
 
 
@@ -189,6 +212,13 @@ describe('Basic Range Functionality', function() {
         intrange2.replace({lower: 1});
         assert(intrange.difference(intrange2).isEmpty());
 
+        var noOverlap = new range.intRange({lower: 1000, upper: 2000});
+        expect(() => intrange.difference(noOverlap)).to.throw(Error);
+
+        intrange.replace({lower: 3, upper: 20});
+        assert(intrange.difference(noOverlap).isEqual(intrange));
+
+        assert(intrange.difference(intrange2).upper === 20);
         expect(() => intrange.difference(1)).to.throw(Error);
     });
 

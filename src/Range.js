@@ -187,10 +187,7 @@ class RangeClass {
     */
     contains(other) {
         if (this.isValidRange(other)) {
-            if (!this) {
-                return !other;
-            }
-            else if (!other || other.startsAfter(this) && other.endsBefore(this)) {
+            if (!other || other.startsAfter(this) && other.endsBefore(this)) {
                 return true;
             }
             else {
@@ -252,9 +249,6 @@ class RangeClass {
         if (!this.isValidRange(other)) {
             throw new Error("Unsupported type to test for inclusion");
         }
-        else if (!this || !other) {
-            return false;
-        }
         return (this.lower == other.upper && this.lowerInc != other.upperInc) || (this.upper == other.lower && this.upperInc != other.lowerInc);
     }
     /**
@@ -269,8 +263,7 @@ class RangeClass {
         if (!this.isValidRange(other)) {
             throw new Error("Unsupported type to test for union");
         }
-        if (!this) { return other; }
-        else if (!other) { return this; }
+
         var a, b;
         if (!this.startsAfter(other)) {
             a = this;

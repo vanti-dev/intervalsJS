@@ -65,7 +65,7 @@ var getType = function(data) {
 };
 
 var isValidDate = function(data) {
-    return moment(data, "MM-DD-YYYY").isValid() || moment(data, "YYYY-MM-DD").isValid();
+    return typeof data !== 'number' && (moment(data, "MM-DD-YYYY").isValid() || moment(data, "YYYY-MM-DD").isValid());
 };
 
 module.exports = {

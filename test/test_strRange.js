@@ -9,6 +9,8 @@ describe('strRange', function() {
         assert(strRange.next('a') === 'b');
         assert(strRange.next('abc') === 'abd');
         assert(strRange.next('AbC') === 'AbD');
+
+        assert(strRange.next() === "");
     });
 
     it('tests prev', function () {
@@ -17,10 +19,14 @@ describe('strRange', function() {
         assert(strRange.prev('d') === 'c');
         assert(strRange.prev('7') === '6');
         assert(strRange.prev('AbC') === 'AbB');
+        assert(strRange.prev() === "");
     });
 
     it ('tests last', function () {
         var strRange = new range.strRange({lower: 'd', upper: 'k'});
+        var noLast = new range.strRange({lower: 'h'});
+
+        assert(noLast.last() === null);
 
         assert(strRange.last() == 'j');
     });

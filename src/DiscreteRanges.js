@@ -222,7 +222,7 @@ class dateRange extends DiscreteRange {
     */
 
     constructor(settings = {}) {
-        if (Object.keys(settings).length !== 0 && settings.lowe &&  !utils.isValidDate(settings.lower)) {
+        if (Object.keys(settings).length !== 0 && settings.lower &&  !utils.isValidDate(settings.lower)) {
             throw new Error("Invalid type of lower bound");
         }
 
