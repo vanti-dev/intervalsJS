@@ -17,10 +17,10 @@ class RangeClass {
     Ranges are strict about types. This means that both `lower` and `upper` must
     be of the given class or subclass, or `null`
     @param {object} settings - The settings of the range.
-    @param {scalar} settings.lower - The lower end of the range
-    @param {scalar} settings.upper - The upper end of the range
-    @param {scalar} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
-    @param {scalar} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @param {scalar} [settings.lower=null] - The lower end of the range
+    @param {scalar} [settings.upper=null] - The upper end of the range
+    @param {boolean} [settings.lowerInc=true] - ``true`` if lower end should be included in range.
+    @param {boolean} [settings.upperInc=false] ``true`` if upper end should be included in range.
     @param {scalar} settings.type - The type of the range.
     */
     constructor(settings = {}) {

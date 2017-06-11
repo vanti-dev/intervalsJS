@@ -12,10 +12,10 @@ class DiscreteRange extends RangeClass {
     @description Discrete ranges are a subset of ranges that work on discrete types. This includes `int` and `datetime.date`.
     * Discrete ranges are iterable. Using: let x of intrange.
     @param {object} settings - The settings of the range.
-    @param {scalar} settings.lower - The lower end of the range
-    @param {scalar} settings.upper - The upper end of the range
-    @param {scalar} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
-    @param {scalar} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @param {scalar} [settings.lower=null] - The lower end of the range
+    @param {scalar} [settings.upper=null] - The upper end of the range
+    @param {boolean} [settings.lowerInc=true] - ``true`` if lower end should be included in range.
+    @param {boolean} [settings.upperInc=false] ``true`` if upper end should be included in range.
     */
     constructor(step, settings = {}) {
         super(settings);
@@ -49,6 +49,10 @@ class DiscreteRange extends RangeClass {
     @returns {scalar}
     */
     next(curr, step=1, type="") {
+        if (this) {
+            step = this.step ? this.step : step;
+            type = this.type ? this.type : type;
+        }
         if (type === "date") {  return curr.add(1, step); }
         return curr + step;
     }
@@ -59,7 +63,6 @@ class DiscreteRange extends RangeClass {
         var step = this.step;
         var type = this.type;
         var start = this.prev(this.lower, step, type);
-        console.log(nextFunc(start ,step, type));
         let iterator = {
             next()  {
                 start = nextFunc(start, step, type);
@@ -116,10 +119,10 @@ class intRange extends DiscreteRange {
     @extends DiscreteRange
     @description Range that operates on int.
     @param {object} settings - The settings of the range.
-    @param {int} settings.lower - The lower end of the range
-    @param {int} settings.upper - The upper end of the range
-    @param {int} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
-    @param {int} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @param {int} [settings.lower=null] - The lower end of the range
+    @param {int} [settings.upper=null] - The upper end of the range
+    @param {boolean} [settings.lowerInc=true] - ``true`` if lower end should be included in range.
+    @param {boolean} [settings.upperInc=false] ``true`` if upper end should be included in range.
     @mixes OffsetableRangeMixin
     */
     constructor(settings = {}) {
@@ -149,10 +152,10 @@ class strRange extends DiscreteRange {
     @extends DiscreteRange
     @description Range that operates on strings.
     @param {object} settings - The settings of the range.
-    @param {string} settings.lower - The lower end of the range
-    @param {string} settings.upper - The upper end of the range
-    @param {string} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
-    @param {string} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @param {string} [settings.lower=null] - The lower end of the range
+    @param {string} [settings.upper=null] - The upper end of the range
+    @param {boolean} [settings.lowerInc=true] - ``true`` if lower end should be included in range.
+    @param {boolean} [settings.upperInc=false] ``true`` if upper end should be included in range.
     */
     constructor(settings={}) {
         settings.type = "ustr";
@@ -212,18 +215,18 @@ class dateRange extends DiscreteRange {
     @extends DiscreteRange
     @description Range that operates on dates.
     @param {object} settings - The settings of the range.
-    @param {string} settings.lower - The lower end of the range - Formatted as either "YYYY-MM-DD" or "MM-DD-YYYY"
-    @param {string} settings.upper - The upper end of the range - Formatted as either "YYYY-MM-DD" or "MM-DD-YYYY"
-    @param {string} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
-    @param {string} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @param {string} [settings.lower=null] - The lower end of the range - Formatted as either "YYYY-MM-DD" or "MM-DD-YYYY"
+    @param {string} [settings.upper=null] - The upper end of the range - Formatted as either "YYYY-MM-DD" or "MM-DD-YYYY"
+    @param {boolean} [settings.lowerInc=true] - ``true`` if lower end should be included in range.
+    @param {boolean} [settings.upperInc=false] ``true`` if upper end should be included in range.
     */
 
     constructor(settings = {}) {
-        if (Object.keys(settings).length !== 0 && !utils.isValidDate(settings.lower)) {
+        if (Object.keys(settings).length !== 0 && settings.lowe &&  !utils.isValidDate(settings.lower)) {
             throw new Error("Invalid type of lower bound");
         }
 
-        if (Object.keys(settings).length !== 0 && !utils.isValidDate(settings.upper)) {
+        if (Object.keys(settings).length !== 0 && settings.upper && !utils.isValidDate(settings.upper)) {
             throw new Error("Invalid type of upper bound");
         }
         settings.type = "date";
@@ -242,9 +245,64 @@ class dateRange extends DiscreteRange {
         this.step = 'day';
     }
 
+    /**
+    @memberof dateRange
+    @method fromDate
+    @description Returns a dateRange with length period beginning at date.
+    @param {string} date A date to begin the range from.  Formatted as either "YYYY-MM-DD" or "MM-DD-YYYY"
+    @param {string} [period="day"] How long the range should be. Options: "day", "week", "month", "quarter", "year"
+    @returns {range}
+    */
+
     fromDate(date, period="day") {
+        var start;
         if (period === "day") {
             return new dateRange({lower:date, upper: date, upperInc: true});
+        }
+        if (period === "week") {
+            date = moment(date, "MM-DD-YYYY").isValid() ? moment(date, "MM-DD-YYYY") : moment(date, "YYYY-MM-DD");
+            var subtract = date.day()-1;
+            if (date.day() === 0) { subtract = 6; }
+            else if (date.day() === 1) { subtract = 1; }
+            start = date.subtract(subtract, "days");
+            return new dateRange({lower: start.format("YYYY-MM-DD"), upper: start.add(1, "week").format("YYYY-MM-DD")});
+        }
+        if (period === "americanWeek") {
+            date = moment(date, "MM-DD-YYYY").isValid() ? moment(date, "MM-DD-YYYY") : moment(date, "YYYY-MM-DD");
+            start = date.subtract(date.day(), "days");
+            return new dateRange({lower: start.format("YYYY-MM-DD"), upper: start.add(1, "week").format("YYYY-MM-DD")});
+        }
+        if (period === "month") {
+            date = moment(date, "MM-DD-YYYY").isValid() ? moment(date, "MM-DD-YYYY") : moment(date, "YYYY-MM-DD");
+            start = date.date(1);
+            return new dateRange({lower: start.format("YYYY-MM-DD"), upper: start.add(1, "month").date(1).format("YYYY-MM-DD")});
+        }
+        if (period === "quarter") {
+            date = moment(date, "MM-DD-YYYY").isValid() ? moment(date, "MM-DD-YYYY") : moment(date, "YYYY-MM-DD");
+            start = date.month(Math.floor(date.month()/3) * 3).date(1);
+            return new dateRange({lower: start.format("YYYY-MM-DD"), upper: start.add(3, "month").date(1).format("YYYY-MM-DD")});
+        }
+        if (period === "year") {
+            date = moment(date, "MM-DD-YYYY").isValid() ? moment(date, "MM-DD-YYYY") : moment(date, "YYYY-MM-DD");
+            start = date.month(0).date(1);
+            return new dateRange({lower: start.format("YYYY-MM-DD"), upper: start.add(1, 'year').format("YYYY-MM-DD")});
+        }
+        else {
+            throw new Error("Unexpected period.");
+        }
+    }
+    /**
+    @memberof dateRange
+    @method length
+    @description Return the length of the range
+    @returns {scalar}
+    */
+    length() {
+        if (!this.upper || !this.lower) {
+            throw new Error("Unbounded ranges do not have a length");
+        }
+        else {
+            return Math.round(moment.duration(this.upper.diff(this.lower)).asDays());
         }
     }
 }

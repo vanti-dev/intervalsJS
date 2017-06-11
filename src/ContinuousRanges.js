@@ -11,10 +11,10 @@ class floatRange extends RangeClass {
     @extends RangeClass
     @description Range that operates on float.
     @param {object} settings - The settings of the range.
-    @param {object|scalar} settings.lower - The lower end of the range
-    @param {object|scalar} settings.upper - The upper end of the range
-    @param {object|scalar} settings.lowerInc - ``true`` if lower end should be included in range. Defaults to ``true``.
-    @param {object|scalar} settings.upperInc - ``true`` if upper end should be included in range. Defautls to ``false``.
+    @param {float} [settings.lower=null] - The lower end of the range
+    @param {float} [settings.upper=null] - The upper end of the range
+    @param {boolean} [settings.lowerInc=true] - ``true`` if lower end should be included in range.
+    @param {boolean} [settings.upperInc=false] ``true`` if upper end should be included in range.
     @mixes OffsetableRangeMixin
     */
     constructor(settings = {}) {
