@@ -11,7 +11,6 @@ describe('dateRange', function() {
         assert(dateRange);
         assert(dateRange.isEqual(equaldateRange));
         expect(() => new range.dateRange({lower: 12, upper :5})).to.throw(Error);
-
     });
 
     it("Tests offset", function() {
@@ -20,5 +19,12 @@ describe('dateRange', function() {
 
         assert(!rangeLow.isEqual(rangeHigh));
         assert(rangeLow.offset(moment.duration(4, 'days')).isEqual(rangeHigh));
+    });
+
+    it("Tests from date (day)", function() {
+        var dateRange = new range.dateRange().fromDate("2000-01-01");
+        var seconddateRange = new range.dateRange({lower: "2000-01-01", upper: "2000-01-02"});
+
+        assert(dateRange.isEqual(seconddateRange));
     });
 });

@@ -20,4 +20,14 @@ describe('intRange', function() {
 
         expect(() => intrange.offset('a')).to.throw(Error);
     });
+
+
+    it('tests iteration', function() {
+        var intrange = new range.intRange({lower: 5, upper: 10});
+        var i=5;
+        for (let x  of intrange) {
+            assert(x === i && i < intrange.upper);
+            i++;
+        }
+    });
 });

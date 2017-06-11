@@ -27,7 +27,8 @@ class DiscreteRange extends RangeClass {
 
         var ub = this.upper;
         if (this.upper && this.upperInc) {
-            ub = this.next(ub);
+
+            ub = this.next(ub,this.step, settings.type);
         }
         if (this.lower && this.upper && lb >= ub) {
             this._range = _emptyInternalRange;
@@ -35,7 +36,7 @@ class DiscreteRange extends RangeClass {
         }
         else {
             this._range = _internalRange([lb, ub, true, false, false]);
-            this.replace({upper: ub, lower: lb, lowerInc: true, upperInch: false});
+            this.replace({upper: ub, lower: lb, lowerInc: true, upperInc: false});
         }
 
     }
@@ -47,9 +48,10 @@ class DiscreteRange extends RangeClass {
     @param {scalar} step - How much to step by each time. OPTIONAL (defaults to whatever is appropriate for the current range, for ints it is 1).
     @returns {scalar}
     */
-    next(curr, step=1) {
+    next(curr, step=1, type="") {
         if (!this) { return curr + step; }
-        return curr + this.step;
+        if (type === "date") { return curr.add(1, step); }
+        return curr + step;
     }
 
     [Symbol.iterator]() {
@@ -215,15 +217,15 @@ class dateRange extends DiscreteRange {
     */
 
     constructor(settings = {}) {
-        if (!utils.isValidDate(settings.lower)) {
+        if (Object.keys(settings).length !== 0 && !utils.isValidDate(settings.lower)) {
             throw new Error("Invalid type of lower bound");
         }
 
-        if (!utils.isValidDate(settings.upper)) {
+        if (Object.keys(settings).length !== 0 && !utils.isValidDate(settings.upper)) {
             throw new Error("Invalid type of upper bound");
         }
         settings.type = "date";
-        super(1, settings);
+        super('day', settings);
         /**
         @memberof dateRange
         @description The type of values in the range.
@@ -235,7 +237,13 @@ class dateRange extends DiscreteRange {
         @memberof dateRange
         @description How far to step when iterating.
         */
-        this.step = moment.duration(1, 'day');
+        this.step = 'day';
+    }
+
+    fromDate(date, period="day") {
+        if (period === "day") {
+            return new dateRange({lower:date, upper: date, upperInc: true});
+        }
     }
 }
 

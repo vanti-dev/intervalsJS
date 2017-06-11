@@ -24,8 +24,7 @@ class RangeClass {
     @param {scalar} settings.type - The type of the range.
     */
     constructor(settings = {}) {
-
-        if (settings.type === "date") {
+        if (settings.upper && settings.lower && settings.type === "date") {
             settings.lower = moment(settings.lower, "MM-DD-YYYY").isValid() ? moment(settings.lower, "MM-DD-YYYY") : moment(settings.lower, "YYYY-MM-DD");
             settings.upper = moment(settings.upper, "MM-DD-YYYY").isValid() ? moment(settings.upper, "MM-DD-YYYY") : moment(settings.upper, "YYYY-MM-DD");
         }
@@ -50,10 +49,11 @@ class RangeClass {
             lower: settings.lower || null,
             upper: settings.upper || null,
             lowerInc: (settings.lowerInc === false) ? settings.lowerInc : true,
-            upperInc: settings.upperInc || false
+            upperInc: settings.upperInc || false,
+            empty: false
         };
 
-        this._range = _internalRange([settings.lower, settings.upper, settings.lowerInc, settings.upperInc, false]);
+        this._range = settings;
         /**
         @memberof RangeClass
         @description The lower boundary of the set.
@@ -111,6 +111,10 @@ class RangeClass {
     @returns {range} A set with the given arguments replaced.
     */
     replace(settings = {}) {
+        if (settings.upper && settings.lower && this.type === "date") {
+            settings.lower = moment(settings.lower, "MM-DD-YYYY").isValid() ? moment(settings.lower, "MM-DD-YYYY") : moment(settings.lower, "YYYY-MM-DD");
+            settings.upper = moment(settings.upper, "MM-DD-YYYY").isValid() ? moment(settings.upper, "MM-DD-YYYY") : moment(settings.upper, "YYYY-MM-DD");
+        }
         if (settings.lower !== undefined) {
             this._range.lower = settings.lower;
             this.lower = settings.lower;
