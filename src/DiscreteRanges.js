@@ -309,8 +309,19 @@ class dateRange extends DiscreteRange {
 
 class PeriodRange extends dateRange {
     constructor(settings = {}) {
-        super(1, settings);
-        //Work from here
+        super(settings);
+    }
+
+    fromDate(day, period="day") {
+        var span = new dateRange().fromDate(day, period);
+        var new_span = new PeriodRange();
+        new_span._range = span._range;
+        new_span.lower = span.lower;
+        new_span.upper = span.upper;
+        new_span.lowerInc = span.lowerInc;
+        new_span.upperInc = span.upperInc;
+        new_span.period = period;
+        return new_span;
     }
 }
 
@@ -318,5 +329,5 @@ module.exports = {
     intRange: intRange,
     strRange: strRange,
     dateRange: dateRange,
-    PeriodRange: PeriodRange
+    periodRange: PeriodRange
 };
