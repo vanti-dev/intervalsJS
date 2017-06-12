@@ -39,15 +39,15 @@ describe('periodRange', function() {
     assert(dateRangeSpan.isEqual(periodRange.daterange));
   });
 
-  it('Tests replace', function() {
-    let span2000 = new range.PeriodRange().fromDate("2000-01-01", "year");
-    let span = span2000.replace({ upper: "2002-01-01" });
-
-    let daterange2000 = new range.DateRange().fromDate("2000-01-01", "year");
-    let daterange2001 = new range.DateRange().fromDate("2001-01-01", "year");
-
-    let daterangeSpan = daterange2000.union(daterange2001);
-
-    assert(span.isEqual(daterangeSpan));
-  });
+  // it('Tests replace', function() {
+  //   let span2000 = new range.PeriodRange().fromDate("2000-01-01", "year");
+  //   let span = span2000.replace({ upper: "2002-01-01" });
+  //
+  //   let daterange2000 = new range.DateRange().fromDate("2000-01-01", "year");
+  //   let daterange2001 = new range.DateRange().fromDate("2001-01-01", "year");
+  //
+  //   let daterangeSpan = daterange2000.union(daterange2001);
+  //
+  //   assert(span.isEqual(daterangeSpan));
+  // });
 });
