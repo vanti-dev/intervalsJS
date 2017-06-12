@@ -53,7 +53,7 @@ var namedList = function(fields) {
     };
 };
 
-var getType = function(data) {
+function getType(data) {
     if (typeof data === 'number') {
         if ((!isNaN(data) && data.toString().indexOf('.') != -1)) { return "float"; }
         else if (data%1 === 0) { return "int"; }
@@ -62,11 +62,11 @@ var getType = function(data) {
         if (moment.isDuration(data) || isValidDate(data)) { return "date";}
         return "ustr";
     }
-};
+}
 
-var isValidDate = function(data) {
+function isValidDate(data) {
     return typeof data !== 'number' && (moment(data, "MM-DD-YYYY").isValid() || moment(data, "YYYY-MM-DD").isValid());
-};
+}
 
 module.exports = {
     OffsetableRangeMixin: OffsetableRangeMixin,

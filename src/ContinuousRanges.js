@@ -40,7 +40,7 @@ class timedeltaRange extends Range {
 class datetimeRange extends Range {
     constructor(settings = {}) {
         super(settings);
-        type = "timedelta";
+        this.type = "timedelta";
     }
 }
 
