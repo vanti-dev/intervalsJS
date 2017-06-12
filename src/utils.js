@@ -1,76 +1,80 @@
-var moment = require("moment");
-OffsetableRangeMixin =  {
-    /**
-    * This provides methods used for event offsetting a range.
-    * It also includes the offsetType member.
-    *
-    * @mixin OffsetableRangeMixin
-    */
+const moment = require('moment');
 
-    /**
-    * @member offsetType
-    * @memberof OffsetableRangeMixin
-    * @description The type of value used to offset
-    */
-    offsetType: null,
+const OffsetableRangeMixin = {
+  /**
+  * This provides methods used for event offsetting a range.
+  * It also includes the offsetType member.
+  *
+  * @mixin OffsetableRangeMixin
+  */
 
-    /**
-    @memberof OffsetableRangeMixin
-    @method offset
-    @description Offset the range by the given value.
-    @param {scalar} offset -How much to offset by
-    @returns {range}
-    */
-    offset: function(offset) {
+  /**
+  * @member offsetType
+  * @memberof OffsetableRangeMixin
+  * @description The type of value used to offset
+  */
+  offsetType: null,
 
-        var upper, lower;
-        if (offset && !this.isValidScalar(offset)) {
-            throw new Error("Invalid type for offset");
-        }
-        if (this.type === "date") {
-             upper = this.upper ? this.upper.add(offset) : null;
-             lower = this.lower ? this.lower.add(offset) : null;
-        }
-        else {
-            upper = this.upper ? this.upper+offset : null;
-            lower = this.lower ? this.lower+offset : null;
-        }
-
-        return this.replace({upper: upper, lower: lower});
+  /**
+  @memberof OffsetableRangeMixin
+  @method offset
+  @description Offset the range by the given value.
+  @param {scalar} offset -How much to offset by
+  @returns {range}
+  */
+  offset(offset) {
+    let upper;
+    let lower;
+    if (offset && !this.isValidScalar(offset)) {
+      throw new Error('Invalid type for offset');
     }
+    if (this.type === 'date') {
+      upper = this.upper ? this.upper.add(offset) : null;
+      lower = this.lower ? this.lower.add(offset) : null;
+    } else {
+      upper = this.upper ? this.upper + offset : null;
+      lower = this.lower ? this.lower + offset : null;
+    }
+
+    return this.replace({ upper, lower });
+  },
 };
 
-var namedList = function(fields) {
-    //Emulating pythons Named Tuples
-    return function(arr) {
-        var obj = { };
+function namedList(fields) {
+  // Emulating pythons Named Tuples
+  return function (arr) {
+    const obj = { };
+    let i;
 
-        for(var i = 0; i < arr.length; i++) {
-            obj[fields[i]] = arr[i];
-        }
-
-        return obj;
-    };
-};
-
-function getType(data) {
-    if (typeof data === 'number') {
-        if ((!isNaN(data) && data.toString().indexOf('.') != -1)) { return "float"; }
-        else if (data%1 === 0) { return "int"; }
+    for (i = 0; i < arr.length; i += 1) {
+      obj[fields[i]] = arr[i];
     }
-    else {
-        if (moment.isDuration(data) || isValidDate(data)) { return "date";}
-        return "ustr";
-    }
+
+    return obj;
+  };
 }
 
 function isValidDate(data) {
-    return typeof data !== 'number' && (moment(data, "MM-DD-YYYY").isValid() || moment(data, "YYYY-MM-DD").isValid());
+  return typeof data !== 'number' && (moment(data, 'MM-DD-YYYY').isValid() || moment(data, 'YYYY-MM-DD').isValid());
+}
+
+function getType(data) {
+  if (typeof data === 'number') {
+    if ((!isNaN(data) && data.toString().indexOf('.') !== -1)) {
+      return 'float';
+    } else if (data % 1 === 0) {
+      return 'int';
+    }
+  } else {
+    if (moment.isDuration(data) || isValidDate(data)) { return 'date'; }
+    return 'ustr';
+  }
+  return null;
 }
 
 module.exports = {
-    OffsetableRangeMixin: OffsetableRangeMixin,
-    namedList: namedList,
-    getType: getType,
-    isValidDate: isValidDate
+  OffsetableRangeMixin,
+  namedList,
+  getType,
+  isValidDate,
 };

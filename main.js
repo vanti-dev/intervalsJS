@@ -1,12 +1,12 @@
-var discreteRange = require("./src/DiscreteRanges.js"),
-    contRange = require("./src/ContinuousRanges.js");
+const discreteRange = require('./src/DiscreteRanges.js');
+const contRange = require('./src/ContinuousRanges.js');
 
-exports = module.exports = {}
+module.exports = {};
 
-exports.intRange = discreteRange.intRange;
-exports.dateRange = discreteRange.dateRange;
-exports.strRange = discreteRange.strRange;
-exports.periodRange = discreteRange.periodRange;
-exports.floatRange = contRange.floatRange;
-exports.datetimeRange = contRange.datetimeRange;
-exports.timedeltaRange = contRange.timedeltaRange;
+module.exports.IntRange = discreteRange.IntRange;
+module.exports.DateRange = discreteRange.DateRange;
+module.exports.StrRange = discreteRange.StrRange;
+module.exports.PeriodRange = discreteRange.PeriodRange;
+module.exports.floatRange = contRange.floatRange;
+module.exports.datetimeRange = contRange.datetimeRange;
+module.exports.timedeltaRange = contRange.timedeltaRange;

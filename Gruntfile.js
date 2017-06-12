@@ -5,12 +5,12 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     watch: {
         scripts: {
-            files: ['src/*.js', "test/*.js"],
+            files: ['src/*.js', "test/*.js", "main.js"],
             tasks: [ 'default'],
         },
     },
     jshint: {
-        all: ['Gruntfile.js', 'src/*.js', 'test/*.js'],
+        all: ['Gruntfile.js', 'src/*.js', 'test/*.js', 'main.js'],
         options: {
             esversion: 6
         }
@@ -29,6 +29,9 @@ module.exports = function(grunt) {
         coverage: {
             src: 'test'
         }
+    },
+    eslint: {
+        src: ["src/*.js", "main.js"]
     }
   });
 
@@ -36,8 +39,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-mocha-istanbul');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks("gruntify-eslint");
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'jsdoc', 'mocha_istanbul']);
+  grunt.registerTask('default', ['jshint', 'eslint', 'jsdoc', 'mocha_istanbul']);
 
 };

@@ -1,33 +1,33 @@
-var assert = require('chai').assert;
-var range = require("../main.js");
-var expect = require('chai').expect;
+const assert = require('chai').assert;
+const range = require('../main.js');
+const expect = require('chai').expect;
 
-describe('intRange', function() {
+describe('IntRange', function() {
 
-    it('tests length', function() {
-        var intrange = new range.intRange({lower:0, upper:5});
+  it('tests length', function() {
+    let IntRange = new range.IntRange({lower:0, upper:5});
 
-        assert(intrange.length() === 5);
-    });
+    assert(IntRange.length() === 5);
+  });
 
-    it('tests offset', function() {
-        var intrange = new range.intRange({lower: 5, upper: 10});
-        var notARange = null;
+  it('tests offset', function() {
+    let IntRange = new range.IntRange({lower: 5, upper: 10});
+    let notARange = null;
 
-        intrange.offset(-5);
-        assert(intrange.upper === 5);
-        assert(intrange.lower === 0);
+    IntRange.offset(-5);
+    assert(IntRange.upper === 5);
+    assert(IntRange.lower === 0);
 
-        expect(() => intrange.offset('a')).to.throw(Error);
-    });
+    expect(() => IntRange.offset('a')).to.throw(Error);
+  });
 
 
-    it('tests iteration', function() {
-        var intrange = new range.intRange({lower: 5, upper: 10});
-        var i=5;
-        for (let x  of intrange) {
-            assert(x === i && i < intrange.upper);
-            i++;
-        }
-    });
+  it('tests iteration', function() {
+    let IntRange = new range.IntRange({lower: 5, upper: 10});
+    let i=5;
+    for (let x  of IntRange) {
+        assert(x === i && i < IntRange.upper);
+        i++;
+    }
+  });
 });

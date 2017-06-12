@@ -1,33 +1,33 @@
-var assert = require('chai').assert;
-var range = require("../main.js");
+const assert = require('chai').assert;
+const range = require('../main.js');
 
-describe('strRange', function() {
+describe('StrRange', function() {
 
-    it('tests next', function () {
-        var strRange = new range.strRange({lower: 'a', upper: 'c'});
+  it('tests next', function () {
+    let StrRange = new range.StrRange({lower: 'a', upper: 'c'});
 
-        assert(strRange.next('a') === 'b');
-        assert(strRange.next('abc') === 'abd');
-        assert(strRange.next('AbC') === 'AbD');
+    assert(StrRange.next('a') === 'b');
+    assert(StrRange.next('abc') === 'abd');
+    assert(StrRange.next('AbC') === 'AbD');
 
-        assert(strRange.next() === "");
-    });
+    assert(StrRange.next() === '');
+  });
 
-    it('tests prev', function () {
-        var strRange = new range.strRange({lower: 'd', upper: 'e'});
+  it('tests prev', function () {
+    let StrRange = new range.StrRange({lower: 'd', upper: 'e'});
 
-        assert(strRange.prev('d') === 'c');
-        assert(strRange.prev('7') === '6');
-        assert(strRange.prev('AbC') === 'AbB');
-        assert(strRange.prev() === "");
-    });
+    assert(StrRange.prev('d') === 'c');
+    assert(StrRange.prev('7') === '6');
+    assert(StrRange.prev('AbC') === 'AbB');
+    assert(StrRange.prev() === '');
+  });
 
-    it ('tests last', function () {
-        var strRange = new range.strRange({lower: 'd', upper: 'k'});
-        var noLast = new range.strRange({lower: 'h'});
+  it('tests last', function () {
+    let StrRange = new range.StrRange({ lower: 'd', upper: 'k' });
+    let noLast = new range.StrRange({ lower: 'h' });
 
-        assert(noLast.last() === null);
+    assert(noLast.last() === null);
 
-        assert(strRange.last() == 'j');
-    });
+    assert(StrRange.last() === 'j');
+  });
 });
