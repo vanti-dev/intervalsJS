@@ -10,9 +10,9 @@ var moment = require("moment");
 var _internalRange = utils.namedList(["lower","upper","lowerInc","upperInc", "empty"]);
 var _emptyInternalRange = _internalRange([null, null, false, false, true]);
 
-class RangeClass {
+class Range {
     /**
-    @class RangeClass
+    @class Range
     @description Abstract base class of all ranges.
     Ranges are strict about types. This means that both `lower` and `upper` must
     be of the given class or subclass, or `null`
@@ -55,28 +55,28 @@ class RangeClass {
 
         this._range = settings;
         /**
-        @memberof RangeClass
+        @memberof Range
         @description The lower boundary of the set.
         */
         this.lower = this._range.lower;
         /**
-        @memberof RangeClass
+        @memberof Range
         @description The upper boundary of the set.
         */
         this.upper = this._range.upper;
         /**
-        @memberof RangeClass
+        @memberof Range
         @description ``true`` if the lower bound is included in the range. Otherwise false.
         */
         this.lowerInc = this._range.lowerInc;
         /**
-        @memberof RangeClass
+        @memberof Range
         @description ``true`` if the lower bound is included in the range. Otherwise false.
         */
         this.upperInc = this._range.upperInc;
     }
     /**
-    @memberof RangeClass
+    @memberof Range
     @method empty
     @description Returns an empty set. An empty set in unbounded and only contains the empty set.
     @returns {range} An empty set.
@@ -90,7 +90,7 @@ class RangeClass {
         return this;
     }
     /**
-    @memberof RangeClass
+    @memberof Range
     @method isEmpty
     @description Returns ``true`` if the range is empty.
     @returns {boolean}
@@ -100,7 +100,7 @@ class RangeClass {
     }
 
     /**
-    @memberof RangeClass
+    @memberof Range
     @method replace
     @description Returns a new instance of self with the given arguments replaced.
     @param {object} settings - The settings of the range.
@@ -135,17 +135,17 @@ class RangeClass {
     }
 
     /**
-    @memberof RangeClass
+    @memberof Range
     @method isValidRange
     @description Returns ``true`` if `obj` is a valid range of the same type as this. Otherwise ``false``
     @param {range} obj - A range to check
     @returns {boolean}
     */
     isValidRange(obj) {
-        return obj instanceof RangeClass;
+        return obj instanceof Range;
     }
     /**
-    @memberof RangeClass
+    @memberof Range
     @method isValidScalar
     @description Returns ``true`` if `scalar` is a valid scalar of the same type as this. Otherwise ``false``
     @param {scalar} scalar - A scalar to check
@@ -156,7 +156,7 @@ class RangeClass {
     }
 
     /**
-    @memberof RangeClass
+    @memberof Range
     @method isEqual
     @description Returns ``true`` if this is the same range as other.
     @param {range} scalar - A range to check for equality.
@@ -179,7 +179,7 @@ class RangeClass {
         }
     }
     /**
-    @memberof RangeClass
+    @memberof Range
     @method contains
     @description Returns ``true`` if this contains other. Other may be either range of same type or scalar of same type as the boundaries.
     @param {range|scalar} other - Check whether this contains other.
@@ -212,7 +212,7 @@ class RangeClass {
         }
     }
     /**
-    @memberof RangeClass
+    @memberof Range
     @method overlap
     @description Returns ``true`` if this shares any points with other.
     @param {range} other - Check whether this shares any points with other.
@@ -239,7 +239,7 @@ class RangeClass {
         return a.upper > b.lower || a.upper === b.lower && a.upperInc && b.lowerInc;
     }
     /**
-    @memberof RangeClass
+    @memberof Range
     @method adjacent
     @description Returns ``true`` if ranges are directly next to each other but do not overlap.
     @param {range} other - Check whether this is adjacent to other.
@@ -252,7 +252,7 @@ class RangeClass {
         return (this.lower == other.upper && this.lowerInc != other.upperInc) || (this.upper == other.lower && this.upperInc != other.lowerInc);
     }
     /**
-    @memberof RangeClass
+    @memberof Range
     @method union
     @description Merges two ranges. (In place)
     *note: wo ranges can not be merged if the resulting range would be split in two.
@@ -292,10 +292,10 @@ class RangeClass {
             upperInc = a.upperInc;
         }
 
-        return new RangeClass({lower: a.lower, upper: upper, lowerInc: a.lowerInc, upperInc: upperInc, type: this.type});
+        return new Range({lower: a.lower, upper: upper, lowerInc: a.lowerInc, upperInc: upperInc, type: this.type});
     }
     /**
-    @memberof RangeClass
+    @memberof Range
     @method difference
     @description Compute the difference between this and a given range. (in place)
     *note: The difference can not be computed if the resulting range would be split in two seperate ranges.
@@ -324,7 +324,7 @@ class RangeClass {
         }
     }
     /**
-    @memberof RangeClass
+    @memberof Range
     @method intersection
     @description Returns a new range containing all points shared by both ranges. If no points are shared an empty range is returned. (in place)
     *note: The difference can not be computed if the resulting range would be split in two seperate ranges.
@@ -346,7 +346,7 @@ class RangeClass {
         return lowerEndSpan.replace({upper: upperEndSpan.upper, upperInc: upperEndSpan.upperInc});
     }
     /**
-    @memberof RangeClass
+    @memberof Range
     @method startsWith
     @description Test if this range starts with other. other may either be range or scalar.
     @param {range|scalar} other - Range or scalar to test.
@@ -374,7 +374,7 @@ class RangeClass {
         }
     }
     /**
-    @memberof RangeClass
+    @memberof Range
     @method endsWith
     @description Test if this range ends with other. other may either be range or scalar.
     @param {range|scalar} other - Range or scalar to test.
@@ -402,7 +402,7 @@ class RangeClass {
         }
     }
     /**
-    @memberof RangeClass
+    @memberof Range
     @method startsAfter
     @description Test if this range starts after other. Other may be either a range or a scalar.
     @param {range|scalar} other - Range or scalar to test.
@@ -431,7 +431,7 @@ class RangeClass {
         }
     }
     /**
-    @memberof RangeClass
+    @memberof Range
     @method endsBefore
     @description Test if this range ends before other. Other may be either a range or a scalar.
     @param {range|scalar} other - Range or scalar to test.
@@ -460,7 +460,7 @@ class RangeClass {
         }
     }
     /**
-    @memberof RangeClass
+    @memberof Range
     @method leftOf
     @description Test if the range is strictly left of `other`.
     @param {range} other - Range to test.
@@ -473,7 +473,7 @@ class RangeClass {
         return (this.endsBefore(other) && !this.overlap(other));
     }
     /**
-    @memberof RangeClass
+    @memberof Range
     @method rightOf
     @description Test if the range is strictly right of `other`.
     @param {range} other - Range to test.
@@ -487,4 +487,4 @@ class RangeClass {
     }
 }
 
-module.exports = RangeClass;
+module.exports = Range;

@@ -1,14 +1,14 @@
-var RangeClass = require("./Range.js");
+var Range = require("./Range.js");
 var utils = require("./utils");
 var moment = require("moment");
 
 var _internalRange = utils.namedList(["lower","upper","lowerInc","upperInc", "empty"]);
 var _emptyInternalRange = _internalRange([null, null, false, false, true]);
 
-class DiscreteRange extends RangeClass {
+class DiscreteRange extends Range {
     /**
     @class DiscreteRange
-    @extends RangeClass
+    @extends Range
     @description Discrete ranges are a subset of ranges that work on discrete types. This includes `int` and `datetime.date`.
     * Discrete ranges are iterable. Using: let x of intrange.
     @param {object} settings - The settings of the range.

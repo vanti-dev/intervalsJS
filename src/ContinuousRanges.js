@@ -1,14 +1,14 @@
-var RangeClass = require("./Range.js");
+var Range = require("./Range.js");
 var utils = require("./utils");
 
 var _internalRange = utils.namedList(["lower","upper","lowerInc","upperInc", "empty"]);
 var _emptyInternalRange = _internalRange([null, null, false, false, true]);
 
 
-class floatRange extends RangeClass {
+class floatRange extends Range {
     /**
     @class floatRange
-    @extends RangeClass
+    @extends Range
     @description Range that operates on float.
     @param {object} settings - The settings of the range.
     @param {float} [settings.lower=null] - The lower end of the range
@@ -29,7 +29,7 @@ class floatRange extends RangeClass {
     }
 }
 
-class timedeltaRange extends RangeClass {
+class timedeltaRange extends Range {
     constructor(settings = {}) {
         super(settings);
         Object.assign(this, utils.OffsetableRangeMixin);
@@ -37,7 +37,7 @@ class timedeltaRange extends RangeClass {
     }
 }
 
-class datetimeRange extends RangeClass {
+class datetimeRange extends Range {
     constructor(settings = {}) {
         super(settings);
         type = "timedelta";
