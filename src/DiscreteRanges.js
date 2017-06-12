@@ -312,12 +312,29 @@ class PeriodRange extends DateRange {
     const span = new DateRange().fromDate(day, period);
     const newSpan = new PeriodRange();
     newSpan._range = span._range;
-    newSpan.lower = span.lower;
-    newSpan.upper = span.upper;
-    newSpan.lowerInc = span.lowerInc;
-    newSpan.upperInc = span.upperInc;
     newSpan.period = period;
     return newSpan;
+  }
+
+  empty() {
+    throw new Error('PeriodRange does not support empty ranges');
+  }
+
+  get daterange() {
+    return new DateRange({
+      lower: this.lower,
+      upper: this.upper,
+      lowerInc: this.lowerInc,
+      upperInc: this.upperInc,
+    });
+  }
+
+  isValidRange(other) {
+    return other instanceof DateRange;
+  }
+
+  replace(settings) {
+    return this.daterange.replace(settings);
   }
 }
 

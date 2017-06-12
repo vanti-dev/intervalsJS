@@ -54,26 +54,22 @@ class Range {
     };
 
     this._range = settings;
-    /**
-    @memberof Range
-    @description The lower boundary of the set.
-    */
-    this.lower = this._range.lower;
-    /**
-    @memberof Range
-    @description The upper boundary of the set.
-    */
-    this.upper = this._range.upper;
-    /**
-    @memberof Range
-    @description ``true`` if the lower bound is included in the range. Otherwise false.
-    */
-    this.lowerInc = this._range.lowerInc;
-    /**
-    @memberof Range
-    @description ``true`` if the lower bound is included in the range. Otherwise false.
-    */
-    this.upperInc = this._range.upperInc;
+  }
+
+  get lower() {
+    return this._range.lower;
+  }
+
+  get upper() {
+    return this._range.upper;
+  }
+
+  get lowerInc() {
+    return this._range.lowerInc;
+  }
+
+  get upperInc() {
+    return this._range.upperInc;
   }
   /**
   @memberof Range
@@ -83,10 +79,7 @@ class Range {
   */
   empty() {
     this._range = _emptyInternalRange;
-    this.lower = this._range.lower;
-    this.upper = this._range.upper;
-    this.lowerInc = this._range.lowerInc;
-    this.upperInc = this._range.upperInc;
+
     return this;
   }
   /**
@@ -95,7 +88,7 @@ class Range {
   @description Returns ``true`` if the range is empty.
   @returns {boolean}
   */
-  isEmpty() {
+  get isEmpty() {
     return this._range.empty;
   }
 
@@ -119,19 +112,15 @@ class Range {
     }
     if (settings.lower !== undefined) {
       this._range.lower = settings.lower;
-      this.lower = settings.lower;
     }
     if (settings.upper !== undefined) {
       this._range.upper = settings.upper;
-      this.upper = settings.upper;
     }
     if (settings.lowerInc !== undefined) {
       this._range.lowerInc = settings.lowerInc;
-      this.lowerInc = settings.lowerInc;
     }
     if (settings.upperInc !== undefined) {
       this._range.upperInc = settings.upperInc;
-      this.upperInc = settings.upperInc;
     }
     return this;
   }

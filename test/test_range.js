@@ -8,7 +8,7 @@ describe('Basic Range Functionality', function() {
     let emptyIntRange = new range.IntRange().empty();
 
     assert(typeof emptyIntRange === 'object' && emptyIntRange !== null, 'Object created');
-    assert(emptyIntRange.isEmpty());
+    assert(emptyIntRange.isEmpty);
   });
 
   it('Tests default bounds', function() {
@@ -22,7 +22,7 @@ describe('Basic Range Functionality', function() {
     assert(!emptyIntRange.lowerInc);
     assert(!emptyIntRange.upperInc);
     assert(testrange.lower === 3);
-    assert(secondtest.isEmpty());
+    assert(secondtest.isEmpty);
   });
 
   it('Tests bounds', function() {
@@ -212,7 +212,7 @@ describe('Basic Range Functionality', function() {
 
     IntRange.replace({upper: 5});
     IntRange2.replace({lower: 1});
-    assert(IntRange.difference(IntRange2).isEmpty());
+    assert(IntRange.difference(IntRange2).isEmpty);
 
     let noOverlap = new range.IntRange({lower: 1000, upper: 2000});
     expect(() => IntRange.difference(noOverlap)).to.throw(Error);
@@ -234,7 +234,7 @@ describe('Basic Range Functionality', function() {
     assert(IntRange.upper === 5);
 
     IntRange2.replace({lower: 50, upper: 100});
-    assert(IntRange.intersection(IntRange2).isEmpty());
+    assert(IntRange.intersection(IntRange2).isEmpty);
 
 
     expect(() => IntRange.intersection(1)).to.throw(Error);
