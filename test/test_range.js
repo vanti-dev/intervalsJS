@@ -14,7 +14,6 @@ describe('Basic Range Functionality', function() {
   it('Tests default bounds', function() {
     let IntRange = new range.IntRange();
     let emptyIntRange = new range.IntRange().empty();
-    console.log("Calling new testrange");
     let testrange = new range.IntRange({lower: 2, lowerInc: false});
     let secondtest = new range.IntRange({lower: 3, upper: 3});
 
@@ -67,9 +66,11 @@ describe('Basic Range Functionality', function() {
   it('tests if the ranges are valid', function () {
     let emptyIntRange = new range.IntRange().empty();
     let IntRange = new range.IntRange({lower:1, upper:2});
+    let dateRange = new range.DateRange().fromDate("2000-01-01", "day");
 
     assert(emptyIntRange.isValidRange(emptyIntRange));
     assert(IntRange.isValidRange(IntRange));
+    assert(!IntRange.isValidRange(dateRange));
   });
 
   it('tests startsAfter', function () {
