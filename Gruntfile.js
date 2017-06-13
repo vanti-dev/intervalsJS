@@ -34,7 +34,7 @@ module.exports = function(grunt) {
         src: ["src/*.js", "main.js"]
     },
 
-    gh-pages: {
+    'gh-pages': {
       src: ["docs/*"]
     }
 
