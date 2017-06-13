@@ -152,7 +152,7 @@ class StrRange extends DiscreteRange {
   @param {boolean} [settings.upperInc=false] ``true`` if upper end should be included in range.
   */
   constructor(settings = {}) {
-    settings.type = 'ustr';
+    settings.type = 'str';
     super(1, settings);
     /**
     @memberof StrRange

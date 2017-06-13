@@ -67,7 +67,7 @@ function getType(data) {
     }
   } else {
     if (moment.isDuration(data) || isValidDate(data)) { return 'date'; }
-    return 'ustr';
+    return 'str';
   }
   return null;
 }
