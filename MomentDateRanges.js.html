@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>MomentDateRanges.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DateRange.html">DateRange</a><ul class='methods'><li data-type='method'><a href="DateRange.html#.fromDate">fromDate</a></li><li data-type='method'><a href="DateRange.html#.length">length</a></li></ul></li><li><a href="DiscreteRange.html">DiscreteRange</a><ul class='methods'><li data-type='method'><a href="DiscreteRange.html#.last">last</a></li><li data-type='method'><a href="DiscreteRange.html#.next">next</a></li><li data-type='method'><a href="DiscreteRange.html#.prev">prev</a></li></ul></li><li><a href="floatRange.html">floatRange</a><ul class='methods'><li data-type='method'><a href="floatRange.html#offset">offset</a></li></ul></li><li><a href="IntRange.html">IntRange</a><ul class='methods'><li data-type='method'><a href="IntRange.html#.length">length</a></li><li data-type='method'><a href="IntRange.html#offset">offset</a></li></ul></li><li><a href="Range.html">Range</a><ul class='methods'><li data-type='method'><a href="Range.html#.adjacent">adjacent</a></li><li data-type='method'><a href="Range.html#.contains">contains</a></li><li data-type='method'><a href="Range.html#.difference">difference</a></li><li data-type='method'><a href="Range.html#.empty">empty</a></li><li data-type='method'><a href="Range.html#.endsBefore">endsBefore</a></li><li data-type='method'><a href="Range.html#.endsWith">endsWith</a></li><li data-type='method'><a href="Range.html#.intersection">intersection</a></li><li data-type='method'><a href="Range.html#.isEmpty">isEmpty</a></li><li data-type='method'><a href="Range.html#.isEqual">isEqual</a></li><li data-type='method'><a href="Range.html#.isValidRange">isValidRange</a></li><li data-type='method'><a href="Range.html#.isValidScalar">isValidScalar</a></li><li data-type='method'><a href="Range.html#.leftOf">leftOf</a></li><li data-type='method'><a href="Range.html#.overlap">overlap</a></li><li data-type='method'><a href="Range.html#.replace">replace</a></li><li data-type='method'><a href="Range.html#.rightOf">rightOf</a></li><li data-type='method'><a href="Range.html#.startsAfter">startsAfter</a></li><li data-type='method'><a href="Range.html#.startsWith">startsWith</a></li><li data-type='method'><a href="Range.html#.union">union</a></li></ul></li><li><a href="StrRange.html">StrRange</a><ul class='methods'><li data-type='method'><a href="StrRange.html#.next">next</a></li><li data-type='method'><a href="StrRange.html#.prev">prev</a></li></ul></li></ul><h3>Mixins</h3><ul><li><a href="OffsetableRangeMixin.html">OffsetableRangeMixin</a><ul class='methods'><li data-type='method'><a href="OffsetableRangeMixin.html#.offset">offset</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">MomentDateRanges.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const Range = require('./Range.js');
+const utils = require('./utils');
+const moment = require('moment');
+
+
+const _internalRange = utils.namedList(['lower', 'upper', 'lowerInc', 'upperInc', 'empty']);
+const _emptyInternalRange = _internalRange([null, null, false, false, true]);
+
+class MomentDateRange extends Range {
+  constructor(settings) {
+    settings.type = 'date';
+    if (settings.upper &amp;&amp; typeof settings.upper === 'string') {
+      settings.upper = moment(settings.upper, 'MM-DD-YYYY').isValid() ? moment(settings.upper, 'MM-DD-YYYY') : moment(settings.upper, 'YYYY-MM-DD');
+    }
+    if (settings.lower &amp;&amp; typeof settings.lower === 'string') {
+      settings.lower = moment(settings.lower, 'MM-DD-YYYY').isValid() ? moment(settings.lower, 'MM-DD-YYYY') : moment(settings.lower, 'YYYY-MM-DD');
+    }
+    super(settings);
+  }
+}
+
+class DateRange extends MomentDateRange {
+  /**
+  @class DateRange
+  @extends MomentDateRange
+  @description Range that operates on dates.
+  @param {object} settings - The settings of the range.
+  @param {string} [settings.lower=null] - The lower end of the range -
+  Formatted as either 'YYYY-MM-DD' or 'MM-DD-YYYY'
+  @param {string} [settings.upper=null] - The upper end of the range -
+   Formatted as either 'YYYY-MM-DD' or 'MM-DD-YYYY'
+  @param {boolean} [settings.lowerInc=true] - ``true`` if lower
+  end should be included in range.
+  @param {boolean} [settings.upperInc=false] ``true`` if upper
+  end should be included in range.
+  */
+
+  constructor(settings = {}) {
+    if (Object.keys(settings).length !== 0 &amp;&amp; settings.lower &amp;&amp;
+                                      !utils.isValidDate(settings.lower)) {
+      throw new Error('Invalid type of lower bound');
+    }
+
+    if (Object.keys(settings).length !== 0 &amp;&amp; settings.upper &amp;&amp;
+                                      !utils.isValidDate(settings.upper)) {
+      throw new Error('Invalid type of upper bound');
+    }
+    settings.type = 'date';
+    super(settings);
+    let lb = this.lower;
+    if (this.lower &amp;&amp; !this.lowerInc) {
+      lb = this.next(lb);
+    }
+    let ub = this.upper;
+    if (this.upper &amp;&amp; this.upperInc) {
+      ub = this.next(ub, this.step, settings.type);
+    }
+    if (this.lower &amp;&amp; this.upper &amp;&amp; lb >= ub) {
+      this._range = _emptyInternalRange;
+      this.replace({ upper: null, lower: null, lowerInc: false, upperInc: false });
+    } else {
+      this._range = _internalRange([lb, ub, true, false, false]);
+      this.replace({ upper: ub, lower: lb, lowerInc: true, upperInc: false });
+    }
+    /**
+    @memberof DateRange
+    @description The type of values in the range.
+    */
+    this.type = settings.type;
+    Object.assign(this, utils.OffsetableRangeMixin);
+    this.offsetType = 'duration';
+    /**
+    @memberof DateRange
+    @description How far to step when iterating.
+    */
+    this.step = 'day';
+  }
+
+  isEqual(other) {
+    if (!this || !other || !this.isValidRange(other)) {
+      return false;
+    }
+    return this.upper.isSame(other.upper) &amp;&amp;
+    this.lower.isSame(other.lower) &amp;&amp; this.lowerInc === other.lowerInc &amp;&amp;
+    this.upperInc === other.upperInc;
+  }
+
+  next(curr, step = 'day') {
+    if (this) {
+      step = this.step ? this.step : step;
+    }
+    return curr.add(1, step);
+  }
+
+  prev(curr, step) {
+    return curr.subtract(1, step);
+  }
+
+  /**
+  @memberof DateRange
+  @method fromDate
+  @description Returns a DateRange with length period beginning at date.
+  @param {string} date A date to begin the range from.
+  Formatted as either 'YYYY-MM-DD' or 'MM-DD-YYYY'
+  @param {string} [period='day'] How long the range should be.
+  Options: 'day', 'week', 'month', 'quarter', 'year'
+  @returns {range}
+  */
+
+  fromDate(date, period = 'day') {
+    let start;
+    if (period === 'day') {
+      return new DateRange({ lower: date, upper: date, upperInc: true });
+    }
+    if (period === 'week') {
+      date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
+      let subtract = date.day() - 1;
+      if (date.day() === 0) {
+        subtract = 6;
+      } else if (date.day() === 1) { subtract = 1; }
+      start = date.subtract(subtract, 'days');
+      return new DateRange({ lower: start.format('YYYY-MM-DD'), upper: start.add(1, 'week').format('YYYY-MM-DD') });
+    }
+    if (period === 'americanWeek') {
+      date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
+      start = date.subtract(date.day(), 'days');
+      return new DateRange({ lower: start.format('YYYY-MM-DD'), upper: start.add(1, 'week').format('YYYY-MM-DD') });
+    }
+    if (period === 'month') {
+      date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
+      start = date.date(1);
+      return new DateRange({ lower: start.format('YYYY-MM-DD'), upper: start.add(1, 'month').date(1).format('YYYY-MM-DD') });
+    }
+    if (period === 'quarter') {
+      date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
+      start = date.month(Math.floor(date.month() / 3) * 3).date(1);
+      return new DateRange({ lower: start.format('YYYY-MM-DD'), upper: start.add(3, 'month').date(1).format('YYYY-MM-DD') });
+    }
+    if (period === 'year') {
+      date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
+      start = date.month(0).date(1);
+      return new DateRange({ lower: start.format('YYYY-MM-DD'), upper: start.add(1, 'year').format('YYYY-MM-DD') });
+    }
+    throw new Error('Unexpected period.');
+  }
+  /**
+  @memberof DateRange
+  @method length
+  @description Return the length of the range
+  @returns {scalar}
+  */
+  length() {
+    if (!this.upper || !this.lower) {
+      throw new Error('Unbounded ranges do not have a length');
+    }
+    return Math.round(moment.duration(this.upper.diff(this.lower)).asDays());
+  }
+}
+
+class PeriodRange extends DateRange {
+  constructor(settings = {}) {
+    super(settings);
+  }
+
+  fromDate(day, period = 'day') {
+    const span = new DateRange().fromDate(day, period);
+    const newSpan = new PeriodRange();
+    newSpan._range = span._range;
+    newSpan.period = period;
+    return newSpan;
+  }
+
+  empty() {
+    throw new Error('PeriodRange does not support empty ranges');
+  }
+
+  get daterange() {
+    return new DateRange({
+      lower: this.lower,
+      upper: this.upper,
+      lowerInc: this.lowerInc,
+      upperInc: this.upperInc,
+    });
+  }
+
+  isValidRange(other) {
+    return other instanceof DateRange;
+  }
+
+  replace(settings) {
+    return this.daterange.replace(settings);
+  }
+}
+
+module.exports = {
+  DateRange,
+  PeriodRange,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Jun 13 2017 17:57:52 GMT+1000 (AUS Eastern Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
