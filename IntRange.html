@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>DateRange - Documentation</title>
+    <title>IntRange - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">DateRange</h1>
+    <h1 class="page-title">IntRange</h1>
     
 
     
@@ -40,7 +40,7 @@
 <header>
     
         <h2>
-        DateRange
+        IntRange
         </h2>
         
     
@@ -53,7 +53,7 @@
 
     
 
-    <h4 class="name" id="DateRange"><span class="type-signature"></span>new DateRange<span class="signature">(settings)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="IntRange"><span class="type-signature"></span>new IntRange<span class="signature">(settings)</span><span class="type-signature"></span></h4>
 
     
 
@@ -65,7 +65,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line204">line 204</a>
+        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line112">line 112</a>
     </li></ul></dd>
     
 
@@ -81,6 +81,14 @@
 
     
 
+    
+        <dt class="mixes">Mixes In:</dt>
+
+        <dd class="mixes"><ul>
+        
+            <li><a href="OffsetableRangeMixin.html">OffsetableRangeMixin</a></li>
+        
+        </ul></dd>
     
 
     
@@ -105,7 +113,7 @@
 
 
 <div class="description">
-    Range that operates on dates.
+    Range that operates on int.
 </div>
 
 
@@ -195,7 +203,7 @@
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">int</span>
 
 
             
@@ -221,8 +229,7 @@
                 </td>
             
 
-            <td class="description last">The lower end of the range -
-  Formatted as either 'YYYY-MM-DD' or 'MM-DD-YYYY'</td>
+            <td class="description last">The lower end of the range</td>
         </tr>
 
     
@@ -235,7 +242,7 @@
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">int</span>
 
 
             
@@ -261,8 +268,7 @@
                 </td>
             
 
-            <td class="description last">The upper end of the range -
-   Formatted as either 'YYYY-MM-DD' or 'MM-DD-YYYY'</td>
+            <td class="description last">The upper end of the range</td>
         </tr>
 
     
@@ -301,8 +307,7 @@
                 </td>
             
 
-            <td class="description last">``true`` if lower
-  end should be included in range.</td>
+            <td class="description last">``true`` if lower end should be included in range.</td>
         </tr>
 
     
@@ -341,8 +346,7 @@
                 </td>
             
 
-            <td class="description last">``true`` if upper
-  end should be included in range.</td>
+            <td class="description last">``true`` if upper end should be included in range.</td>
         </tr>
 
     
@@ -400,69 +404,6 @@
 
         
             
-<h4 class="name" id=".this.step"><span class="type-signature">(static) </span>this.step<span class="type-signature"></span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line242">line 242</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    How far to step when iterating.
-</div>
-
-
-
-
-
-
-
-
-        
-            
 <h4 class="name" id=".this.type"><span class="type-signature">(static) </span>this.type<span class="type-signature"></span></h4>
 
 
@@ -474,7 +415,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line235">line 235</a>
+        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line131">line 131</a>
     </li></ul></dd>
     
 
@@ -525,19 +466,9 @@
 
 
         
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
             
+<h4 class="name" id="offsetType"><span class="type-signature"></span>offsetType<span class="type-signature"></span></h4>
 
-    
-
-    <h4 class="name" id=".fromDate"><span class="type-signature">(static) </span>fromDate<span class="signature">(date, period<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {range}</span></h4>
-
-    
 
 
 
@@ -547,7 +478,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line245">line 245</a>
+        <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line11">line 11</a>
     </li></ul></dd>
     
 
@@ -563,6 +494,14 @@
 
     
 
+    
+        <dt class="mixes">Mixes In:</dt>
+
+        <dd class="mixes"><ul>
+        
+            <li><a href="OffsetableRangeMixin.html#.offsetType">OffsetableRangeMixin.offsetType</a></li>
+        
+        </ul></dd>
     
 
     
@@ -587,7 +526,7 @@
 
 
 <div class="description">
-    Returns a DateRange with length period beginning at date.
+    The type of value used to offset
 </div>
 
 
@@ -597,146 +536,11 @@
 
 
 
-
-
-
-    <h5>Parameters:</h5>
+        
     
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">A date to begin the range from.
-  Formatted as either 'YYYY-MM-DD' or 'MM-DD-YYYY'</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>period</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>'day'</code>
-                
-                </td>
-            
-
-            <td class="description last">How long the range should be.
-  Options: 'day', 'week', 'month', 'quarter', 'year'</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">range</span>
-
-
-    </dd>
-</dl>
-
-    
-
+        <h3 class="subsection-title">Methods</h3>
 
         
             
@@ -755,7 +559,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line292">line 292</a>
+        <a href="DiscreteRanges.js.html">DiscreteRanges.js</a>, <a href="DiscreteRanges.js.html#line133">line 133</a>
     </li></ul></dd>
     
 
@@ -841,6 +645,165 @@
 
 
         
+            
+
+    
+
+    <h4 class="name" id="offset"><span class="type-signature"></span>offset<span class="signature">(offset)</span><span class="type-signature"> &rarr; {range}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="mixes">Mixes In:</dt>
+
+        <dd class="mixes"><ul>
+        
+            <li><a href="OffsetableRangeMixin.html#.offset">OffsetableRangeMixin.offset</a></li>
+        
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Offset the range by the given value.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#scalar">scalar</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">How much to offset by</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">range</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
     
 
     
@@ -858,7 +821,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Jun 13 2017 16:58:47 GMT+1000 (AUS Eastern Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Jun 13 2017 17:02:11 GMT+1000 (AUS Eastern Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
