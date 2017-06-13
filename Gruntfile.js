@@ -32,7 +32,12 @@ module.exports = function(grunt) {
     },
     eslint: {
         src: ["src/*.js", "main.js"]
+    },
+
+    gh-pages: {
+      src: ["docs/*"]
     }
+
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -40,8 +45,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-istanbul');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks("gruntify-eslint");
+  grunt.loadNpmTasks('grunt-gh-pages');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'eslint', 'jsdoc', 'mocha_istanbul']);
+  grunt.registerTask('default', ['jshint', 'eslint', 'mocha_istanbul']);
+  grunt.registerTask('docs', ['jsdoc', 'gh-pages']);
 
 };

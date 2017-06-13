@@ -20,6 +20,7 @@ $RECYCLE.BIN/
 node_modules
 .nyc_output
 coverage/*
+docs
 
 # =========================
 # Operating System Files
