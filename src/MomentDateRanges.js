@@ -17,6 +17,102 @@ class MomentDateRange extends Range {
     }
     super(settings);
   }
+
+  get lower() {
+    return this._range.lower;
+  }
+
+  get upper() {
+    return this._range.upper;
+  }
+
+  isEqual(other) {
+    if (!this || !other || !this.isValidRange(other)) {
+      return false;
+    }
+    return this.upper.isSame(other.upper) &&
+    this.lower.isSame(other.lower) && this.lowerInc === other.lowerInc &&
+    this.upperInc === other.upperInc;
+  }
+
+  replace(settings = {}) {
+    if (settings.upper && typeof settings.upper === 'string') {
+      this._range.upper = moment(settings.upper, 'MM-DD-YYYY').isValid() ? moment(settings.upper, 'MM-DD-YYYY') : moment(settings.upper, 'YYYY-MM-DD');
+    }
+    if (settings.lower && typeof settings.lower === 'string') {
+      this._range.lower = moment(settings.lower, 'MM-DD-YYYY').isValid() ? moment(settings.lower, 'MM-DD-YYYY') : moment(settings.lower, 'YYYY-MM-DD');
+    }
+    if (settings.lowerInc !== undefined) {
+      this._range.lowerInc = settings.lowerInc;
+    }
+    if (settings.upperInc !== undefined) {
+      this._range.upperInc = settings.upperInc;
+    }
+    return this;
+  }
+
+  startsAfter(other) {
+    if (this.isValidRange(other)) {
+      if (this.lower.isSame(other.lower)) {
+        return other.lowerInc || !this.lowerInc;
+      } else if (this.lower === null) {
+        return false;
+      } else if (other.lower === null) {
+        return true;
+      }
+      return this.lower.isAfter(other.lower);
+    } else if (moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']).isValid()) {
+      return this.lower.isSameOrAfter(moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']));
+    }
+    throw new Error('Unsupported type to test for starts after');
+  }
+
+  endsBefore(other) {
+    if (this.isValidRange(other)) {
+      if (this.upper && other.upper && this.upper.isSame(other.upper)) {
+        return other.upperInc || !this.upperInc;
+      } else if (!this.upper) {
+        return false;
+      } else if (!this.other) {
+        return true;
+      }
+      return this.upper.isSameOrBefore(other.upper);
+    } else if (moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']).isValid()) {
+      return this.upper.isSameOrBefore(moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']));
+    }
+    throw new Error('Unsupported type to test for ends before');
+  }
+
+  startsWith(other) {
+    if (this.isValidRange(other)) {
+      if (this.lowerInc === other.lowerInc) {
+        return this.lower.isSame(other.lower);
+      }
+      return false;
+    } else if (moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']).isValid()) {
+      if (this.lowerInc) {
+        return this.lower.isSame(moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']));
+      }
+      return false;
+    }
+    throw new Error('Unsupported type to test for starts with');
+  }
+
+  endsWith(other) {
+    if (this.isValidRange(other)) {
+      if (this.upperInc === other.upperInc) {
+        return this.upper.isSame(other.upper);
+      }
+      return false;
+    } else if (moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']).isValid()) {
+      console.log(this);
+      if (this.upperInc) {
+        return this.upper.isSame(moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']));
+      }
+      return false;
+    }
+    throw new Error('Unsupported type to test for ends with');
+  }
 }
 
 class DateRange extends MomentDateRange {
@@ -76,15 +172,6 @@ class DateRange extends MomentDateRange {
     this.step = 'day';
   }
 
-  isEqual(other) {
-    if (!this || !other || !this.isValidRange(other)) {
-      return false;
-    }
-    return this.upper.isSame(other.upper) &&
-    this.lower.isSame(other.lower) && this.lowerInc === other.lowerInc &&
-    this.upperInc === other.upperInc;
-  }
-
   next(curr, step = 'day') {
     if (this) {
       step = this.step ? this.step : step;
@@ -94,6 +181,23 @@ class DateRange extends MomentDateRange {
 
   prev(curr, step) {
     return curr.subtract(1, step);
+  }
+
+  last() {
+    if (!this || !this.upper) {
+      return null;
+    }
+    return this.prev(this.upper, this.step);
+  }
+
+  endsWith(other) {
+    // Discrete ranges have a lst element even in cases where the UB is null
+    if (moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']).isValid()) {
+      const last = this.last();
+      const test = moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']);
+      return last.isSame(test);
+    }
+    return super.endsWith(other);
   }
 
   /**

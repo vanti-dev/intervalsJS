@@ -15,6 +15,64 @@ describe('DateRange', function() {
     expect(() => new range.DateRange({upper: 5})).to.throw(Error);
   });
 
+  it('Tests replace', function () {
+    let DateRange = new range.DateRange({lower:"2000-01-01", upper:"2000-01-02"});
+    DateRange.replace({lower:"2000-01-03", upper:"2000-01-10"});
+    assert(DateRange.isEqual(new range.DateRange({lower:"2000-01-03", upper:"2000-01-10"})));
+    assert(DateRange.lowerInc);
+
+    DateRange.replace({lowerInc:true, upperInc:true});
+    assert(DateRange.upperInc);
+    assert(DateRange.lowerInc);
+  });
+
+  it('Tests start after', function() {
+    let DateRange = new range.DateRange({lower:"2000-01-01", upper: "2000-01-05"});
+    let startsAfter = new range.DateRange({lower:"1999-01-01"});
+    let unbounded = new range.DateRange().empty();
+
+    assert(DateRange.startsAfter(startsAfter));
+    assert(DateRange.startsAfter("1990-03-04"));
+    assert(!DateRange.startsAfter("2001-01-01"));
+    assert(DateRange.startsAfter(unbounded));
+  });
+
+  it('Tests ends before', function() {
+    let DateRange = new range.DateRange({lower: "2000-01-01", upper:"2000-01-03"});
+    let endsBefore = new range.DateRange({lower: "2000-01-01", upper: "2000-01-08"});
+    let noUB = new range.DateRange({lower: "2000-01-01"});
+    let unbounded = new range.DateRange().empty();
+
+    assert(DateRange.endsBefore(endsBefore));
+    assert(DateRange.endsBefore("2001-01-01"));
+    assert(!DateRange.endsBefore("2000-01-01"));
+    assert(!noUB.endsBefore(endsBefore));
+    assert(DateRange.endsBefore(unbounded));
+  });
+
+  it('Tests starts with', function() {
+    let DateRange =  new range.DateRange({lower: "2000-01-01", upper:"2000-01-10", lowerInc: true});
+    let startsWith = new range.DateRange({lower:"2000-01-01", upper:"2000-01-05", lowerInc: true});
+
+    assert(DateRange.startsWith(startsWith));
+    assert(DateRange.startsWith("2000-01-01"));
+    startsWith.replace({lowerInc: false});
+
+    assert(!DateRange.startsWith(startsWith));
+  });
+
+  it('Tests ends with', function() {
+    let DateRange =  new range.DateRange({lower: "2000-01-01", upper:"2000-01-10", upperInc: true});
+    let endsWith = new range.DateRange({upper:"2000-01-10", lower:"2000-01-05", upperInc: true});
+
+    assert(DateRange.endsWith(endsWith));
+    assert(DateRange.endsWith("2000-01-10"));
+    assert(!DateRange.endsWith("1999-10-10"));
+
+    endsWith.replace({upperInc: false});
+    assert(!DateRange.endsWith(endsWith));
+  });
+
   it('Tests offset', function() {
     let rangeLow = new range.DateRange({lower: '2000-01-01', upper:'2000-01-06'});
     let rangeHigh = new range.DateRange({lower: '2000-01-05', upper:'2000-01-10'});
@@ -26,8 +84,7 @@ describe('DateRange', function() {
   it('Tests from date (day)', function() {
     let DateRange = new range.DateRange().fromDate('2000-01-01');
     let secondDateRange = new range.DateRange({lower: '2000-01-01', upper: '2000-01-02'});
-    console.log(DateRange);
-    console.log(secondDateRange);
+
     assert(DateRange.isEqual(secondDateRange));
   });
 
