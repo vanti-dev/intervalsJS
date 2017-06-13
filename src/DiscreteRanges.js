@@ -46,12 +46,10 @@ class DiscreteRange extends Range {
   whatever is appropriate for the current range, for ints it is 1).
   @returns {scalar}
   */
-  next(curr, step = 1, type = '') {
+  next(curr, step = 1) {
     if (this) {
       step = this.step ? this.step : step;
-      type = this.type ? this.type : type;
     }
-    if (type === 'date') { return curr.add(1, step); }
     return curr + step;
   }
 
@@ -59,12 +57,11 @@ class DiscreteRange extends Range {
     const nextFunc = this.next;
     const last = this.last();
     const step = this.step;
-    const type = this.type;
-    let start = this.prev(this.lower, step, type);
+    let start = this.prev(this.lower, step);
     const iterator = {
       next() {
-        start = nextFunc(start, step, type);
-        const bool = type === 'date' ? start.isAfter(last) : (start) > last;
+        start = nextFunc(start, step);
+        const bool = (start) > last;
         return {
           value: start,
           done: bool,
@@ -80,8 +77,7 @@ class DiscreteRange extends Range {
   @param {scalar} curr -Value to decrement
   @returns {scalar}
   */
-  prev(curr, step, type) {
-    if (type === 'date') { return curr.subtract(1, step); }
+  prev(curr) {
     return curr - this.step;
   }
   /**
