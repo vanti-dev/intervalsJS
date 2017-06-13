@@ -1,5 +1,4 @@
 const utils = require('./utils.js');
-const moment = require('moment');
 /**
 *@typedef {(int|string|float)} scalar
 *@description A value representing a scalar. This depends on the type of range
@@ -24,10 +23,6 @@ class Range {
   @param {scalar} settings.type - The type of the range.
   */
   constructor(settings = {}) {
-    if (settings.upper && settings.lower && settings.type === 'date') {
-      settings.lower = moment(settings.lower, 'MM-DD-YYYY').isValid() ? moment(settings.lower, 'MM-DD-YYYY') : moment(settings.lower, 'YYYY-MM-DD');
-      settings.upper = moment(settings.upper, 'MM-DD-YYYY').isValid() ? moment(settings.upper, 'MM-DD-YYYY') : moment(settings.upper, 'YYYY-MM-DD');
-    }
     if (settings.lower && utils.getType(settings.lower) !== settings.type) {
       throw new Error('Invalid type for lower bound');
     }
@@ -106,10 +101,6 @@ class Range {
   @returns {range} A set with the given arguments replaced.
   */
   replace(settings = {}) {
-    if (settings.upper && settings.lower && this.type === 'date') {
-      settings.lower = moment(settings.lower, 'MM-DD-YYYY').isValid() ? moment(settings.lower, 'MM-DD-YYYY') : moment(settings.lower, 'YYYY-MM-DD');
-      settings.upper = moment(settings.upper, 'MM-DD-YYYY').isValid() ? moment(settings.upper, 'MM-DD-YYYY') : moment(settings.upper, 'YYYY-MM-DD');
-    }
     if (settings.lower !== undefined) {
       this._range.lower = settings.lower;
     }
@@ -158,11 +149,6 @@ class Range {
   isEqual(other) {
     if (!this || !other || !this.isValidRange(other)) {
       return false;
-    }
-    if (this.type === 'date') {
-      return this.upper.isSame(other.upper) &&
-      this.lower.isSame(other.lower) && this.lowerInc === other.lowerInc &&
-      this.upperInc === other.upperInc;
     }
     const keys = Object.keys(this._range);
     let i;
