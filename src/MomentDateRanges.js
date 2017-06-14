@@ -61,14 +61,28 @@ class DateRange extends MomentDateRange {
     */
     this.step = 'day';
   }
-
+  /**
+  @memberof DateRange
+  @method next
+  @description Increment the given value with the step defined for this class.
+  @param {scalar} curr -Value to increment
+  @param {int} step - How much to step by each time. OPTIONAL (defaults to
+  whatever is appropriate for the current range, for ints it is 1).
+  @returns {scalar}
+  */
   next(curr, step = 'day') {
     if (this) {
       step = this.step ? this.step : step;
     }
     return curr.add(1, step);
   }
-
+  /**
+  @memberof DateRange
+  @method prev
+  @description Decrement the given value with the step defined for this class.
+  @param {scalar} curr -Value to decrement
+  @returns {scalar}
+  */
   prev(curr, step) {
     return curr.subtract(1, step);
   }
@@ -141,7 +155,7 @@ class DateRange extends MomentDateRange {
   @memberof DateRange
   @method length
   @description Return the length of the range
-  @returns {scalar}
+  @returns {number}
   */
   length() {
     if (!this.upper || !this.lower) {

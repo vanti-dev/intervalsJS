@@ -2,6 +2,17 @@ const Range = require('./Range.js');
 const moment = require('moment');
 
 class MomentDateRange extends Range {
+    /**
+    @class MomentDateRange
+    @extends Range
+    @description Moment/Date ranges are a subset of ranges that are used
+    to work with Dates.
+    @param {object} settings - The settings of the range.
+    @param {scalar} [settings.lower=null] - The lower end of the range
+    @param {scalar} [settings.upper=null] - The upper end of the range
+    @param {boolean} [settings.lowerInc=true] - ``true`` if lower end should be included in range.
+    @param {boolean} [settings.upperInc=false] ``true`` if upper end should be included in range.
+    */
   constructor(settings) {
     settings.type = 'date';
     if (settings.upper && typeof settings.upper === 'string') {
