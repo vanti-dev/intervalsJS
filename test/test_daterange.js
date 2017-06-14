@@ -13,6 +13,8 @@ describe('DateRange', function() {
 
     expect(() => new range.DateRange({lower: 1})).to.throw(Error);
     expect(() => new range.DateRange({upper: 5})).to.throw(Error);
+    expect(() => new range.DateRange({lower: "2000-01-01", lowerInc: "2001-01-01"})).to.throw(Error);
+    expect(() => new range.DateRange({lower: "2000-01-01", upperInc: "2001-01-01"})).to.throw(Error);
   });
 
   it('Tests replace', function () {
@@ -158,7 +160,7 @@ describe('DateRange', function() {
 
     DateRange2.replace({lower: "2001-01-01", upper: "2001-01-05"});
     assert(DateRange.intersection(DateRange2).isEmpty);
-  
+
   });
 
   it('Tests offset', function() {

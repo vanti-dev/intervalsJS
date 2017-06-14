@@ -39,10 +39,17 @@ class Range {
       throw new Error('Upper bound is less than lower bound!');
     }
 
+    if (settings.lowerInc !== undefined && typeof settings.lowerInc !== 'boolean') {
+      throw new Error('Invalid type for lowerInc');
+    }
+    if (settings.upperInc !== undefined && typeof settings.upperInc !== 'boolean') {
+      throw new Error('Invalid type for upperInc');
+    }
+    this.type = settings.type;
     settings = {
       // Setting default values
-      lower: settings.lower || null,
-      upper: settings.upper || null,
+      lower: settings.lower !== undefined ? settings.lower : null,
+      upper: settings.upper !== undefined ? settings.upper : null,
       lowerInc: (settings.lowerInc === false) ? settings.lowerInc : true,
       upperInc: settings.upperInc || false,
       empty: false,
@@ -102,15 +109,29 @@ class Range {
   */
   replace(settings = {}) {
     if (settings.lower !== undefined) {
-      this._range.lower = settings.lower;
+      if (this.isValidScalar(settings.lower) || settings.lower === null) {
+        this._range.lower = settings.lower;
+      } else {
+        throw new Error('Invalid type for lower bound');
+      }
     }
     if (settings.upper !== undefined) {
-      this._range.upper = settings.upper;
+      if (this.isValidScalar(settings.upper) || settings.upper === null) {
+        this._range.upper = settings.upper;
+      } else {
+        throw new Error('Invalid type for upper bound');
+      }
     }
     if (settings.lowerInc !== undefined) {
+      if (typeof settings.lowerInc !== 'boolean') {
+        throw new Error('Invalid type for lowerInc');
+      }
       this._range.lowerInc = settings.lowerInc;
     }
     if (settings.upperInc !== undefined) {
+      if (typeof settings.upperInc !== 'boolean') {
+        throw new Error('Invalid type for upperInc');
+      }
       this._range.upperInc = settings.upperInc;
     }
     return this;
