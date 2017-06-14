@@ -6,8 +6,8 @@ module.exports = function(grunt) {
     watch: {
         scripts: {
             files: ['src/*.js', "test/*.js", "main.js", "src/RangeTypes/*.js"],
-            tasks: [ 'default'],
-        },
+            tasks: ['docs', 'default'],
+        }
     },
     jshint: {
         all: ['Gruntfile.js', 'src/*.js', 'test/*.js', 'main.js', "src/RangeTypes/*.js"],
@@ -52,6 +52,7 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'eslint', 'mocha_istanbul']);
-  grunt.registerTask('docs', ['jsdoc', 'gh-pages']);
+  grunt.registerTask('publishDocs', ['jsdoc', 'gh-pages']);
+  grunt.registerTask('docs', ['jsdoc']);
 
 };
