@@ -137,28 +137,6 @@ class MomentDateRange extends Range {
     return new Range({ lower: a.lower, upper, lowerInc: a.lowerInc, upperInc, type: this.type });
   }
 
-  difference(other) {
-    if (!this.isValidRange(other)) {
-      throw new Error('Unsupported type to test for difference');
-    }
-
-    if (this === null || other === null || !this.overlap(other)) {
-      return this;
-    } else if (other.contains(this)) {
-      return this.empty();
-    } else if (this.contains(other) && !(this.startsWith(other) || this.endsWith(other))) {
-      throw new Error('Other range must not be within this range');
-    } else if (this.endsBefore(other)) {
-      console.log('"hey!"');
-      console.log(this);
-      this.replace({ upper: other.lower, upperInc: !other.lowerInc });
-      console.log(this);
-      return this;
-    } else if (this.startsAfter(other)) {
-      return this.replace({ lower: other.upper, lowerInc: !other.upperInc });
-    }
-    return this.empty();
-  }
 
   startsAfter(other) {
     if (this.isValidRange(other)) {
