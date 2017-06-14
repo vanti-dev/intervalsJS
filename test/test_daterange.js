@@ -108,6 +108,30 @@ describe('DateRange', function() {
 
     assert(!DateRange.overlap());
   });
+
+  it('tests adjacent', function() {
+    let DateRange = new range.DateRange({lower:"2000-01-01", upper:"2000-01-10"});
+    let adjacent = new range.DateRange({lower: "2000-01-10", upper: "2000-01-17", lowerInc: true});
+
+    assert(DateRange.adjacent(adjacent));
+    adjacent.replace({lower: "2001-01-01", upper: "2000-02-27"});
+    assert(!DateRange.adjacent(adjacent));
+
+  });
+
+  it('tests union', function() {
+    let DateRange = new range.DateRange({lower:"2000-01-01", upper:"2000-01-10"});
+    let DateRange2 = new range.DateRange({lower: "2000-01-02", upper: "2000-01-12"});
+
+
+    assert(DateRange.union(DateRange2).upper.isSame("2000-01-12"));
+    assert(DateRange.union(DateRange2).lower.isSame("2000-01-01"));
+
+    DateRange2.replace({upper: "2000-01-10"});
+    assert(DateRange.union(DateRange2).upper.isSame("2000-01-10"));
+    assert(DateRange.union(DateRange2).lower.isSame("2000-01-01"));
+  });
+
   it('Tests offset', function() {
     let rangeLow = new range.DateRange({lower: '2000-01-01', upper:'2000-01-06'});
     let rangeHigh = new range.DateRange({lower: '2000-01-05', upper:'2000-01-10'});

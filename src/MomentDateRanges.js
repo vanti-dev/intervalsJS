@@ -85,6 +85,50 @@ class MomentDateRange extends Range {
     }
     return a.upper.isAfter(b.lower) || (a.upper.isSame(b.lower) && a.upperInc && b.lowerInc);
   }
+
+  adjacent(other) {
+    if (!this.isValidRange(other)) {
+      throw new Error('Unsupported type to test for inclusion');
+    }
+    return (this.lower.isSame(other.upper) && this.lowerInc !== other.upperInc) ||
+              (this.upper.isSame(other.lower) && this.upperInc !== other.lowerInc);
+  }
+
+  union(other) {
+    if (!this.isValidRange(other)) {
+      throw new Error('Unsupported type to test for union');
+    }
+
+    let a;
+    let b;
+    if (!this.startsAfter(other)) {
+      a = this;
+      b = other;
+    } else {
+      a = other;
+      b = this;
+    }
+
+    if (a.upper.isSameOrBefore(b.lower) && !a.adjacent(b)) {
+      throw new Error('Ranges must be either adjacent or overlapping');
+    }
+
+    let upper;
+    let upperInc;
+    if (a.upper.isSame(b.upper)) {
+      upper = a.upper;
+      upperInc = a.upperInc || b.upperInc;
+    } else if (a.upper.isBefore(b.upper)) {
+      upper = b.upper;
+      upperInc = b.upperInc;
+    } else {
+      upper = a.upper;
+      upperInc = a.upperInc;
+    }
+
+    return new Range({ lower: a.lower, upper, lowerInc: a.lowerInc, upperInc, type: this.type });
+  }
+
   startsAfter(other) {
     if (this.isValidRange(other)) {
       if (this.lower !== null && other.lower !== null && this.lower.isSame(other.lower)) {
