@@ -65,6 +65,26 @@ class MomentDateRange extends Range {
     throw new Error('Unsupported type to test for inclusion');
   }
 
+  overlap(other) {
+    let a;
+    let b;
+    if (!this || !other) {
+      return false;
+    }
+
+    if (this.endsBefore(other)) {
+      a = this;
+      b = other;
+    } else {
+      a = other;
+      b = this;
+    }
+
+    if (a.upper === null || b.lower === null) {
+      return true;
+    }
+    return a.upper.isAfter(b.lower) || (a.upper.isSame(b.lower) && a.upperInc && b.lowerInc);
+  }
   startsAfter(other) {
     if (this.isValidRange(other)) {
       if (this.lower !== null && other.lower !== null && this.lower.isSame(other.lower)) {
@@ -119,7 +139,6 @@ class MomentDateRange extends Range {
       }
       return false;
     } else if (moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']).isValid()) {
-      console.log(this);
       if (this.upperInc) {
         return this.upper.isSame(moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']));
       }

@@ -78,7 +78,7 @@ describe('DateRange', function() {
     let contain = new range.DateRange({lower: "2000-01-01", upper: "2000-01-10"});
 
     assert(DateRange.contains(contain));
-    
+
     contain.replace({lower:"2000-01-03", upper:"2000-01-12"});
     assert(!DateRange.contains(contain));
 
@@ -91,6 +91,23 @@ describe('DateRange', function() {
     assert(!DateRange.contains(unbounded));
   });
 
+  it('tests overlaps', function() {
+    let DateRange = new range.DateRange({lower:"2000-01-01", upper:"2000-01-10", upperInc: true});
+    let overlaps = new range.DateRange({lower: "2000-01-10", upper: "2000-01-17", lowerInc: true});
+
+    assert(DateRange.overlap(overlaps));
+
+    overlaps.replace({lower:"1999-01-01", upper:"2000-01-05"});
+    assert(DateRange.overlap(overlaps));
+
+    overlaps.replace({lower:"2000-10-18", upper:"2001-01-01"});
+    assert(!DateRange.overlap(overlaps));
+
+    let DateRangeUnbounded = new range.DateRange().empty();
+    assert(DateRange.overlap(DateRangeUnbounded));
+
+    assert(!DateRange.overlap());
+  });
   it('Tests offset', function() {
     let rangeLow = new range.DateRange({lower: '2000-01-01', upper:'2000-01-06'});
     let rangeHigh = new range.DateRange({lower: '2000-01-05', upper:'2000-01-10'});
