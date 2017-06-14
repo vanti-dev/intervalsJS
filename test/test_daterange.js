@@ -73,6 +73,24 @@ describe('DateRange', function() {
     assert(!DateRange.endsWith(endsWith));
   });
 
+  it('tests contains', function () {
+    let DateRange = new range.DateRange({lower:"2000-01-01", upper:"2000-01-10"});
+    let contain = new range.DateRange({lower: "2000-01-01", upper: "2000-01-10"});
+
+    assert(DateRange.contains(contain));
+    
+    contain.replace({lower:"2000-01-03", upper:"2000-01-12"});
+    assert(!DateRange.contains(contain));
+
+    contain.replace({lower:"1999-12-31", upper:"2000-01-09"});
+    assert(!DateRange.contains(contain));
+
+    let unbounded = new range.DateRange().empty();
+    assert(DateRange.contains("2000-01-05"));
+    assert(!DateRange.contains("2001-01-01"));
+    assert(!DateRange.contains(unbounded));
+  });
+
   it('Tests offset', function() {
     let rangeLow = new range.DateRange({lower: '2000-01-01', upper:'2000-01-06'});
     let rangeHigh = new range.DateRange({lower: '2000-01-05', upper:'2000-01-10'});

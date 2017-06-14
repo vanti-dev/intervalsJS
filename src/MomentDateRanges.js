@@ -18,14 +18,6 @@ class MomentDateRange extends Range {
     super(settings);
   }
 
-  get lower() {
-    return this._range.lower;
-  }
-
-  get upper() {
-    return this._range.upper;
-  }
-
   isEqual(other) {
     if (!this || !other || !this.isValidRange(other)) {
       return false;
@@ -51,9 +43,31 @@ class MomentDateRange extends Range {
     return this;
   }
 
+  contains(other) {
+    if (this.isValidRange(other)) {
+      if (!other || (other.startsAfter(this) && other.endsBefore(this))) {
+        return true;
+      }
+      return false;
+    } else if (moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']).isValid()) {
+      let isInLower = true;
+      if (this.lower) {
+        isInLower = this.lower.isBefore(moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']));
+      }
+
+      let isInUpper = true;
+      if (this.upper) {
+        isInUpper = this.upper.isSameOrAfter(moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']));
+      }
+
+      return isInLower && isInUpper;
+    }
+    throw new Error('Unsupported type to test for inclusion');
+  }
+
   startsAfter(other) {
     if (this.isValidRange(other)) {
-      if (this.lower.isSame(other.lower)) {
+      if (this.lower !== null && other.lower !== null && this.lower.isSame(other.lower)) {
         return other.lowerInc || !this.lowerInc;
       } else if (this.lower === null) {
         return false;
@@ -69,11 +83,11 @@ class MomentDateRange extends Range {
 
   endsBefore(other) {
     if (this.isValidRange(other)) {
-      if (this.upper && other.upper && this.upper.isSame(other.upper)) {
+      if (this.upper !== null && other.upper !== null && this.upper.isSame(other.upper)) {
         return other.upperInc || !this.upperInc;
-      } else if (!this.upper) {
+      } else if (this.upper === null) {
         return false;
-      } else if (!this.other) {
+      } else if (other.upper === null) {
         return true;
       }
       return this.upper.isSameOrBefore(other.upper);
