@@ -28,11 +28,19 @@ class MomentDateRange extends Range {
   }
 
   replace(settings = {}) {
-    if (settings.upper && typeof settings.upper === 'string') {
-      this._range.upper = moment(settings.upper, 'MM-DD-YYYY').isValid() ? moment(settings.upper, 'MM-DD-YYYY') : moment(settings.upper, 'YYYY-MM-DD');
+    if (settings.upper !== null && settings.upper !== undefined) {
+      if (typeof settings.upper === 'string') {
+        this._range.upper = moment(settings.upper, 'MM-DD-YYYY').isValid() ? moment(settings.upper, 'MM-DD-YYYY') : moment(settings.upper, 'YYYY-MM-DD');
+      } else {
+        this._range.upper = settings.upper;
+      }
     }
-    if (settings.lower && typeof settings.lower === 'string') {
-      this._range.lower = moment(settings.lower, 'MM-DD-YYYY').isValid() ? moment(settings.lower, 'MM-DD-YYYY') : moment(settings.lower, 'YYYY-MM-DD');
+    if (settings.lower !== null && settings.lower !== undefined) {
+      if (typeof settings.lower === 'string') {
+        this._range.lower = moment(settings.lower, 'MM-DD-YYYY').isValid() ? moment(settings.lower, 'MM-DD-YYYY') : moment(settings.lower, 'YYYY-MM-DD');
+      } else {
+        this._range.lower = settings.lower;
+      }
     }
     if (settings.lowerInc !== undefined) {
       this._range.lowerInc = settings.lowerInc;
@@ -127,6 +135,29 @@ class MomentDateRange extends Range {
     }
 
     return new Range({ lower: a.lower, upper, lowerInc: a.lowerInc, upperInc, type: this.type });
+  }
+
+  difference(other) {
+    if (!this.isValidRange(other)) {
+      throw new Error('Unsupported type to test for difference');
+    }
+
+    if (this === null || other === null || !this.overlap(other)) {
+      return this;
+    } else if (other.contains(this)) {
+      return this.empty();
+    } else if (this.contains(other) && !(this.startsWith(other) || this.endsWith(other))) {
+      throw new Error('Other range must not be within this range');
+    } else if (this.endsBefore(other)) {
+      console.log('"hey!"');
+      console.log(this);
+      this.replace({ upper: other.lower, upperInc: !other.lowerInc });
+      console.log(this);
+      return this;
+    } else if (this.startsAfter(other)) {
+      return this.replace({ lower: other.upper, lowerInc: !other.upperInc });
+    }
+    return this.empty();
   }
 
   startsAfter(other) {
