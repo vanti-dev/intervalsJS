@@ -1,10 +1,5 @@
 const Range = require('./Range.js');
-const utils = require('../utils');
 const moment = require('moment');
-
-
-const _internalRange = utils.namedList(['lower', 'upper', 'lowerInc', 'upperInc', 'empty']);
-const _emptyInternalRange = _internalRange([null, null, false, false, true]);
 
 class MomentDateRange extends Range {
   constructor(settings) {

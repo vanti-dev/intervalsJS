@@ -10,14 +10,14 @@ module.exports = function(grunt) {
         },
     },
     jshint: {
-        all: ['Gruntfile.js', 'src/*.js', 'test/*.js', 'main.js'],
+        all: ['Gruntfile.js', 'src/*.js', 'test/*.js', 'main.js', "src/RangeTypes/*.js"],
         options: {
             esversion: 6
         }
     },
     jsdoc: {
         dist: {
-            src: ['src/*.js', 'src/_utils.js'],
+            src: ['src/*.js', 'src/_utils.js', 'src/RangeTypes/*.js'],
             options: {
                 destination: 'docs',
                 template: 'node_modules/docdash',
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
         }
     },
     eslint: {
-        src: ["src/*.js", "main.js"]
+        src: ["src/*.js", "main.js", "src/RangeTypes/*.js"]
     },
 
     'gh-pages': {
