@@ -66,8 +66,8 @@ class DateRange extends MomentDateRange {
   @method next
   @description Increment the given value with the step defined for this class.
   @param {scalar} curr -Value to increment
-  @param {int} step - How much to step by each time. OPTIONAL (defaults to
-  whatever is appropriate for the current range, for ints it is 1).
+  @param {string} step - How much to step by each time. OPTIONAL (defaults to
+  whatever is appropriate for the current range, for dates it is 'day').
   @returns {scalar}
   */
   next(curr, step = 'day') {
@@ -81,9 +81,11 @@ class DateRange extends MomentDateRange {
   @method prev
   @description Decrement the given value with the step defined for this class.
   @param {scalar} curr -Value to decrement
+  @param {string} step - How much to step by each time. OPTIONAL (defaults to
+  whatever is appropriate for the current range, for dates it is 'day').
   @returns {scalar}
   */
-  prev(curr, step) {
+  prev(curr, step = 'day') {
     return curr.subtract(1, step);
   }
 
@@ -95,7 +97,7 @@ class DateRange extends MomentDateRange {
   }
 
   endsWith(other) {
-    // Discrete ranges have a lst element even in cases where the UB is null
+    // Date ranges have a last element even in cases where the UB is null
     if (moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']).isValid()) {
       const last = this.last();
       const test = moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']);
