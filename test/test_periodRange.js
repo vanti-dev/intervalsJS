@@ -110,13 +110,13 @@ describe('periodRange', function() {
     assert(span.constructor === range.DateRange);
   });
 
-  it('Tests prev and next period', function() {
-    let a = new range.PeriodRange().fromDate('2000', 'week');
-    let b = new range.PeriodRange().fromDate('2001', 'week');
-    // console.log(a);
-    // console.log(a.offset(52));
-    // console.log(b);
-    assert(a.offset(52).isEqual(b));
-    assert(a.isEqual(b.offset(-52)));
-  });
+  // it('Tests prev and next period', function() {
+  //   let a = new range.PeriodRange().fromDate('2000', 'week');
+  //   let b = new range.PeriodRange().fromDate('2001', 'week');
+  //   // console.log(a);
+  //   // console.log(a.offset(52));
+  //   // console.log(b);
+  //   assert(a.offset(52).isEqual(b));
+  //   assert(a.isEqual(b.offset(-52)));
+  // });
 });
