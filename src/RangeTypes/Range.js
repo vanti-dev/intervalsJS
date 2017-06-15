@@ -291,7 +291,13 @@ class Range {
       upperInc = a.upperInc;
     }
 
-    return new Range({ lower: a.lower, upper, lowerInc: a.lowerInc, upperInc, type: this.type });
+    return new this.constructor({
+      lower: a.lower,
+      upper,
+      lowerInc: a.lowerInc,
+      upperInc,
+      type: this.type,
+    });
   }
   /**
   @memberof Range

@@ -34,15 +34,8 @@ class timedeltaRange extends Range {
   }
 }
 
-class datetimeRange extends Range {
-  constructor(settings = {}) {
-    super(settings);
-    this.type = 'timedelta';
-  }
-}
 
 module.exports = {
   floatRange,
   timedeltaRange,
-  datetimeRange,
 };

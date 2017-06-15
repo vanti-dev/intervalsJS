@@ -218,9 +218,38 @@ class PeriodRange extends DateRange {
   replace(settings) {
     return this.daterange.replace(settings);
   }
+
+  nextPeriod() {
+    return this.fromDate(this.upper.format(), this.period);
+  }
+
+  prevPeriod() {
+    return this.fromDate(this.prev(this.lower), this.period);
+  }
+
+  union(other) {
+    return this.daterange.union(other);
+  }
+
+  intersection(other) {
+    return this.daterange.intersection(other);
+  }
+
+  difference(other) {
+    return this.daterange.difference(other);
+  }
+
+}
+
+class DateTimeRange extends MomentDateRange {
+  constructor(settings = {}) {
+    super(settings);
+    this.type = 'timedelta';
+  }
 }
 
 module.exports = {
   DateRange,
   PeriodRange,
+  DateTimeRange,
 };

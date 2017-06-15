@@ -204,6 +204,8 @@ describe('DateRange', function() {
     expect(() => DateRange.fromDate('2000-01-01', 'zeeblezorp')).to.throw(Error);
 
     DateRange = DateRange.fromDate('2000-01-02', 'week');
+    console.log(DateRange);
+    console.log(DateRangeComp);
     assert(DateRange.isEqual(DateRangeComp));
 
     DateRange = DateRange.fromDate('2000-01-03', 'week');

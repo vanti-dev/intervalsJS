@@ -23,6 +23,20 @@ const OffsetableRangeMixin = {
   @returns {range}
   */
   offset(offset) {
+    if (this.constructor.name === 'PeriodRange') {
+      let i;
+      let span = this;
+      if (offset > 0) {
+        for (i = 0; i < offset; i += 1) {
+          span = span.nextPeriod();
+        }
+      } else {
+        for (i = 0; i < -offset; i += 1) {
+          span = span.prevPeriod();
+        }
+      }
+      return span;
+    }
     let upper;
     let lower;
     if (offset && !this.isValidScalar(offset)) {
