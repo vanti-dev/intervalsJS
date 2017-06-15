@@ -10,6 +10,7 @@ describe('DateRange', function() {
 
     assert(DateRange);
     assert(DateRange.isEqual(equalDateRange));
+    assert(!DateRange.isEqual("2000-01-01"));
 
     expect(() => new range.DateRange({lower: 1})).to.throw(Error);
     expect(() => new range.DateRange({upper: 5})).to.throw(Error);
@@ -38,6 +39,8 @@ describe('DateRange', function() {
     assert(DateRange.startsAfter("1990-03-04"));
     assert(!DateRange.startsAfter("2001-01-01"));
     assert(DateRange.startsAfter(unbounded));
+
+    expect(() => DateRange.startsAfter("What!?")).to.throw(Error);
   });
 
   it('Tests ends before', function() {
@@ -51,6 +54,7 @@ describe('DateRange', function() {
     assert(!DateRange.endsBefore("2000-01-01"));
     assert(!noUB.endsBefore(endsBefore));
     assert(DateRange.endsBefore(unbounded));
+    expect(() => DateRange.endsBefore("What!?")).to.throw(Error);
   });
 
   it('Tests starts with', function() {
@@ -62,6 +66,9 @@ describe('DateRange', function() {
     startsWith.replace({lowerInc: false});
 
     assert(!DateRange.startsWith(startsWith));
+    assert(!startsWith.startsWith("2000-01-01"));
+
+    expect(() => DateRange.startsWith("What!?")).to.throw(Error);
   });
 
   it('Tests ends with', function() {
@@ -74,12 +81,13 @@ describe('DateRange', function() {
 
     endsWith.replace({upperInc: false});
     assert(!DateRange.endsWith(endsWith));
+
+    expect(() => DateRange.endsWith("What!?")).to.throw(Error);
   });
 
   it('tests contains', function () {
     let DateRange = new range.DateRange({lower:"2000-01-01", upper:"2000-01-10"});
     let contain = new range.DateRange({lower: "2000-01-01", upper: "2000-01-10"});
-
     assert(DateRange.contains(contain));
 
     contain.replace({lower:"2000-01-03", upper:"2000-01-12"});
@@ -92,6 +100,7 @@ describe('DateRange', function() {
     assert(DateRange.contains("2000-01-05"));
     assert(!DateRange.contains("2001-01-01"));
     assert(!DateRange.contains(unbounded));
+    expect(() => DateRange.contains("hey")).to.throw(Error);
   });
 
   it('tests overlaps', function() {
@@ -120,6 +129,8 @@ describe('DateRange', function() {
     adjacent.replace({lower: "2001-01-01", upper: "2000-02-27"});
     assert(!DateRange.adjacent(adjacent));
 
+    expect(() => DateRange.adjacent("2000-01-01")).to.throw(Error);
+
   });
 
   it('tests union', function() {
@@ -133,6 +144,10 @@ describe('DateRange', function() {
     DateRange2.replace({upper: "2000-01-10"});
     assert(DateRange.union(DateRange2).upper.isSame("2000-01-10"));
     assert(DateRange.union(DateRange2).lower.isSame("2000-01-01"));
+
+    DateRange2.replace({lower: "1999-01-01", upper: "1999-09-09"});
+    expect(() => DateRange.union(DateRange2)).to.throw(Error);
+    expect(() => DateRange.union("2000-01-01")).to.throw(Error);
   });
 
   it('tests difference', function() {
