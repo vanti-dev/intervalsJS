@@ -104,6 +104,24 @@ class DateRange extends MomentDateRange {
     return super.endsWith(other);
   }
 
+  [Symbol.iterator]() {
+    const nextFunc = this.next;
+    const last = this.last();
+    const step = this.step;
+    let start = this.prev(this.lower, step);
+    const iterator = {
+      next() {
+        start = nextFunc(start, step);
+        const bool = (start) > last;
+        return {
+          value: start,
+          done: bool,
+        };
+      },
+    };
+    return iterator;
+  }
+
   /**
   @memberof DateRange
   @method fromDate
