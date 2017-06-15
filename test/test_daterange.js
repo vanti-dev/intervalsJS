@@ -15,6 +15,7 @@ describe('DateRange', function() {
     expect(() => new range.DateRange({upper: 5})).to.throw(Error);
     expect(() => new range.DateRange({lower: "2000-01-01", lowerInc: "2001-01-01"})).to.throw(Error);
     expect(() => new range.DateRange({lower: "2000-01-01", upperInc: "2001-01-01"})).to.throw(Error);
+    expect(() => new range.DateRange({lower: "2000-01-01", upper: "1999-01-01"})).to.throw(Error);
   });
 
   it('Tests replace', function () {

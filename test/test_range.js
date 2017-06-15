@@ -30,7 +30,6 @@ describe('Basic Range Functionality', function() {
 
     assert(IntRange.lower == 1);
     assert(IntRange.upper == 3);
-
     expect(() => IntRange = new range.IntRange({lower:'a', upper: 2})).to.throw(Error);
     expect(() => IntRange = new range.IntRange({lower:3, upper: 'b'})).to.throw(Error);
 
@@ -47,6 +46,11 @@ describe('Basic Range Functionality', function() {
     IntRange.replace({lowerInc:true, upperInc:true});
     assert(IntRange.upperInc);
     assert(IntRange.lowerInc);
+
+    expect(() => IntRange.replace({lower:"2000-01-01", upper: 2})).to.throw(Error);
+    expect(() => IntRange.replace({upper: "2000-02-03"})).to.throw(Error);
+    expect(() => IntRange.replace({upperInc: "2000-02-03"})).to.throw(Error);
+    expect(() => IntRange.replace({lowerInc: "2000-02-03"})).to.throw(Error);
   });
 
   it('tests equality', function() {
