@@ -5,19 +5,19 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     watch: {
         scripts: {
-            files: ['src/*.js', "test/*.js", "main.js", "src/RangeTypes/*.js"],
+            files: ['src/*.js', "test/*.js", "main.js", "src/Types/*.js"],
             tasks: ['docs', 'default'],
         }
     },
     jshint: {
-        all: ['Gruntfile.js', 'src/*.js', 'test/*.js', 'main.js', "src/RangeTypes/*.js"],
+        all: ['Gruntfile.js', 'src/*.js', 'test/*.js', 'main.js', "src/Types/*.js"],
         options: {
             esversion: 6
         }
     },
     jsdoc: {
         dist: {
-            src: ['src/*.js', 'src/_utils.js', 'src/RangeTypes/*.js'],
+            src: ['src/*.js', 'src/_utils.js', 'src/Types/*.js'],
             options: {
                 destination: 'docs',
                 template: 'node_modules/docdash',
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
         }
     },
     eslint: {
-        src: ["src/*.js", "main.js", "src/RangeTypes/*.js"]
+        src: ["src/*.js", "main.js", "src/Types/*.js"]
     },
 
     'gh-pages': {

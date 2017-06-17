@@ -1,4 +1,4 @@
-const Range = require('./RangeTypes/Range.js');
+const Range = require('./Types/Range.js');
 const utils = require('./utils');
 
 

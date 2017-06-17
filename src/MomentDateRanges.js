@@ -1,6 +1,6 @@
 const utils = require('./utils');
 const moment = require('moment');
-const MomentDateRange = require('./RangeTypes/MomentDateRange');
+const MomentDateRange = require('./Types/MomentDateRange');
 
 const _internalRange = utils.namedList(['lower', 'upper', 'lowerInc', 'upperInc', 'empty']);
 const _emptyInternalRange = _internalRange([null, null, false, false, true]);

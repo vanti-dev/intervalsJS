@@ -1,5 +1,5 @@
 const utils = require('./utils');
-const DiscreteRange = require('./RangeTypes/DiscreteRange');
+const DiscreteRange = require('./Types/DiscreteRange');
 
 class IntRange extends DiscreteRange {
   /**
