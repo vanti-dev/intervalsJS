@@ -9,5 +9,5 @@ module.exports.DateRange = MomentDateRange.DateRange;
 module.exports.StrRange = discreteRange.StrRange;
 module.exports.PeriodRange = MomentDateRange.PeriodRange;
 module.exports.floatRange = contRange.floatRange;
-module.exports.datetimeRange = contRange.datetimeRange;
+module.exports.DateTimeRange = MomentDateRange.DateTimeRange;
 module.exports.timedeltaRange = contRange.timedeltaRange;
