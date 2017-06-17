@@ -7,6 +7,11 @@ describe('DateRange', function() {
   it('Tests creation, typecheck and equality', function() {
     let DateRange = new range.DateRange({lower:'2017-06-11', upper:'2017-06-15'});
     let equalDateRange = new range.DateRange({lower:'2017-06-11', upper:'2017-06-15'});
+    let date = new Date(2000,1,1);
+    let date2 = new Date(2000,1,10);
+    let dateTestRange = new range.DateRange({ lower: date, upper: date2 });
+
+    assert(dateTestRange.lower.isSame('2000-02-01'));
 
     assert(DateRange);
     assert(DateRange.isEqual(equalDateRange));

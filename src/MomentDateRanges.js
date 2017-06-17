@@ -197,7 +197,7 @@ class PeriodRange extends DateRange {
 class DateTimeRange extends MomentDateRange {
   constructor(settings = {}) {
     super(settings);
-    this.type = 'timedelta';
+    this.type = 'Date';
   }
 }
 

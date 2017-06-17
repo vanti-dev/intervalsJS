@@ -15,11 +15,23 @@ class MomentDateRange extends Range {
     */
   constructor(settings) {
     settings.type = 'date';
-    if (settings.upper && typeof settings.upper === 'string') {
-      settings.upper = moment(settings.upper, 'MM-DD-YYYY').isValid() ? moment(settings.upper, 'MM-DD-YYYY') : moment(settings.upper, 'YYYY-MM-DD');
+    if (settings.upper) {
+      if (typeof settings.upper === 'string') {
+        settings.upper = moment(settings.upper, 'MM-DD-YYYY').isValid() ? moment(settings.upper, 'MM-DD-YYYY') : moment(settings.upper, 'YYYY-MM-DD');
+      } else if (typeof settings.upper === 'object') {
+        if (moment.isDate(settings.upper)) {
+          settings.upper = moment(settings.upper);
+        }
+      }
     }
-    if (settings.lower && typeof settings.lower === 'string') {
-      settings.lower = moment(settings.lower, 'MM-DD-YYYY').isValid() ? moment(settings.lower, 'MM-DD-YYYY') : moment(settings.lower, 'YYYY-MM-DD');
+    if (settings.lower) {
+      if (typeof settings.lower === 'string') {
+        settings.lower = moment(settings.lower, 'MM-DD-YYYY').isValid() ? moment(settings.lower, 'MM-DD-YYYY') : moment(settings.lower, 'YYYY-MM-DD');
+      } else if (typeof settings.lower === 'object') {
+        if (moment.isDate(settings.lower)) {
+          settings.lower = moment(settings.lower);
+        }
+      }
     }
     super(settings);
   }
