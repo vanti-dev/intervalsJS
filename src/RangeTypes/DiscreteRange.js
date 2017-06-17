@@ -12,8 +12,8 @@ class DiscreteRange extends Range {
   on discrete types. This includes `int` and `datetime.date`.
   * Discrete ranges are iterable. Using: let x of IntRange.
   @param {object} settings - The settings of the range.
-  @param {scalar} [settings.lower=null] - The lower end of the range
-  @param {scalar} [settings.upper=null] - The upper end of the range
+  @param {number|string} [settings.lower=null] - The lower end of the range
+  @param {number|string} [settings.upper=null] - The upper end of the range
   @param {boolean} [settings.lowerInc=true] - ``true`` if lower end should be included in range.
   @param {boolean} [settings.upperInc=false] ``true`` if upper end should be included in range.
   */
@@ -41,10 +41,10 @@ class DiscreteRange extends Range {
   @memberof DiscreteRange
   @method next
   @description Increment the given value with the step defined for this class.
-  @param {scalar} curr -Value to increment
-  @param {scalar} step - How much to step by each time. OPTIONAL (defaults to
+  @param {int|string} curr -Value to increment
+  @param {int} [step = 1] - How much to step by each time. OPTIONAL (defaults to
   whatever is appropriate for the current range, for ints it is 1).
-  @returns {scalar}
+  @returns {int|string}
   */
   next(curr, step = 1) {
     if (this) {
@@ -74,8 +74,8 @@ class DiscreteRange extends Range {
   @memberof DiscreteRange
   @method prev
   @description Decrement the given value with the step defined for this class.
-  @param {scalar} curr -Value to decrement
-  @returns {scalar}
+  @param {int|string} curr -Value to decrement
+  @returns {int|string}
   */
   prev(curr) {
     return curr - this.step;
@@ -85,7 +85,7 @@ class DiscreteRange extends Range {
   @method last
   @description Returns the last element within this range. If the range has no
   upper limit, `null` is returned.
-  @returns {scalar}
+  @returns {int|string}
   */
   last() {
     if (!this || !this.upper) {

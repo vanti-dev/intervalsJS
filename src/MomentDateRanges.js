@@ -9,11 +9,12 @@ class DateRange extends MomentDateRange {
   /**
   @class DateRange
   @extends MomentDateRange
-  @description Range that operates on dates.
+  @description Range that operates on dates (Not times, rounds to nearest day).
+  Dateranges are iterable, and work on a default step of 1 day.
   @param {object} settings - The settings of the range.
-  @param {string} [settings.lower=null] - The lower end of the range -
+  @param {string|object} [settings.lower=null] - The lower end of the range -
   Formatted as either 'YYYY-MM-DD' or 'MM-DD-YYYY'
-  @param {string} [settings.upper=null] - The upper end of the range -
+  @param {string|object} [settings.upper=null] - The upper end of the range -
    Formatted as either 'YYYY-MM-DD' or 'MM-DD-YYYY'
   @param {boolean} [settings.lowerInc=true] - ``true`` if lower
   end should be included in range.
@@ -65,8 +66,8 @@ class DateRange extends MomentDateRange {
   @memberof DateRange
   @method next
   @description Increment the given value with the step defined for this class.
-  @param {scalar} curr -Value to increment
-  @param {string} step - How much to step by each time. OPTIONAL (defaults to
+  @param {object} curr -Value to increment
+  @param {string} [step='day'] - How much to step by each time. OPTIONAL (defaults to
   whatever is appropriate for the current range, for dates it is 'day').
   @returns {scalar}
   */
@@ -80,8 +81,8 @@ class DateRange extends MomentDateRange {
   @memberof DateRange
   @method prev
   @description Decrement the given value with the step defined for this class.
-  @param {scalar} curr -Value to decrement
-  @param {string} step - How much to step by each time. OPTIONAL (defaults to
+  @param {object} curr -Value to decrement
+  @param {string} [step='day'] - How much to step by each time. OPTIONAL (defaults to
   whatever is appropriate for the current range, for dates it is 'day').
   @returns {scalar}
   */
@@ -139,6 +140,21 @@ class DateRange extends MomentDateRange {
 }
 
 class PeriodRange extends DateRange {
+  /**
+  @class PeriodRange
+  @extends DateRange
+  @description Range that operates on periods. (e.g weeks, days).
+  It is reccomended to always intialise these using fromDate.
+  @param {object} settings - The settings of the range.
+  @param {string|object} [settings.lower=null] - The lower end of the range -
+  Formatted as either 'YYYY-MM-DD' or 'MM-DD-YYYY'
+  @param {string|object} [settings.upper=null] - The upper end of the range -
+   Formatted as either 'YYYY-MM-DD' or 'MM-DD-YYYY'
+  @param {boolean} [settings.lowerInc=true] - ``true`` if lower
+  end should be included in range.
+  @param {boolean} [settings.upperInc=false] ``true`` if upper
+  end should be included in range.
+  */
   constructor(settings = {}) {
     super(settings);
   }

@@ -8,8 +8,8 @@ class floatRange extends Range {
   @extends Range
   @description Range that operates on float.
   @param {object} settings - The settings of the range.
-  @param {float} [settings.lower=null] - The lower end of the range
-  @param {float} [settings.upper=null] - The upper end of the range
+  @param {number} [settings.lower=null] - The lower end of the range
+  @param {number} [settings.upper=null] - The upper end of the range
   @param {boolean} [settings.lowerInc=true] - ``true`` if lower end should be included in range.
   @param {boolean} [settings.upperInc=false] ``true`` if upper end should be included in range.
   @mixes OffsetableRangeMixin
@@ -26,16 +26,6 @@ class floatRange extends Range {
   }
 }
 
-class timedeltaRange extends Range {
-  constructor(settings = {}) {
-    super(settings);
-    Object.assign(this, utils.OffsetableRangeMixin);
-    this.type = 'timedelta';
-  }
-}
-
-
 module.exports = {
   floatRange,
-  timedeltaRange,
 };

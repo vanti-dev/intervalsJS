@@ -19,8 +19,8 @@ const OffsetableRangeMixin = {
   @memberof OffsetableRangeMixin
   @method offset
   @description Offset the range by the given value.
-  @param {scalar} offset -How much to offset by
-  @returns {range}
+  @param {number} offset -How much to offset by
+  @returns {object}
   */
   offset(offset) {
     if (this.constructor.name === 'PeriodRange') {

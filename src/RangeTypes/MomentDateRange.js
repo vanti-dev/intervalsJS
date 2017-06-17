@@ -8,8 +8,10 @@ class MomentDateRange extends Range {
     @description Moment/Date ranges are a subset of ranges that are used
     to work with Dates.
     @param {object} settings - The settings of the range.
-    @param {scalar} [settings.lower=null] - The lower end of the range
-    @param {scalar} [settings.upper=null] - The upper end of the range
+    @param {string|object} [settings.lower=null] - The lower end of the range.
+    Can be a string, moment or Date object.
+    @param {string|object} [settings.upper=null] - The upper end of the range.
+    Can be a string, moment or Date object.
     @param {boolean} [settings.lowerInc=true] - ``true`` if lower end should be included in range.
     @param {boolean} [settings.upperInc=false] ``true`` if upper end should be included in range.
     */
@@ -232,7 +234,7 @@ class MomentDateRange extends Range {
   Formatted as either 'YYYY-MM-DD' or 'MM-DD-YYYY'
   @param {string} [period='day'] How long the range should be.
   Options: 'day', 'week', 'month', 'quarter', 'year'
-  @returns {range}
+  @returns {object}
   */
 
   fromDate(date, period = 'day') {
