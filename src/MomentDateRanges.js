@@ -126,53 +126,6 @@ class DateRange extends MomentDateRange {
 
   /**
   @memberof DateRange
-  @method fromDate
-  @description Returns a DateRange with length period beginning at date.
-  @param {string} date A date to begin the range from.
-  Formatted as either 'YYYY-MM-DD' or 'MM-DD-YYYY'
-  @param {string} [period='day'] How long the range should be.
-  Options: 'day', 'week', 'month', 'quarter', 'year'
-  @returns {range}
-  */
-
-  fromDate(date, period = 'day') {
-    let start;
-    if (period === 'day') {
-      return new DateRange({ lower: date, upper: date, upperInc: true });
-    }
-    if (period === 'week') {
-      date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
-      let subtract = date.day() - 1;
-      if (date.day() === 0) {
-        subtract = 6;
-      }
-      start = date.subtract(subtract, 'days');
-      return new DateRange({ lower: start.format('YYYY-MM-DD'), upper: start.add(1, 'week').format('YYYY-MM-DD') });
-    }
-    if (period === 'americanWeek') {
-      date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
-      start = date.subtract(date.day(), 'days');
-      return new DateRange({ lower: start.format('YYYY-MM-DD'), upper: start.add(1, 'week').format('YYYY-MM-DD') });
-    }
-    if (period === 'month') {
-      date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
-      start = date.date(1);
-      return new DateRange({ lower: start.format('YYYY-MM-DD'), upper: start.add(1, 'month').date(1).format('YYYY-MM-DD') });
-    }
-    if (period === 'quarter') {
-      date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
-      start = date.month(Math.floor(date.month() / 3) * 3).date(1);
-      return new DateRange({ lower: start.format('YYYY-MM-DD'), upper: start.add(3, 'month').date(1).format('YYYY-MM-DD') });
-    }
-    if (period === 'year') {
-      date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
-      start = date.month(0).date(1);
-      return new DateRange({ lower: start.format('YYYY-MM-DD'), upper: start.add(1, 'year').format('YYYY-MM-DD') });
-    }
-    throw new Error('Unexpected period.');
-  }
-  /**
-  @memberof DateRange
   @method length
   @description Return the length of the range
   @returns {number}
