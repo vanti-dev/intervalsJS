@@ -142,16 +142,15 @@ class DateRange extends MomentDateRange {
     }
     if (period === 'week') {
       date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
-      moment().locale('en');
-      console.log(moment('2017-01-02', 'YYYY-MM-DD').weekday());
-      const subtract = date.day();
+      let subtract = date.day() - 1;
+      if (date.day() === 0) {
+        subtract = 6;
+      }
       start = date.subtract(subtract, 'days');
       return new DateRange({ lower: start.format('YYYY-MM-DD'), upper: start.add(1, 'week').format('YYYY-MM-DD') });
     }
     if (period === 'americanWeek') {
       date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
-      moment().locale('en-gb');
-      console.log(moment('2017-01-02', 'YYYY-MM-DD').weekday());
       start = date.subtract(date.day(), 'days');
       return new DateRange({ lower: start.format('YYYY-MM-DD'), upper: start.add(1, 'week').format('YYYY-MM-DD') });
     }

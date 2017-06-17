@@ -27,11 +27,11 @@ const OffsetableRangeMixin = {
       let i;
       let span = this;
       if (offset > 0) {
-        for (i = 0; i < offset; i += 1) {
+        for (i = 0; i <= offset; i += 1) {
           span = span.nextPeriod();
         }
       } else {
-        for (i = 0; i < -offset; i += 1) {
+        for (i = 0; i <= -offset; i += 1) {
           span = span.prevPeriod();
         }
       }

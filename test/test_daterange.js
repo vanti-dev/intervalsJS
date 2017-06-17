@@ -207,7 +207,7 @@ describe('DateRange', function() {
     assert(DateRange.isEqual(DateRangeComp));
 
     DateRange = DateRange.fromDate('2000-01-03', 'week');
-    DateRangeComp.replace({lower: '2000-01-02', upper: '2000-01-09'});
+    DateRangeComp.replace({lower: '2000-01-03', upper: '2000-01-10'});
 
     assert(DateRange.isEqual(DateRangeComp));
   });
