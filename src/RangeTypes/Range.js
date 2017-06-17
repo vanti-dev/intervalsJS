@@ -17,11 +17,12 @@ class Range {
   @param {string} settings.type - The type of the range.
   */
   constructor(settings = {}) {
-    if (settings.lower && utils.getType(settings.lower) !== settings.type) {
+    this.type = settings.type;
+    if (settings.lower && !this.isValidScalar(settings.lower)) {
       throw new Error('Invalid type for lower bound');
     }
 
-    if (settings.upper && utils.getType(settings.upper) !== settings.type) {
+    if (settings.upper && !this.isValidScalar(settings.upper)) {
       throw new Error('Invalid type for lower bound');
     }
 
@@ -39,7 +40,6 @@ class Range {
     if (settings.upperInc !== undefined && typeof settings.upperInc !== 'boolean') {
       throw new Error('Invalid type for upperInc');
     }
-    this.type = settings.type;
     settings = {
       // Setting default values
       lower: settings.lower !== undefined ? settings.lower : null,

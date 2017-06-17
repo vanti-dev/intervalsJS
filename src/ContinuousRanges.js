@@ -24,6 +24,10 @@ class floatRange extends Range {
     */
     this.type = settings.type;
   }
+
+  isValidScalar(scalar) {
+    return !isNaN(scalar);
+  }
 }
 
 module.exports = {
