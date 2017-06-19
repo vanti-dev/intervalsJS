@@ -274,6 +274,12 @@ class Range {
       throw new Error('Unsupported type to test for union');
     }
 
+    if (this.isEmpty) {
+      return other;
+    }
+    if (other.isEmpty) {
+      return this;
+    }
     let a;
     let b;
     if (!this.startsAfter(other)) {

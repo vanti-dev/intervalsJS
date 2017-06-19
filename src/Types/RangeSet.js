@@ -163,7 +163,6 @@ class RangeSet {
 
       for (j = 0; j < output._list.length; j += 1) {
         for (k = 0; k < others[i]._list.length; k += 1) {
-          // This is being changed here... cant figure out why..
           intersection.add(output._list[j].intersection(others[i]._list[k]));
         }
       }
