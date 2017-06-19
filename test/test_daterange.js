@@ -158,7 +158,7 @@ describe('DateRange', function() {
   it('tests difference', function() {
     let DateRange = new range.DateRange({lower:"2000-01-01", upper:"2000-01-10", upperInc: true, lowerInc: true});
     let DateRange2 = new range.DateRange({lower: "2000-01-08", upper: "2000-01-15", lowerInc: true});
-    DateRange.difference(DateRange2);
+    DateRange = DateRange.difference(DateRange2);
 
     assert(DateRange.lower.isSame("2000-01-01"));
     assert(DateRange.upper.isSame("2000-01-08"));
@@ -168,7 +168,7 @@ describe('DateRange', function() {
     assert(DateRange.difference(DateRange2).isEmpty);
 
     let noOverlap = new range.DateRange({lower: "2100-01-01", upper: "2200-01-01"});
-    expect(() => DateRange.difference(noOverlap)).to.throw(Error);
+    assert(DateRange.difference(noOverlap).isEqual(DateRange));
   });
 
   it('tests intersection', function() {

@@ -209,7 +209,7 @@ describe('Basic Range Functionality', function() {
   it('tests difference', function() {
     let IntRange = new range.IntRange({lower:1, upper:10, upperInc: true, lowerInc: true});
     let IntRange2 = new range.IntRange({lower: 8, upper: 15, lowerInc: true});
-    IntRange.difference(IntRange2);
+    IntRange = IntRange.difference(IntRange2);
 
     assert(IntRange.lower === 1);
     assert(IntRange.upper == 8);
@@ -219,7 +219,7 @@ describe('Basic Range Functionality', function() {
     assert(IntRange.difference(IntRange2).isEmpty);
 
     let noOverlap = new range.IntRange({lower: 1000, upper: 2000});
-    expect(() => IntRange.difference(noOverlap)).to.throw(Error);
+    assert(IntRange.difference(noOverlap).isEqual(IntRange));
 
     IntRange.replace({lower: 3, upper: 20});
     assert(IntRange.difference(noOverlap).isEqual(IntRange));

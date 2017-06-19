@@ -147,6 +147,13 @@ class Range {
     return this;
   }
 
+  copy() {
+    const upper = this.upper;
+    const lower = this.lower;
+    const upperInc = this.upperInc;
+    const lowerInc = this.lowerInc;
+    return new this.constructor({ upper, lower, upperInc, lowerInc });
+  }
   /**
   @memberof Range
   @method isValidRange
@@ -264,7 +271,7 @@ class Range {
   /**
   @memberof Range
   @method union
-  @description Merges two ranges. (In place)
+  @description Merges two ranges.
   *note: wo ranges can not be merged if the resulting range would be split in two.
   @param {object} other - The range to merge.
   @returns {object} Both of the sets merged together
@@ -330,17 +337,17 @@ class Range {
     }
 
     if (!this || !other || !this.overlap(other)) {
-      return this;
+      return this.copy();
     } else if (other.contains(this)) {
-      return this.empty();
+      return this.copy().empty();
     } else if (this.contains(other) && !(this.startsWith(other) || this.endsWith(other))) {
       throw new Error('Other range must not be within this range');
     } else if (this.endsBefore(other)) {
-      return this.replace({ upper: other.lower, upperInc: !other.lowerInc });
+      return this.copy().replace({ upper: other.lower, upperInc: !other.lowerInc });
     } else if (this.startsAfter(other)) {
-      return this.replace({ lower: other.upper, lowerInc: !other.upperInc });
+      return this.copy().replace({ lower: other.upper, lowerInc: !other.upperInc });
     }
-    return this.empty();
+    return this.copy().empty();
   }
   /**
   @memberof Range
@@ -364,7 +371,10 @@ class Range {
     const lowerEndSpan = this.startsAfter(other) ? this : other;
     const upperEndSpan = this.endsBefore(other) ? this : other;
 
-    return lowerEndSpan.replace({ upper: upperEndSpan.upper, upperInc: upperEndSpan.upperInc });
+    return lowerEndSpan.copy().replace({
+      upper: upperEndSpan.upper,
+      upperInc: upperEndSpan.upperInc,
+    });
   }
   /**
   @memberof Range
