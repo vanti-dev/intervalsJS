@@ -19,11 +19,11 @@ class Range {
   constructor(settings = {}) {
     this.type = settings.type;
     if (settings.lower && !this.isValidScalar(settings.lower)) {
-      throw new Error('Invalid type for lower bound');
+      throw new Error(`Invalid type for lower bound. Expected: ${this.type}. Got ${utils.getType(settings.lower)} instead.`);
     }
 
     if (settings.upper && !this.isValidScalar(settings.upper)) {
-      throw new Error('Invalid type for lower bound');
+      throw new Error(`Invalid type for upper bound. Expected: ${this.type}. Got ${utils.getType(settings.upper)} instead.`);
     }
 
     if (settings.upper && settings.lower && settings.type !== 'date' && settings.upper < settings.lower) {
@@ -35,10 +35,10 @@ class Range {
     }
 
     if (settings.lowerInc !== undefined && typeof settings.lowerInc !== 'boolean') {
-      throw new Error('Invalid type for lowerInc');
+      throw new Error(`Invalid type for lowerInc. Expected: boolean. Got ${this.type}.`);
     }
     if (settings.upperInc !== undefined && typeof settings.upperInc !== 'boolean') {
-      throw new Error('Invalid type for upperInc');
+      throw new Error(`Invalid type for upperInc. Expected: boolean. Got ${this.type}.`);
     }
     settings = {
       // Setting default values
