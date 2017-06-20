@@ -131,6 +131,9 @@ class RangeSet {
   }
 
   span() {
+    if (this.isEmpty) {
+      return new this.Type().empty();
+    }
     return this._list[0].replace({
       upper: this._list[this._list.length - 1].upper,
       upperInc: this._list[this._list.length - 1].upperInc,
