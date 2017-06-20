@@ -15,7 +15,7 @@ class RangeSet {
 
   _testRangeSetType(item) {
     if (!this.isValidRangeSet(item)) {
-      throw new Error('Invalid range type');
+      throw new Error(`Invalid rangeset type. Expected ${this.constructor}. Got ${item.constructor}`);
     }
   }
 
@@ -25,7 +25,7 @@ class RangeSet {
 
   _testRangeType(item) {
     if (!this.isValidRange(item)) {
-      throw new Error('Invalid Range type');
+      throw new Error(`Invalid range type. Expected ${this.constructor}. Got ${item.constructor}`);
     }
   }
 
@@ -44,7 +44,7 @@ class RangeSet {
 
   contains(item) {
     if (!this.isValidRange(item) && !this.isValidScalar(item)) {
-      throw new Error('Unsupported item type provided');
+      throw new Error(`Unsupported item type provided. Expected range or scalar of type ${this.type}. Got ${item}`);
     }
 
     if (item === null || item === undefined) {

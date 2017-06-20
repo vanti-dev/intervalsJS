@@ -90,7 +90,7 @@ class MomentDateRange extends Range {
 
       return isInLower && isInUpper;
     }
-    throw new Error('Unsupported type to test for inclusion');
+    throw new Error(`Unsupported type to test for inclusion Expected range or scalar of type ${this.type}. Got ${other} instead.`);
   }
 
   overlap(other) {
@@ -116,7 +116,7 @@ class MomentDateRange extends Range {
 
   adjacent(other) {
     if (!this.isValidRange(other)) {
-      throw new Error('Unsupported type to test for inclusion');
+      throw new Error(`Unsupported type to test for inclusion. Expected range of type ${this.type}. Got ${other} instead.`);
     }
     return (this.lower.isSame(other.upper) && this.lowerInc !== other.upperInc) ||
               (this.upper.isSame(other.lower) && this.upperInc !== other.lowerInc);
@@ -124,7 +124,7 @@ class MomentDateRange extends Range {
 
   union(other) {
     if (!this.isValidRange(other)) {
-      throw new Error('Unsupported type to test for union');
+      throw new Error(`Unsupported type to test for union. Expected range of type ${this.type}. Got ${other} instead.`);
     }
 
     let a;
@@ -177,7 +177,7 @@ class MomentDateRange extends Range {
     } else if (moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']).isValid()) {
       return this.lower.isSameOrAfter(moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']));
     }
-    throw new Error('Unsupported type to test for starts after');
+    throw new Error(`Unsupported type to test for startsAfter. Expected range or scalar of type ${this.type}. Got ${other} instead.`);
   }
 
   endsBefore(other) {
@@ -193,7 +193,7 @@ class MomentDateRange extends Range {
     } else if (moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']).isValid()) {
       return this.upper.isSameOrBefore(moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']));
     }
-    throw new Error('Unsupported type to test for ends before');
+    throw new Error(`Unsupported type to test for endsBefore. Expected range or scalar of type ${this.type}. Got ${other} instead.`);
   }
 
   startsWith(other) {
@@ -208,7 +208,7 @@ class MomentDateRange extends Range {
       }
       return false;
     }
-    throw new Error('Unsupported type to test for starts with');
+    throw new Error(`Unsupported type to test for startsWith. Expected range or scalar of type ${this.type}. Got ${other} instead.`);
   }
 
   endsWith(other) {
@@ -223,7 +223,7 @@ class MomentDateRange extends Range {
       }
       return false;
     }
-    throw new Error('Unsupported type to test for ends with');
+    throw new Error(`Unsupported type to test for endsWith. Expected range or scalar of type ${this.type}. Got ${other} instead.`);
   }
 
   /**
@@ -271,7 +271,7 @@ class MomentDateRange extends Range {
       start = date.month(0).date(1);
       return new this.constructor({ lower: start.format('YYYY-MM-DD'), upper: start.add(1, 'year').format('YYYY-MM-DD') });
     }
-    throw new Error('Unexpected period.');
+    throw new Error('Unexpected period');
   }
 }
 
