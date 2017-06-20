@@ -38,7 +38,9 @@ describe('IntRangeSet', function() {
     const range1 = new range.IntRange({ lower: 1, upper: 5});
     const range2 = new range.IntRange({ lower: 10, upper: 15});
     const rangeset = new range.IntRangeSet([range1, range2]);
-    //Need a .isEqual method
+    const copy = rangeset.copy();
+    
+    assert(rangeset.isEqual(copy));
   });
 
   it('Tests contains', function() {
@@ -49,5 +51,15 @@ describe('IntRangeSet', function() {
     assert(rangeset.contains(1));
     assert(rangeset.contains(5));
     assert(!rangeset.contains(12));
+
+    expect(() => rangeset.contains(1.4)).to.throw(Error);
+    expect(() => rangeset.contains(new range.FloatRangeSet([]))).to.throw(Error);
+  });
+
+  it('Tests add', function() {
+    const rangeset = new range.DateRangeSet([new range.DateRange({ lower: '2000-01-01', upper: '2000-01-15'})]);
+    const secondRangeSet = rangeset.copy().add(new range.DateRange({ lower: '2000-01-05', upper: '2000-01-15'}));
+    console.log(rangeset, secondRangeSet);
+    assert(rangeset.isEqual(secondRangeSet));
   });
 });

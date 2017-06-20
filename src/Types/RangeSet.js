@@ -22,6 +22,24 @@ class RangeSet {
     return this;
   }
 
+  isEqual(other) {
+    let i;
+    let j;
+    let found = false;
+    for (i = 0; i < this._list.length; i += 1) {
+      for (j = 0; j < other._list.length; j += 1) {
+        // Since rangesets are sorted
+        if (this._list[i].isEqual(other._list[j])) {
+          found = true;
+        }
+      }
+      if (!found) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   _testRangeSetType(item) {
     if (!this.isValidRangeSet(item)) {
       throw new Error(`Invalid rangeset type. Expected ${this.constructor}. Got ${item.constructor}`);
@@ -61,7 +79,6 @@ class RangeSet {
     }
     let i;
     for (i = 0; i < this._list.length; i += 1) {
-      console.log(this._list[i], item);
       if (this._list[i].contains(item)) {
         return true;
       }
