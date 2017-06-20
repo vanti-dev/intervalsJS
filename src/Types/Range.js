@@ -122,25 +122,25 @@ class Range {
       if (this.isValidScalar(settings.lower) || settings.lower === null) {
         this._range.lower = settings.lower;
       } else {
-        throw new Error('Invalid type for lower bound');
+        throw new Error(`Invalid type for lower bound. Expected: ${this.type}. Got ${utils.getType(settings.lower)} instead.`);
       }
     }
     if (settings.upper !== undefined) {
       if (this.isValidScalar(settings.upper) || settings.upper === null) {
         this._range.upper = settings.upper;
       } else {
-        throw new Error('Invalid type for upper bound');
+        throw new Error(`Invalid type for upper bound. Expected: ${this.type}. Got ${utils.getType(settings.lower)} instead.`);
       }
     }
     if (settings.lowerInc !== undefined) {
       if (typeof settings.lowerInc !== 'boolean') {
-        throw new Error('Invalid type for lowerInc');
+        throw new Error(`Invalid type for lowerInc. Expected: boolean. Got ${this.type}.`);
       }
       this._range.lowerInc = settings.lowerInc;
     }
     if (settings.upperInc !== undefined) {
       if (typeof settings.upperInc !== 'boolean') {
-        throw new Error('Invalid type for upperInc');
+        throw new Error(`Invalid type for upperInc. Expected: boolean. Got ${this.type}.`);
       }
       this._range.upperInc = settings.upperInc;
     }
@@ -225,7 +225,7 @@ class Range {
 
       return isInLower && isInUpper;
     }
-    throw new Error('Unsupported type to test for inclusion');
+    throw new Error(`Unsupported type to test for inclusion Expected range or scalar of type ${this.type}. Got ${other} instead.`);
   }
   /**
   @memberof Range
@@ -263,7 +263,7 @@ class Range {
   */
   adjacent(other) {
     if (!this.isValidRange(other)) {
-      throw new Error('Unsupported type to test for inclusion');
+      throw new Error(`Unsupported type to test for inclusion. Expected range of type ${this.type}. Got ${other} instead.`);
     }
     return (this.lower === other.upper && this.lowerInc !== other.upperInc) ||
               (this.upper === other.lower && this.upperInc !== other.lowerInc);
@@ -278,7 +278,7 @@ class Range {
   */
   union(other) {
     if (!this.isValidRange(other)) {
-      throw new Error('Unsupported type to test for union');
+      throw new Error(`Unsupported type to test for union. Expected range of type ${this.type}. Got ${other} instead.`);
     }
 
     if (this.isEmpty) {
@@ -333,7 +333,7 @@ class Range {
   */
   difference(other) {
     if (!this.isValidRange(other)) {
-      throw new Error('Unsupported type to test for difference');
+      throw new Error(`Unsupported type to test for difference. Expected range of type ${this.type}. Got ${other} instead.`);
     }
 
     if (!this || !other || !this.overlap(other)) {
@@ -361,7 +361,7 @@ class Range {
   */
   intersection(other) {
     if (!this.isValidRange(other)) {
-      throw new Error('Unsupported type to test for intersection');
+      throw new Error(`Unsupported type to test for intersection. Expected range of type ${this.type}. Got ${other} instead.`);
     }
 
     if (!this || !other || !this.overlap(other)) {
@@ -395,7 +395,7 @@ class Range {
       }
       return false;
     }
-    throw new Error('Unsupported type to test for starts with');
+    throw new Error(`Unsupported type to test for startsWith. Expected range or scalar of type ${this.type}. Got ${other} instead.`);
   }
   /**
   @memberof Range
@@ -416,7 +416,7 @@ class Range {
       }
       return false;
     }
-    throw new Error('Unsupported type to test for ends with');
+    throw new Error(`Unsupported type to test for endsWith. Expected range or scalar of type ${this.type}. Got ${other} instead.`);
   }
   /**
   @memberof Range
@@ -438,7 +438,7 @@ class Range {
     } else if (this.isValidScalar(other)) {
       return this.lower >= other;
     }
-    throw new Error('Unsupported type to test for starts after');
+    throw new Error(`Unsupported type to test for startsAfter. Expected range or scalar of type ${this.type}. Got ${other} instead.`);
   }
   /**
   @memberof Range
@@ -460,7 +460,7 @@ class Range {
     } else if (this.isValidScalar(other)) {
       return this.upper <= other;
     }
-    throw new Error('Unsupported type to test for ends before');
+    throw new Error(`Unsupported type to test for endsBefore. Expected range or scalar of type ${this.type}. Got ${other} instead.`);
   }
   /**
   @memberof Range
@@ -471,7 +471,7 @@ class Range {
   */
   leftOf(other) {
     if (!this.isValidRange(other)) {
-      throw new Error('Unsupported type to test for left of');
+      throw new Error(`Unsupported type to test for leftOf. Expected range of type ${this.type}. Got ${other} instead.`);
     }
     return (this.endsBefore(other) && !this.overlap(other));
   }
@@ -484,7 +484,7 @@ class Range {
   */
   rightOf(other) {
     if (!this.isValidRange(other)) {
-      throw new Error('Unsupported type to test for right of');
+      throw new Error(`Unsupported type to test for rightOf. Expected range of type ${this.type}. Got ${other} instead.`);
     }
     return other.leftOf(this);
   }
