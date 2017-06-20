@@ -56,11 +56,12 @@ class RangeSet {
       throw new Error(`Unsupported item type provided. Expected range or scalar of type ${this.type}. Got ${item}`);
     }
 
-    if (item === null || item === undefined) {
+    if (item === null || item === undefined || item.isEmpty) {
       return true;
     }
     let i;
     for (i = 0; i < this._list.length; i += 1) {
+      console.log(this._list[i], item);
       if (this._list[i].contains(item)) {
         return true;
       }
@@ -192,6 +193,10 @@ class RangeSet {
       output = intersection;
     }
     return output;
+  }
+  [Symbol.iterator]() {
+    const iterator = this._list[Symbol.iterator]();
+    return iterator;
   }
 }
 

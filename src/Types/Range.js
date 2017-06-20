@@ -216,13 +216,15 @@ class Range {
       let isInLower = true;
       if (this.lower) {
         isInLower = (this.lower < other);
+        if (this.lowerInc) {
+          isInLower = this.lower <= other;
+        }
       }
 
       let isInUpper = true;
       if (this.upper) {
         isInUpper = (this.upper >= other);
       }
-
       return isInLower && isInUpper;
     }
     throw new Error(`Unsupported type to test for inclusion Expected range or scalar of type ${this.type}. Got ${other} instead.`);

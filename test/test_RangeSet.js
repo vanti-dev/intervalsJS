@@ -17,4 +17,37 @@ describe('IntRangeSet', function() {
     assert(rangeset.span().isEqual(span));
     assert(new range.IntRangeSet([]).span().isEqual(new range.IntRange().empty()));
   });
+
+  it('Tests Iteration', function() {
+    const range1 = new range.IntRange({ lower: 1, upper: 5});
+    const range2 = new range.IntRange({ lower: 10, upper: 15});
+    const rangeset = new range.IntRangeSet([range1, range2]);
+    let i = 0;
+    for (let range of rangeset) {
+      if (i === 0) {
+        assert(range.isEqual(range1));
+      }
+      else {
+        assert(range.isEqual(range2));
+      }
+      i += 1;
+    }
+  });
+
+  it('Test copy', function() {
+    const range1 = new range.IntRange({ lower: 1, upper: 5});
+    const range2 = new range.IntRange({ lower: 10, upper: 15});
+    const rangeset = new range.IntRangeSet([range1, range2]);
+    //Need a .isEqual method
+  });
+
+  it('Tests contains', function() {
+    const rangeset = new range.IntRangeSet([new range.IntRange({lower: 1, upper: 10})]);
+    assert(rangeset.contains(new range.IntRange({lower: 1, upper: 5})));
+    assert(rangeset.contains(new range.IntRange({lower: 5, upper: 10})));
+    assert(rangeset.contains(new range.IntRange().empty()));
+    assert(rangeset.contains(1));
+    assert(rangeset.contains(5));
+    assert(!rangeset.contains(12));
+  });
 });
