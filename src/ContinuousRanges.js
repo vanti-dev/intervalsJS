@@ -2,9 +2,9 @@ const Range = require('./Types/Range.js');
 const utils = require('./utils');
 
 
-class floatRange extends Range {
+class FloatRange extends Range {
   /**
-  @class floatRange
+  @class FloatRange
   @extends Range
   @description Range that operates on float.
   @param {object} settings - The settings of the range.
@@ -19,7 +19,7 @@ class floatRange extends Range {
     super(settings);
     Object.assign(this, utils.OffsetableRangeMixin);
     /**
-    @memberof floatRange
+    @memberof FloatRange
     @description The type of values in the range.
     */
     this.type = settings.type;
@@ -31,5 +31,5 @@ class floatRange extends Range {
 }
 
 module.exports = {
-  floatRange,
+  FloatRange,
 };

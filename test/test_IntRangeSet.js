@@ -1,4 +1,4 @@
-const IntRangeSet = require('../src/RangeSets');
+const IntRangeSet = require('../src/RangeSets').IntRangeSet;
 const IntRange = require('../src/DiscreteRanges').IntRange;
 describe('IntRangeSet', function() {
   it('Initial tests', function() {
