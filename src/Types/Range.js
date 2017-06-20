@@ -267,6 +267,10 @@ class Range {
     if (!this.isValidRange(other)) {
       throw new Error(`Unsupported type to test for inclusion. Expected range of type ${this.type}. Got ${other} instead.`);
     }
+    if ((this.lower === null && other.upper === null) ||
+    (this.upper === null && other.lower === null)) {
+      return false;
+    }
     return (this.lower === other.upper && this.lowerInc !== other.upperInc) ||
               (this.upper === other.lower && this.upperInc !== other.lowerInc);
   }

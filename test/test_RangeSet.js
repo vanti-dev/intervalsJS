@@ -63,4 +63,10 @@ describe('IntRangeSet', function() {
     
     assert(rangeset.isEqual(secondRangeSet));
   });
+
+  // it('Tests remove', function() {
+  //   const set = new range.StrRangeSet([new range.StrRange({ upper: 'b'}), new range.StrRange({ lower: 'h'})]);
+  //   set.remove(new range.StrRangeSet({lower: 'j', upper: 'm'})); // Bug here
+  //   console.log(set._list);
+  // });
 });
