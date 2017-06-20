@@ -13,6 +13,15 @@ class RangeSet {
     return new this.Type();
   }
 
+  get isEmpty() {
+    return (this._list.length === 0);
+  }
+
+  empty() {
+    this._list = [];
+    return this;
+  }
+
   _testRangeSetType(item) {
     if (!this.isValidRangeSet(item)) {
       throw new Error(`Invalid rangeset type. Expected ${this.constructor}. Got ${item.constructor}`);
@@ -129,6 +138,9 @@ class RangeSet {
   }
 
   union(others) {
+    if (!Array.isArray(others)) {
+      others = [others];
+    }
     const union = this.copy();
     let i = 0;
     for (i = 0; i < others.length; i += 1) {
@@ -139,6 +151,9 @@ class RangeSet {
   }
 
   difference(others) {
+    if (!Array.isArray(others)) {
+      others = [others];
+    }
     const difference = this.copy();
     let i = 0;
     for (i = 0; i < others.length; i += 1) {
