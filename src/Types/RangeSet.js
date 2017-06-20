@@ -124,6 +124,7 @@ class RangeSet {
       const r = this._list[i];
 
       if (r.overlap(item) || r.adjacent(item)) {
+        console.log('Should enter here');
         buffer.push(this._list.splice(i, 1)[0]);
       } else if (item.leftOf(r)) {
         if (buffer.length === 0) {

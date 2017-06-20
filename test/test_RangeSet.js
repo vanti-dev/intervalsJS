@@ -58,8 +58,9 @@ describe('IntRangeSet', function() {
 
   it('Tests add', function() {
     const rangeset = new range.DateRangeSet([new range.DateRange({ lower: '2000-01-01', upper: '2000-01-15'})]);
-    const secondRangeSet = rangeset.copy().add(new range.DateRange({ lower: '2000-01-05', upper: '2000-01-15'}));
-    console.log(rangeset, secondRangeSet);
+    const secondRangeSet = rangeset.copy();
+    secondRangeSet.add(new range.DateRange({ lower: '2000-01-05', upper: '2000-01-15'}));
+    
     assert(rangeset.isEqual(secondRangeSet));
   });
 });
