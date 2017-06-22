@@ -39,7 +39,7 @@ describe('IntRangeSet', function() {
     const range2 = new range.IntRange({ lower: 10, upper: 15});
     const rangeset = new range.IntRangeSet([range1, range2]);
     const copy = rangeset.copy();
-    
+
     assert(rangeset.isEqual(copy));
   });
 
@@ -60,13 +60,13 @@ describe('IntRangeSet', function() {
     const rangeset = new range.DateRangeSet([new range.DateRange({ lower: '2000-01-01', upper: '2000-01-15'})]);
     const secondRangeSet = rangeset.copy();
     secondRangeSet.add(new range.DateRange({ lower: '2000-01-05', upper: '2000-01-15'}));
-    
+
     assert(rangeset.isEqual(secondRangeSet));
   });
 
-  // it('Tests remove', function() {
-  //   const set = new range.StrRangeSet([new range.StrRange({ upper: 'b'}), new range.StrRange({ lower: 'h'})]);
-  //   set.remove(new range.StrRangeSet({lower: 'j', upper: 'm'})); // Bug here
-  //   console.log(set._list);
-  // });
+  it('Tests remove', function() {
+    const set = new range.StrRangeSet([new range.StrRange({ upper: 'b'}), new range.StrRange({ lower: 'h'})]);
+    set.remove(new range.StrRange({lower: 'j', upper: 'm'})); // Bug here
+    console.log(set._list);
+  });
 });

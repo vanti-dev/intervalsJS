@@ -100,9 +100,11 @@ class RangeSet {
             this._list.splice(i, 1);
           }
         } catch (e) {
+          const one = r.copy();
+          const two = r.copy();
           this._list.splice(i, 1);
-          this._list.splice(i, 0, r.replace({ lower: item.upper, lowerInc: !item.upperInc }));
-          this._list.splice(i, 0, r.replace({ upper: item.lower, upperInc: !item.lowerInc }));
+          this._list.splice(i, 0, one.replace({ lower: item.upper, lowerInc: !item.upperInc }));
+          this._list.splice(i, 0, two.replace({ upper: item.lower, upperInc: !item.lowerInc }));
           break;
         }
       }
@@ -177,9 +179,12 @@ class RangeSet {
     }
     const difference = this.copy();
     let i = 0;
+    let j = 0;
     for (i = 0; i < others.length; i += 1) {
-      this._testRangeSetType(others[i]);
-      difference.remove(others[i]);
+      for (j = 0; j < others[i]._list.length; j += 1) {
+        this._testRangeSetType(others[i]._list[j]);
+        difference.remove(others[i]._list[j]);
+      }
     }
     return difference;
   }
