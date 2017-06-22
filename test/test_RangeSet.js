@@ -87,5 +87,27 @@ describe('IntRangeSet', function() {
     const b = new range.IntRangeSet([new range.IntRange({lower: 5, upper: 10}), new range.IntRange({lower: 20, upper: 100})]);
     const union =  new range.IntRangeSet([new range.IntRange({lower: 1, upper: 10}), new range.IntRange({lower: 15, upper: 100})]);
     assert(a.union(b).isEqual(union));
+
+    expect(() => a.union(1.4)).to.throw(Error);
+    expect(() => a.union(new range.IntRange())).to.throw(Error);
   });
+
+  it('Tests difference', function() {
+    const a = new range.IntRangeSet([new range.IntRange({lower: 1, upper: 5}), new range.IntRange({lower: 20, upper: 30})]);
+    const b = new range.IntRangeSet([new range.IntRange({lower: 5, upper: 10}), new range.IntRange({lower: 20, upper: 100})]);
+    const diff =  new range.IntRangeSet([new range.IntRange({lower: 1, upper: 5})]);
+
+    assert(a.difference(b).isEqual(diff));
+
+    expect(() => a.difference(1.4)).to.throw(Error);
+    expect(() => a.difference(new range.IntRange())).to.throw(Error);
+  });
+
+  // it('Tests intersection', function() {
+  //   const a = new range.IntRangeSet([new range.IntRange({lower: 1, upper: 5}), new range.IntRange({lower: 20, upper: 30})]);
+  //   const b = new range.IntRangeSet([new range.IntRange({lower: 5, upper: 10}), new range.IntRange({lower: 20, upper: 100})]);
+  //   const int =  new range.IntRangeSet([new range.IntRange({lower: 20, upper: 30})]);
+  //   console.log(a.intersection(b)._list);
+  //   assert(a.intersection(b).isEqual(int)); // Bug here
+  // });
 });

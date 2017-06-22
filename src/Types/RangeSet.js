@@ -187,8 +187,8 @@ class RangeSet {
     let i = 0;
     let j = 0;
     for (i = 0; i < others.length; i += 1) {
+      this._testRangeSetType(others[i]);
       for (j = 0; j < others[i]._list.length; j += 1) {
-        this._testRangeSetType(others[i]._list[j]);
         difference.remove(others[i]._list[j]);
       }
     }
