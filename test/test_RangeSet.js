@@ -78,5 +78,14 @@ describe('IntRangeSet', function() {
     const empty = new range.StrRangeSet().empty();
     empty.remove(new range.StrRange({lower: 'a', upper: 'b'}));
     assert(empty.isEqual(new range.StrRangeSet().empty()));
+
+    expect(() => set.remove(1.4)).to.throw(Error);
+  });
+
+  it('Tests Union', function() {
+    const a = new range.IntRangeSet([new range.IntRange({lower: 1, upper: 5}), new range.IntRange({lower: 15, upper: 30})]);
+    const b = new range.IntRangeSet([new range.IntRange({lower: 5, upper: 10}), new range.IntRange({lower: 20, upper: 100})]);
+    const union =  new range.IntRangeSet([new range.IntRange({lower: 1, upper: 10}), new range.IntRange({lower: 15, upper: 100})]);
+    assert(a.union(b).isEqual(union));
   });
 });

@@ -42,7 +42,7 @@ class RangeSet {
 
   _testRangeSetType(item) {
     if (!this.isValidRangeSet(item)) {
-      throw new Error(`Invalid rangeset type. Expected ${this.constructor}. Got ${item.constructor}`);
+      throw new Error(`Invalid rangeset type. Expected ${this.constructor.name}. Got ${item.constructor.name}`);
     }
   }
 
@@ -52,7 +52,7 @@ class RangeSet {
 
   _testRangeType(item) {
     if (!this.isValidRange(item)) {
-      throw new Error(`Invalid range type. Expected ${this.constructor}. Got ${item.constructor}`);
+      throw new Error(`Invalid range type. Expected ${this.constructor.name}. Got ${item.constructor.name}`);
     }
   }
 
@@ -169,9 +169,12 @@ class RangeSet {
     }
     const union = this.copy();
     let i = 0;
+    let j = 0;
     for (i = 0; i < others.length; i += 1) {
       this._testRangeSetType(others[i]);
-      union.add(others[i]);
+      for (j = 0; j < others[i]._list.length; j += 1) {
+        union.add(others[i]._list[j]);
+      }
     }
     return union;
   }
