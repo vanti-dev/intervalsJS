@@ -66,7 +66,13 @@ describe('IntRangeSet', function() {
 
   it('Tests remove', function() {
     const set = new range.StrRangeSet([new range.StrRange({ upper: 'b'}), new range.StrRange({ lower: 'h'})]);
-    set.remove(new range.StrRange({lower: 'j', upper: 'm'})); // Bug here
-    console.log(set._list);
+    const equalTo = new range.StrRangeSet([new range.StrRange({upper: 'b'}), new range.StrRange({lower: 'h', upper: 'j'}), new range.StrRange({lower: 'm'})]);
+    set.remove(new range.StrRange({lower: 'j', upper: 'm'}));
+
+    assert(set.isEqual(equalTo));
+
+    const temp = set.copy();
+    temp.remove(new range.StrRange().empty());
+    assert(temp.isEqual(set));
   });
 });

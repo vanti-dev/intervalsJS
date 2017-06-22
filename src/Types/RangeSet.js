@@ -88,27 +88,30 @@ class RangeSet {
 
   remove(item) {
     let i = 0;
-    while (i < this._list.length) {
-      const r = this._list[i];
-      if (item.leftOf(r)) {
-        break;
-      } else if (item.overlap(r)) {
-        try {
-          this._list[i] = r.difference(item);
 
-          if (this._list[i].isEmpty) {
-            this._list.splice(i, 1);
-          }
-        } catch (e) {
-          const one = r.copy();
-          const two = r.copy();
-          this._list.splice(i, 1);
-          this._list.splice(i, 0, one.replace({ lower: item.upper, lowerInc: !item.upperInc }));
-          this._list.splice(i, 0, two.replace({ upper: item.lower, upperInc: !item.lowerInc }));
+    if (!item.isEmpty) {
+      while (i < this._list.length) {
+        const r = this._list[i];
+        if (item.leftOf(r)) {
           break;
+        } else if (item.overlap(r)) {
+          try {
+            this._list[i] = r.difference(item);
+
+            if (this._list[i].isEmpty) {
+              this._list.splice(i, 1);
+            }
+          } catch (e) {
+            const one = r.copy();
+            const two = r.copy();
+            this._list.splice(i, 1);
+            this._list.splice(i, 0, one.replace({ lower: item.upper, lowerInc: !item.upperInc }));
+            this._list.splice(i, 0, two.replace({ upper: item.lower, upperInc: !item.lowerInc }));
+            break;
+          }
         }
+        i += 1;
       }
-      i += 1;
     }
   }
 
