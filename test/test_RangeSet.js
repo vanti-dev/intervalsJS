@@ -74,5 +74,9 @@ describe('IntRangeSet', function() {
     const temp = set.copy();
     temp.remove(new range.StrRange().empty());
     assert(temp.isEqual(set));
+
+    const empty = new range.StrRangeSet().empty();
+    empty.remove(new range.StrRange({lower: 'a', upper: 'b'}));
+    assert(empty.isEqual(new range.StrRangeSet().empty()));
   });
 });

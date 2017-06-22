@@ -144,6 +144,9 @@ class Range {
       }
       this._range.upperInc = settings.upperInc;
     }
+    if (this._range.lower === null && this._range.upper === null) {
+      this._range.empty = true;
+    }
     return this;
   }
 
