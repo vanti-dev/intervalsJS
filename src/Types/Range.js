@@ -232,6 +232,25 @@ class Range {
     }
     throw new Error(`Unsupported type to test for inclusion Expected range or scalar of type ${this.type}. Got ${other} instead.`);
   }
+  _lessThan(other) {
+    if (!this.isValidRange(other)) {
+      return false;
+    } else if (this.isEmpty || other.isEmpty) {
+      return false;
+    } else if (this.lower === null || this.upper === null) {
+      return other.lower !== null;
+    } else if (this.lower === other.lower) {
+      if (this.lowerInc !== other.lowerInc) {
+        return this.lowerInc;
+      } else if (this.upper === null || other.upper === null) {
+        return (other.upper === null);
+      } else if (this.upper === other.upper) {
+        return !this.upperInc && other.upperInc;
+      }
+      return this.upper < other.upper;
+    }
+    return this.lower < other.lower;
+  }
   /**
   @memberof Range
   @method overlap
@@ -246,7 +265,7 @@ class Range {
       return false;
     }
 
-    if (this.endsBefore(other)) {
+    if (this._lessThan(other)) {
       a = this;
       b = other;
     } else {
