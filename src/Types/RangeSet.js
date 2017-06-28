@@ -207,11 +207,11 @@ class RangeSet {
     for (i = 0; i < others.length; i += 1) {
       this._testRangeSetType(others[i]);
       intersection = new this.constructor([]);
-
       for (j = 0; j < output._list.length; j += 1) {
+        console.log('----------------');
+        console.log(output._list); //Why is there null entries second time around
+        console.log('----------------');
         for (k = 0; k < others[i]._list.length; k += 1) {
-          // Bug on k = 1 (both times);
-          console.log(j, k, (output._list[j].intersection(others[i]._list[k])));
           intersection.add(output._list[j].intersection(others[i]._list[k]));
         }
       }

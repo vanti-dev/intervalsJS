@@ -396,8 +396,8 @@ class Range {
       return this.empty();
     }
 
-    const lowerEndSpan = this.startsAfter(other) ? this : other;
-    const upperEndSpan = this.endsBefore(other) ? this : other;
+    const lowerEndSpan = this.startsAfter(other) ? this.copy() : other.copy();
+    const upperEndSpan = this.endsBefore(other) ? this.copy() : other.copy();
 
     return lowerEndSpan.copy().replace({
       upper: upperEndSpan.upper,

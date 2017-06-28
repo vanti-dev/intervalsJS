@@ -232,7 +232,7 @@ describe('Basic Range Functionality', function() {
   it('tests intersection', function() {
     let IntRange = new range.IntRange({lower: 3, upper: 5, lowerInc: true, upperInc: false});
     let IntRange2 = new range.IntRange({lower: 1, upper: 10});
-    IntRange.intersection(IntRange2);
+    IntRange = IntRange.intersection(IntRange2);
 
     assert(IntRange.lower === 3);
     assert(IntRange.upper === 5);
