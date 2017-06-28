@@ -54,6 +54,23 @@ const OffsetableRangeMixin = {
   },
 };
 
+function addToList(value, list) {
+  list.push(value);
+}
+
+const DiscreteRangeSetMixin = {
+  values() {
+    let i;
+    const output = [];
+    for (i = 0; i < this._list.length; i += 1) {
+      for (const x of this._list[i]) {
+        addToList(x, output);
+      }
+    }
+    return output;
+  },
+};
+
 function namedList(fields) {
   // Emulating pythons Named Tuples
   return function (arr) {
@@ -88,6 +105,7 @@ function getType(data) {
 
 module.exports = {
   OffsetableRangeMixin,
+  DiscreteRangeSetMixin,
   namedList,
   getType,
   isValidDate,

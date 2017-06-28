@@ -5,6 +5,7 @@ const FloatRange = require('./ContinuousRanges').FloatRange;
 const DateRange = require('./MomentDateRanges').DateRange;
 const PeriodRange = require('./MomentDateRanges').PeriodRange;
 const DateTimeRange = require('./MomentDateRanges').DateTimeRange;
+const utils = require('./utils');
 
 
 class IntRangeSet extends RangeSet {
@@ -14,6 +15,7 @@ class IntRangeSet extends RangeSet {
       ranges,
     };
     super(settings);
+    Object.assign(this, utils.DiscreteRangeSetMixin);
   }
 }
 
@@ -24,6 +26,7 @@ class StrRangeSet extends RangeSet {
       ranges,
     };
     super(settings);
+    Object.assign(this, utils.DiscreteRangeSetMixin);
   }
 }
 
@@ -44,6 +47,7 @@ class DateRangeSet extends RangeSet {
       ranges,
     };
     super(settings);
+    Object.assign(this, utils.DiscreteRangeSetMixin);
   }
 }
 

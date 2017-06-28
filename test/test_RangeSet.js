@@ -117,4 +117,14 @@ describe('IntRangeSet', function() {
 
     expect(() => a.intersection(new range.IntRange())).to.throw(Error);
   });
+
+  it('Tests values', function() {
+    const a = new range.IntRangeSet([new range.IntRange({lower: 1, upper: 5}), new range.IntRange({lower: 20, upper: 30})]);
+    const output = [1,2,3,4,20,21,22,23,24,25,26,27,28,29];
+    const list = a.values();
+    let i;
+    for (i = 0; i < list.length; i += 1) {
+      assert(output[i] === list[i]);
+    }
+  });
 });
