@@ -393,13 +393,15 @@ class Range {
     }
 
     if (!this || !other || !this.overlap(other)) {
-      return this.empty();
+      return new this.constructor().empty();
     }
 
-    const lowerEndSpan = this.startsAfter(other) ? this.copy() : other.copy();
-    const upperEndSpan = this.endsBefore(other) ? this.copy() : other.copy();
+    const lowerEndSpan = this.startsAfter(other) ? this : other;
+    const upperEndSpan = this.endsBefore(other) ? this : other;
 
-    return lowerEndSpan.copy().replace({
+    return new this.constructor({
+      lower: lowerEndSpan.lower,
+      lowerInc: lowerEndSpan.lowerInc,
       upper: upperEndSpan.upper,
       upperInc: upperEndSpan.upperInc,
     });

@@ -104,11 +104,11 @@ describe('IntRangeSet', function() {
   });
 
   it('Tests intersection', function() {
-    let a = new range.IntRangeSet([new range.IntRange({lower: 1, upper: 5}), new range.IntRange({lower: 20, upper: 30})]);
+    const a = new range.IntRangeSet([new range.IntRange({lower: 1, upper: 5}), new range.IntRange({lower: 20, upper: 30})]);
     const b = new range.IntRangeSet([new range.IntRange({lower: 5, upper: 10}), new range.IntRange({lower: 20, upper: 100})]);
     const int =  new range.IntRangeSet([new range.IntRange({lower: 20, upper: 30})]);
-    a = a.intersection(b);
-    console.log(a._list);
-    // assert(a.intersection(b).isEqual(int)); // Bug here
+    const notEqual = new range.IntRangeSet([new range.IntRange({lower: 25, upper: 30})]);
+    assert(a.intersection(b).isEqual(int));
+    assert(!a.intersection(b).isEqual(notEqual));
   });
 });
