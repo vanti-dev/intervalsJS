@@ -110,5 +110,11 @@ describe('IntRangeSet', function() {
     const notEqual = new range.IntRangeSet([new range.IntRange({lower: 25, upper: 30})]);
     assert(a.intersection(b).isEqual(int));
     assert(!a.intersection(b).isEqual(notEqual));
+
+    const c = new range.IntRangeSet([new range.IntRange({lower: 20, upper: 30})]);
+    const d = new range.IntRangeSet([new range.IntRange({lower: 30, upper: 40})]);
+    assert(c.intersection(d).isEmpty);
+
+    expect(() => a.intersection(new range.IntRange())).to.throw(Error);
   });
 });
