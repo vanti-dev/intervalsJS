@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const range = require('../intervalJS.js');
+const range = require('../intervalsJS.js');
 const expect = require('chai').expect;
 const moment = require('moment');
 

@@ -5,12 +5,12 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     watch: {
         scripts: {
-            files: ['src/*.js', "test/*.js", "intervalJS.js", "src/Types/*.js"],
+            files: ['src/*.js', "test/*.js", "intervalsJS.js", "src/Types/*.js"],
             tasks: ['docs', 'default'],
         }
     },
     jshint: {
-        all: ['Gruntfile.js', 'src/*.js', 'test/*.js', 'intervalJS.js', "src/Types/*.js"],
+        all: ['Gruntfile.js', 'src/*.js', 'test/*.js', 'intervalsJS.js', "src/Types/*.js"],
         options: {
             esversion: 6
         }
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
         }
     },
     eslint: {
-        src: ["src/*.js", "intervalJS.js", "src/Types/*.js"]
+        src: ["src/*.js", "intervalsJS.js", "src/Types/*.js"]
     },
 
     'gh-pages': {

@@ -14,24 +14,24 @@ npm install intervalsJS --save
 ## A brief example
 Imagine, you are building a calendar and you want to be able to display all
 weeks that overlap with the current month. This is a trivial task when using
-intervalJS!
+intervalsJS!
 
-First, make sure you require intervalJs
+First, make sure you require intervalsJS
 ```
-const intervalJS = require('intervalJS');
+const intervalsJS = require('intervalsJS');
 ```
 
 Then, using a DateRange we can get a range representing January in the year 2000.
 ```
-const month = new intervalJS.DateRange().fromDate('2000-01-01', 'month');
+const month = new intervalsJS.DateRange().fromDate('2000-01-01', 'month');
 ```
 
 Next, we can easily calculate the weeks which contain the first, and last day of
 the month.
 
 ```
-const startWeek = new intervalJS.dateRange().fromDate(month.lower, 'week');
-const endWeek = new intervalJS.dateRange().fromDate(month.upper, 'week');
+const startWeek = new intervalsJS.DateRange().fromDate(month.lower, 'week');
+const endWeek = new intervalsJS.DateRange().fromDate(month.upper, 'week');
 ```
 
 Then using the union method, we can find all the days to display on our calendar

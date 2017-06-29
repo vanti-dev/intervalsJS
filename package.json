@@ -2,7 +2,7 @@
   "name": "intervalsJS",
   "version": "1.0.0",
   "description": "A Javascript library for working with intervals ",
-  "main": "intervalJS.js",
+  "main": "intervalsJS.js",
   "scripts": {
     "test": "nyc mocha"
   },
