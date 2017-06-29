@@ -3,7 +3,6 @@ const IntRange = require('./DiscreteRanges').IntRange;
 const StrRange = require('./DiscreteRanges').StrRange;
 const FloatRange = require('./ContinuousRanges').FloatRange;
 const DateRange = require('./MomentDateRanges').DateRange;
-const PeriodRange = require('./MomentDateRanges').PeriodRange;
 const DateTimeRange = require('./MomentDateRanges').DateTimeRange;
 const utils = require('./utils');
 
@@ -16,6 +15,7 @@ class IntRangeSet extends RangeSet {
     };
     super(settings);
     Object.assign(this, utils.DiscreteRangeSetMixin);
+    Object.assign(this, utils.OffsetableRangeSetMixin);
   }
 }
 
@@ -37,6 +37,7 @@ class FloatRangeSet extends RangeSet {
       ranges,
     };
     super(settings);
+    Object.assign(this, utils.OffsetableRangeSetMixin);
   }
 }
 
@@ -48,16 +49,7 @@ class DateRangeSet extends RangeSet {
     };
     super(settings);
     Object.assign(this, utils.DiscreteRangeSetMixin);
-  }
-}
-
-class PeriodRangeSet extends RangeSet {
-  constructor(ranges = []) {
-    const settings = {
-      type: PeriodRange,
-      ranges,
-    };
-    super(settings);
+    Object.assign(this, utils.OffsetableRangeSetMixin);
   }
 }
 
@@ -68,6 +60,7 @@ class DateTimeRangeSet extends RangeSet {
       ranges,
     };
     super(settings);
+    Object.assign(this, utils.OffsetableRangeSetMixin);
   }
 }
 
@@ -76,6 +69,5 @@ module.exports = {
   StrRangeSet,
   FloatRangeSet,
   DateRangeSet,
-  PeriodRangeSet,
   DateTimeRangeSet,
 };

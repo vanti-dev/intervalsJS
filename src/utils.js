@@ -54,6 +54,17 @@ const OffsetableRangeMixin = {
   },
 };
 
+const OffsetableRangeSetMixin = {
+  offset(offset) {
+    let i;
+    const output = this.copy();
+    for (i = 0; i < output._list.length; i += 1) {
+      output._list[i].offset(offset);
+    }
+    return output;
+  },
+};
+
 function addToList(value, list) {
   list.push(value);
 }
@@ -106,6 +117,7 @@ function getType(data) {
 module.exports = {
   OffsetableRangeMixin,
   DiscreteRangeSetMixin,
+  OffsetableRangeSetMixin,
   namedList,
   getType,
   isValidDate,

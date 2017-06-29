@@ -39,8 +39,10 @@ describe('IntRangeSet', function() {
     const range2 = new range.IntRange({ lower: 10, upper: 15});
     const rangeset = new range.IntRangeSet([range1, range2]);
     const copy = rangeset.copy();
-
     assert(rangeset.isEqual(copy));
+    copy.add(new range.IntRange({lower: 20, upper: 30}));
+    assert(!rangeset.isEqual(copy));
+
   });
 
   it('Tests contains', function() {

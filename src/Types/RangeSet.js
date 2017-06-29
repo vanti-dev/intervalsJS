@@ -26,6 +26,9 @@ class RangeSet {
     let i;
     let j;
     let found = false;
+    if (this._list.length !== other._list.length) {
+      return false;
+    }
     for (i = 0; i < this._list.length; i += 1) {
       for (j = 0; j < other._list.length; j += 1) {
         // Since rangesets are sorted
@@ -65,7 +68,10 @@ class RangeSet {
   }
 
   copy() {
-    const newList = this._list.slice();
+    const newList = [];
+    for (const x of this._list) {
+      newList.push(x.copy());
+    }
     return new this.constructor(newList);
   }
 
