@@ -1,4 +1,13 @@
 class RangeSet {
+  /**
+  @class RangeSet
+  @description A RangeSet works much like a Range. But they are able to contain
+  'holes' within the range. A RangeSet is iterable using a for..of loop, it
+  loops through the Ranges that make up the set.
+  @param {object} settings - The settings of the range.
+  @param {array} _list - An Array with all the Ranges to include in the RangeSet
+  @param {function} type - The constructor function for a Range of the correct type
+  */
   constructor(settings) {
     this.Type = settings.type;
     this._list = [];
@@ -12,16 +21,33 @@ class RangeSet {
   get type() {
     return new this.Type();
   }
-
+  /**
+  @memberof RangeSet
+  @method isEmpty
+  @description Returns ``true`` if the RangeSet is empty.
+  @returns {boolean}
+  */
   get isEmpty() {
     return (this._list.length === 0);
   }
-
+  /**
+  @memberof RangeSet
+  @method empty
+  @description Returns an empty RangeSet. An empty RangeSet in unbounded and
+  only contains the empty Range.
+  @returns {object} An empty RangeSet.
+  */
   empty() {
     this._list = [];
     return this;
   }
-
+  /**
+  @memberof RangeSet
+  @method isEqual
+  @description Returns ``true`` if this is the same RangeSet as other.
+  @param {object} scalar - A RangeSet to check for equality.
+  @returns {boolean}
+  */
   isEqual(other) {
     let i;
     let j;
@@ -58,15 +84,34 @@ class RangeSet {
       throw new Error(`Invalid range type. Expected ${this.constructor.name}. Got ${item.constructor.name}`);
     }
   }
-
+  /**
+  @memberof RangeSet
+  @method isValidRange
+  @description Returns ``true`` if `obj` is a valid range of the same
+  type as this. Otherwise ``false``
+  @param {range} obj - A range to check
+  @returns {boolean}
+  */
   isValidRange(obj) {
     return this.type.isValidRange(obj);
   }
-
+  /**
+  @memberof RangeSet
+  @method isValidScalar
+  @description Returns ``true`` if `scalar` is a valid scalar of the
+   same type as this. Otherwise ``false``
+  @param {number|string|object} scalar - A scalar to check
+  @returns {boolean}
+  */
   isValidScalar(obj) {
     return this.type.isValidScalar(obj);
   }
-
+  /**
+  @memberof RangeSet
+  @method copy
+  @description Returns a copy of the RangeSet
+  @returns {object}
+  */
   copy() {
     const newList = [];
     for (const x of this._list) {
@@ -74,7 +119,14 @@ class RangeSet {
     }
     return new this.constructor(newList);
   }
-
+  /**
+  @memberof RangeSet
+  @method contains
+  @description Returns ``true`` if this contains other. Other may be either
+  range of same type or scalar of same type as the boundaries.
+  @param {object|string|number} other - Check whether this contains other.
+  @returns {boolean}
+  */
   contains(item) {
     if (!this.isValidRange(item) && !this.isValidScalar(item)) {
       throw new Error(`Unsupported item type provided. Expected range or scalar of type ${this.type}. Got ${item}`);
@@ -91,7 +143,13 @@ class RangeSet {
     }
     return false;
   }
-
+  /**
+  @memberof RangeSet
+  @method remove
+  @description Removes a Range from the set. This operation updates the set in
+  place.
+  @param {object} item - A Range to remove.
+  */
   remove(item) {
     let i = 0;
 
@@ -120,7 +178,13 @@ class RangeSet {
       }
     }
   }
-
+  /**
+  @memberof RangeSet
+  @method add
+  @description Adds a Range to the set. This operation updates the set in
+  place.
+  @param {object} item - A Range to add.
+  */
   add(item) {
     let i = 0;
     const buffer = [];
@@ -158,7 +222,13 @@ class RangeSet {
       this.add(item);
     }
   }
-
+  /**
+  @memberof RangeSet
+  @method span
+  @description Returns a Range that spans from the first point to the last point
+  in this set. That is, the smallest range containing all elements of this set.
+  @returns {object} - A Range.
+  */
   span() {
     if (this.isEmpty) {
       return new this.Type().empty();
@@ -168,7 +238,14 @@ class RangeSet {
       upperInc: this._list[this._list.length - 1].upperInc,
     });
   }
-
+  /**
+  @memberof RangeSet
+  @method union
+  @description Returns this set combined with every given set into a super set
+  for each given set.
+  @param {object|array} others - A RangeSet or array of RangeSets to merge with.
+  @returns {object} The sets merged together.
+  */
   union(others) {
     if (!Array.isArray(others)) {
       others = [others];
@@ -184,7 +261,14 @@ class RangeSet {
     }
     return union;
   }
-
+  /**
+  @memberof RangeSet
+  @method difference
+  @description Returns this set stripped of every subset that are in the other
+  given sets.
+  @param {object|array} other - A RangeSet or array of RangeSets to remove.
+  @returns {object} A new RangeSet that is the difference of this and the other.
+  */
   difference(others) {
     if (!Array.isArray(others)) {
       others = [others];
@@ -200,7 +284,15 @@ class RangeSet {
     }
     return difference;
   }
-
+  /**
+  @memberof RangeSet
+  @method intersection
+  @description Returns a new set of all subsets that exist in this and every
+  given set.
+  @param {object|array} other - A RangeSet or array of RangeSets to intersect.
+  @returns {object} A new RangeSet that is the intersection between this and
+  `other`
+  */
   intersection(others) {
     if (!Array.isArray(others)) {
       others = [others];

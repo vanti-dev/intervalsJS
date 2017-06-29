@@ -8,6 +8,14 @@ const utils = require('./utils');
 
 
 class IntRangeSet extends RangeSet {
+  /**
+  @class IntRangeSet
+  @extends RangeSet
+  @description RangeSet that operates on ints.
+  @param {array} [ranges=[]] - The Ranges to include in the set.
+  @mixes OffsetableRangeSetMixin
+  @mixes DiscreteRangeSetMixin
+  */
   constructor(ranges = []) {
     const settings = {
       type: IntRange,
@@ -20,6 +28,13 @@ class IntRangeSet extends RangeSet {
 }
 
 class StrRangeSet extends RangeSet {
+  /**
+  @class StrRangeSet
+  @extends RangeSet
+  @description RangeSet that operates on strings.
+  @param {array} [ranges=[]] - The Ranges to include in the set.
+  @mixes DiscreteRangeSetMixin
+  */
   constructor(ranges = []) {
     const settings = {
       type: StrRange,
@@ -31,6 +46,13 @@ class StrRangeSet extends RangeSet {
 }
 
 class FloatRangeSet extends RangeSet {
+  /**
+  @class FloatRangeSet
+  @extends RangeSet
+  @description RangeSet that operates on floats.
+  @param {array} [ranges=[]] - The Ranges to include in the set.
+  @mixes OffsetableRangeSetMixin
+  */
   constructor(ranges = []) {
     const settings = {
       type: FloatRange,
@@ -42,6 +64,14 @@ class FloatRangeSet extends RangeSet {
 }
 
 class DateRangeSet extends RangeSet {
+  /**
+  @class DateRangeSet
+  @extends RangeSet
+  @description RangeSet that operates on Dates.
+  @param {array} [ranges=[]] - The Ranges to include in the set.
+  @mixes OffsetableRangeSetMixin
+  @mixes DiscreteRangeSetMixin
+  */
   constructor(ranges = []) {
     const settings = {
       type: DateRange,
@@ -54,6 +84,13 @@ class DateRangeSet extends RangeSet {
 }
 
 class DateTimeRangeSet extends RangeSet {
+  /**
+  @class DateTimeRangeSet
+  @extends RangeSet
+  @description RangeSet that operates on DateTimes.
+  @param {array} [ranges=[]] - The Ranges to include in the set.
+  @mixes OffsetableRangeSetMixin
+  */
   constructor(ranges = []) {
     const settings = {
       type: DateTimeRange,

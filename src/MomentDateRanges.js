@@ -20,6 +20,7 @@ class DateRange extends MomentDateRange {
   end should be included in range.
   @param {boolean} [settings.upperInc=false] ``true`` if upper
   end should be included in range.
+  @mixes OffsetableRangeMixin
   */
 
   constructor(settings = {}) {

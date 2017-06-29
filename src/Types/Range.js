@@ -86,8 +86,9 @@ class Range {
   /**
   @memberof Range
   @method empty
-  @description Returns an empty set. An empty set in unbounded and only contains the empty set.
-  @returns {range} An empty set.
+  @description Returns an empty Range. An empty Range in unbounded and only
+  contains the empty Range.
+  @returns {object} An empty Range.
   */
   empty() {
     this._range = _emptyInternalRange;
@@ -149,7 +150,12 @@ class Range {
     }
     return this;
   }
-
+  /**
+  @memberof Range
+  @method copy
+  @description Returns a copy of the Range
+  @returns {object}
+  */
   copy() {
     const upper = this.upper;
     const lower = this.lower;

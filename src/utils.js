@@ -2,7 +2,7 @@ const moment = require('moment');
 
 const OffsetableRangeMixin = {
   /**
-  * This provides methods used for event offsetting a range.
+  * This provides methods used for offsetting a Range.
   * It also includes the offsetType member.
   *
   * @mixin OffsetableRangeMixin
@@ -55,6 +55,19 @@ const OffsetableRangeMixin = {
 };
 
 const OffsetableRangeSetMixin = {
+  /**
+  * This provides methods used for offsetting a Range Set.
+  *
+  * @mixin OffsetableRangeSetMixin
+  */
+
+  /**
+  @memberof OffsetableRangeSetMixin
+  @method offset
+  @description Offset the range by the given value.
+  @param {number} offset -How much to offset by
+  @returns {object}
+  */
   offset(offset) {
     let i;
     const output = this.copy();
@@ -70,6 +83,18 @@ function addToList(value, list) {
 }
 
 const DiscreteRangeSetMixin = {
+  /**
+  * This provides methods used for creating a list out of a Discrete RangeSet.
+  *
+  * @mixin DiscreteRangeSetMixin
+  */
+
+  /**
+  @memberof DiscreteRangeSetMixin
+  @method values
+  @description Returns an array of all the values contained within the range
+  @returns {array}
+  */
   values() {
     let i;
     const output = [];
