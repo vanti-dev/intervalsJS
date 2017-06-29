@@ -1,4 +1,4 @@
-const range = require('../main.js');
+const range = require('../intervalJS.js');
 const assert = require('chai').assert;
 const expect = require('chai').expect;
 
