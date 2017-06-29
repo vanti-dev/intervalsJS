@@ -1,8 +1,8 @@
 {
-  "name": "intervals-in-node",
+  "name": "intervalsJS",
   "version": "1.0.0",
-  "description": "An implementation of PostgreSQL 'intervals' in node.js",
-  "main": "range.js",
+  "description": "A Javascript library for working with intervals ",
+  "main": "intervalJS.js",
   "scripts": {
     "test": "nyc mocha"
   },
@@ -32,6 +32,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Tehmo3/Intervals-In-Node"
+    "url": "https://github.com/Tehmo3/intervalsJS"
   }
 }
