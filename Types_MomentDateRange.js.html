@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Types/MomentDateRange.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DateRange.html">DateRange</a><ul class='methods'><li data-type='method'><a href="DateRange.html#.length">length</a></li><li data-type='method'><a href="DateRange.html#.next">next</a></li><li data-type='method'><a href="DateRange.html#.prev">prev</a></li><li data-type='method'><a href="DateRange.html#offset">offset</a></li></ul></li><li><a href="DateRangeSet.html">DateRangeSet</a><ul class='methods'><li data-type='method'><a href="DateRangeSet.html#offset">offset</a></li><li data-type='method'><a href="DateRangeSet.html#values">values</a></li></ul></li><li><a href="DateTimeRangeSet.html">DateTimeRangeSet</a><ul class='methods'><li data-type='method'><a href="DateTimeRangeSet.html#offset">offset</a></li></ul></li><li><a href="DiscreteRange.html">DiscreteRange</a><ul class='methods'><li data-type='method'><a href="DiscreteRange.html#.last">last</a></li><li data-type='method'><a href="DiscreteRange.html#.next">next</a></li><li data-type='method'><a href="DiscreteRange.html#.prev">prev</a></li></ul></li><li><a href="FloatRange.html">FloatRange</a><ul class='methods'><li data-type='method'><a href="FloatRange.html#offset">offset</a></li></ul></li><li><a href="FloatRangeSet.html">FloatRangeSet</a><ul class='methods'><li data-type='method'><a href="FloatRangeSet.html#offset">offset</a></li></ul></li><li><a href="IntRange.html">IntRange</a><ul class='methods'><li data-type='method'><a href="IntRange.html#.length">length</a></li><li data-type='method'><a href="IntRange.html#offset">offset</a></li></ul></li><li><a href="IntRangeSet.html">IntRangeSet</a><ul class='methods'><li data-type='method'><a href="IntRangeSet.html#offset">offset</a></li><li data-type='method'><a href="IntRangeSet.html#values">values</a></li></ul></li><li><a href="MomentDateRange.html">MomentDateRange</a><ul class='methods'><li data-type='method'><a href="MomentDateRange.html#.fromDate">fromDate</a></li></ul></li><li><a href="PeriodRange.html">PeriodRange</a><ul class='methods'><li data-type='method'><a href="PeriodRange.html#offset">offset</a></li></ul></li><li><a href="Range.html">Range</a><ul class='methods'><li data-type='method'><a href="Range.html#.adjacent">adjacent</a></li><li data-type='method'><a href="Range.html#.contains">contains</a></li><li data-type='method'><a href="Range.html#.copy">copy</a></li><li data-type='method'><a href="Range.html#.difference">difference</a></li><li data-type='method'><a href="Range.html#.empty">empty</a></li><li data-type='method'><a href="Range.html#.endsBefore">endsBefore</a></li><li data-type='method'><a href="Range.html#.endsWith">endsWith</a></li><li data-type='method'><a href="Range.html#.intersection">intersection</a></li><li data-type='method'><a href="Range.html#.isEmpty">isEmpty</a></li><li data-type='method'><a href="Range.html#.isEqual">isEqual</a></li><li data-type='method'><a href="Range.html#.isValidRange">isValidRange</a></li><li data-type='method'><a href="Range.html#.isValidScalar">isValidScalar</a></li><li data-type='method'><a href="Range.html#.leftOf">leftOf</a></li><li data-type='method'><a href="Range.html#.overlap">overlap</a></li><li data-type='method'><a href="Range.html#.replace">replace</a></li><li data-type='method'><a href="Range.html#.rightOf">rightOf</a></li><li data-type='method'><a href="Range.html#.startsAfter">startsAfter</a></li><li data-type='method'><a href="Range.html#.startsWith">startsWith</a></li><li data-type='method'><a href="Range.html#.union">union</a></li></ul></li><li><a href="RangeSet.html">RangeSet</a><ul class='methods'><li data-type='method'><a href="RangeSet.html#.add">add</a></li><li data-type='method'><a href="RangeSet.html#.contains">contains</a></li><li data-type='method'><a href="RangeSet.html#.copy">copy</a></li><li data-type='method'><a href="RangeSet.html#.difference">difference</a></li><li data-type='method'><a href="RangeSet.html#.empty">empty</a></li><li data-type='method'><a href="RangeSet.html#.intersection">intersection</a></li><li data-type='method'><a href="RangeSet.html#.isEmpty">isEmpty</a></li><li data-type='method'><a href="RangeSet.html#.isEqual">isEqual</a></li><li data-type='method'><a href="RangeSet.html#.isValidRange">isValidRange</a></li><li data-type='method'><a href="RangeSet.html#.isValidScalar">isValidScalar</a></li><li data-type='method'><a href="RangeSet.html#.remove">remove</a></li><li data-type='method'><a href="RangeSet.html#.span">span</a></li><li data-type='method'><a href="RangeSet.html#.union">union</a></li></ul></li><li><a href="StrRange.html">StrRange</a><ul class='methods'><li data-type='method'><a href="StrRange.html#.next">next</a></li><li data-type='method'><a href="StrRange.html#.prev">prev</a></li></ul></li><li><a href="StrRangeSet.html">StrRangeSet</a><ul class='methods'><li data-type='method'><a href="StrRangeSet.html#values">values</a></li></ul></li></ul><h3>Mixins</h3><ul><li><a href="DiscreteRangeSetMixin.html">DiscreteRangeSetMixin</a><ul class='methods'><li data-type='method'><a href="DiscreteRangeSetMixin.html#.values">values</a></li></ul></li><li><a href="OffsetableRangeMixin.html">OffsetableRangeMixin</a><ul class='methods'><li data-type='method'><a href="OffsetableRangeMixin.html#.offset">offset</a></li></ul></li><li><a href="OffsetableRangeSetMixin.html">OffsetableRangeSetMixin</a><ul class='methods'><li data-type='method'><a href="OffsetableRangeSetMixin.html#.offset">offset</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Types/MomentDateRange.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const Range = require('./Range.js');
+const moment = require('moment');
+
+class MomentDateRange extends Range {
+    /**
+    @class MomentDateRange
+    @extends Range
+    @description Moment/Date ranges are a subset of ranges that are used
+    to work with Dates.
+    @param {object} settings - The settings of the range.
+    @param {string|object} [settings.lower=null] - The lower end of the range.
+    Can be a string, moment or Date object.
+    @param {string|object} [settings.upper=null] - The upper end of the range.
+    Can be a string, moment or Date object.
+    @param {boolean} [settings.lowerInc=true] - ``true`` if lower end should be included in range.
+    @param {boolean} [settings.upperInc=false] ``true`` if upper end should be included in range.
+    */
+  constructor(settings) {
+    settings.type = 'date';
+    if (settings.upper) {
+      if (typeof settings.upper === 'string') {
+        settings.upper = moment(settings.upper, 'MM-DD-YYYY').isValid() ? moment(settings.upper, 'MM-DD-YYYY') : moment(settings.upper, 'YYYY-MM-DD');
+      } else if (typeof settings.upper === 'object') {
+        if (moment.isDate(settings.upper)) {
+          settings.upper = moment(settings.upper);
+        }
+      }
+    }
+    if (settings.lower) {
+      if (typeof settings.lower === 'string') {
+        settings.lower = moment(settings.lower, 'MM-DD-YYYY').isValid() ? moment(settings.lower, 'MM-DD-YYYY') : moment(settings.lower, 'YYYY-MM-DD');
+      } else if (typeof settings.lower === 'object') {
+        if (moment.isDate(settings.lower)) {
+          settings.lower = moment(settings.lower);
+        }
+      }
+    }
+    super(settings);
+  }
+
+  isEqual(other) {
+    if (!this || !other || !this.isValidRange(other)) {
+      return false;
+    }
+    return this.upper.isSame(other.upper) &amp;&amp;
+    this.lower.isSame(other.lower) &amp;&amp; this.lowerInc === other.lowerInc &amp;&amp;
+    this.upperInc === other.upperInc;
+  }
+
+  replace(settings = {}) {
+    if (settings.upper !== null &amp;&amp; settings.upper !== undefined) {
+      if (typeof settings.upper === 'string') {
+        this._range.upper = moment(settings.upper, 'MM-DD-YYYY').isValid() ? moment(settings.upper, 'MM-DD-YYYY') : moment(settings.upper, 'YYYY-MM-DD');
+      } else {
+        this._range.upper = settings.upper;
+      }
+    }
+    if (settings.lower !== null &amp;&amp; settings.lower !== undefined) {
+      if (typeof settings.lower === 'string') {
+        this._range.lower = moment(settings.lower, 'MM-DD-YYYY').isValid() ? moment(settings.lower, 'MM-DD-YYYY') : moment(settings.lower, 'YYYY-MM-DD');
+      } else {
+        this._range.lower = settings.lower;
+      }
+    }
+    if (settings.lowerInc !== undefined) {
+      this._range.lowerInc = settings.lowerInc;
+    }
+    if (settings.upperInc !== undefined) {
+      this._range.upperInc = settings.upperInc;
+    }
+    return this;
+  }
+
+  contains(other) {
+    if (this.isValidRange(other)) {
+      if (!other || (other.startsAfter(this) &amp;&amp; other.endsBefore(this))) {
+        return true;
+      }
+      return false;
+    } else if (moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']).isValid()) {
+      let isInLower = true;
+      if (this.lower) {
+        isInLower = this.lower.isBefore(moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']));
+      }
+
+      let isInUpper = true;
+      if (this.upper) {
+        isInUpper = this.upper.isSameOrAfter(moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']));
+      }
+
+      return isInLower &amp;&amp; isInUpper;
+    }
+    throw new Error(`Unsupported type to test for inclusion Expected range or scalar of type ${this.type}. Got ${other} instead.`);
+  }
+
+  overlap(other) {
+    let a;
+    let b;
+    if (!this || !other) {
+      return false;
+    }
+
+    if (this.endsBefore(other)) {
+      a = this;
+      b = other;
+    } else {
+      a = other;
+      b = this;
+    }
+
+    if (a.upper === null || b.lower === null) {
+      return true;
+    }
+    return a.upper.isAfter(b.lower) || (a.upper.isSame(b.lower) &amp;&amp; a.upperInc &amp;&amp; b.lowerInc);
+  }
+
+  adjacent(other) {
+    if (!this.isValidRange(other)) {
+      throw new Error(`Unsupported type to test for inclusion. Expected range of type ${this.type}. Got ${other} instead.`);
+    }
+    return (this.lower.isSame(other.upper) &amp;&amp; this.lowerInc !== other.upperInc) ||
+              (this.upper.isSame(other.lower) &amp;&amp; this.upperInc !== other.lowerInc);
+  }
+
+  union(other) {
+    if (!this.isValidRange(other)) {
+      throw new Error(`Unsupported type to test for union. Expected range of type ${this.type}. Got ${other} instead.`);
+    }
+
+    let a;
+    let b;
+    if (!this.startsAfter(other)) {
+      a = this;
+      b = other;
+    } else {
+      a = other;
+      b = this;
+    }
+
+    if (a.upper.isSameOrBefore(b.lower) &amp;&amp; !a.adjacent(b)) {
+      throw new Error('Ranges must be either adjacent or overlapping');
+    }
+
+    let upper;
+    let upperInc;
+    if (a.upper.isSame(b.upper)) {
+      upper = a.upper;
+      upperInc = a.upperInc || b.upperInc;
+    } else if (a.upper.isBefore(b.upper)) {
+      upper = b.upper;
+      upperInc = b.upperInc;
+    } else {
+      upper = a.upper;
+      upperInc = a.upperInc;
+    }
+
+    return new this.constructor({
+      lower: a.lower,
+      upper,
+      lowerInc: a.lowerInc,
+      upperInc,
+      type: this.type,
+    });
+  }
+
+
+  startsAfter(other) {
+    if (this.isValidRange(other)) {
+      if (this.lower !== null &amp;&amp; other.lower !== null &amp;&amp; this.lower.isSame(other.lower)) {
+        return other.lowerInc || !this.lowerInc;
+      } else if (this.lower === null) {
+        return false;
+      } else if (other.lower === null) {
+        return true;
+      }
+      return this.lower.isAfter(other.lower);
+    } else if (moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']).isValid()) {
+      return this.lower.isSameOrAfter(moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']));
+    }
+    throw new Error(`Unsupported type to test for startsAfter. Expected range or scalar of type ${this.type}. Got ${other} instead.`);
+  }
+
+  endsBefore(other) {
+    if (this.isValidRange(other)) {
+      if (this.upper !== null &amp;&amp; other.upper !== null &amp;&amp; this.upper.isSame(other.upper)) {
+        return other.upperInc || !this.upperInc;
+      } else if (this.upper === null) {
+        return false;
+      } else if (other.upper === null) {
+        return true;
+      }
+      return this.upper.isSameOrBefore(other.upper);
+    } else if (moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']).isValid()) {
+      return this.upper.isSameOrBefore(moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']));
+    }
+    throw new Error(`Unsupported type to test for endsBefore. Expected range or scalar of type ${this.type}. Got ${other} instead.`);
+  }
+
+  startsWith(other) {
+    if (this.isValidRange(other)) {
+      if (this.lowerInc === other.lowerInc) {
+        return this.lower.isSame(other.lower);
+      }
+      return false;
+    } else if (moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']).isValid()) {
+      if (this.lowerInc) {
+        return this.lower.isSame(moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']));
+      }
+      return false;
+    }
+    throw new Error(`Unsupported type to test for startsWith. Expected range or scalar of type ${this.type}. Got ${other} instead.`);
+  }
+
+  endsWith(other) {
+    if (this.isValidRange(other)) {
+      if (this.upperInc === other.upperInc) {
+        return this.upper.isSame(other.upper);
+      }
+      return false;
+    } else if (moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']).isValid()) {
+      if (this.upperInc) {
+        return this.upper.isSame(moment(other, ['MM-DD-YYYY', 'YYYY-MM-DD']));
+      }
+      return false;
+    }
+    throw new Error(`Unsupported type to test for endsWith. Expected range or scalar of type ${this.type}. Got ${other} instead.`);
+  }
+
+  /**
+  @memberof MomentDateRange
+  @method fromDate
+  @description Returns a DateRange with length period beginning at date.
+  @param {string} date A date to begin the range from.
+  Formatted as either 'YYYY-MM-DD' or 'MM-DD-YYYY'
+  @param {string} [period='day'] How long the range should be.
+  Options: 'day', 'week', 'month', 'quarter', 'year'
+  @returns {object}
+  */
+
+  fromDate(date, period = 'day') {
+    let start;
+    if (period === 'day') {
+      return new this.constructor({ lower: date, upper: date, upperInc: true });
+    }
+    if (period === 'week') {
+      date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
+      let subtract = date.day() - 1;
+      if (date.day() === 0) {
+        subtract = 6;
+      }
+      start = date.subtract(subtract, 'days');
+      return new this.constructor({ lower: start.format('YYYY-MM-DD'), upper: start.add(1, 'week').format('YYYY-MM-DD') });
+    }
+    if (period === 'americanWeek') {
+      date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
+      start = date.subtract(date.day(), 'days');
+      return new this.constructor({ lower: start.format('YYYY-MM-DD'), upper: start.add(1, 'week').format('YYYY-MM-DD') });
+    }
+    if (period === 'month') {
+      date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
+      start = date.date(1);
+      return new this.constructor({ lower: start.format('YYYY-MM-DD'), upper: start.add(1, 'month').date(1).format('YYYY-MM-DD') });
+    }
+    if (period === 'quarter') {
+      date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
+      start = date.month(Math.floor(date.month() / 3) * 3).date(1);
+      return new this.constructor({ lower: start.format('YYYY-MM-DD'), upper: start.add(3, 'month').date(1).format('YYYY-MM-DD') });
+    }
+    if (period === 'year') {
+      date = moment(date, 'MM-DD-YYYY').isValid() ? moment(date, 'MM-DD-YYYY') : moment(date, 'YYYY-MM-DD');
+      start = date.month(0).date(1);
+      return new this.constructor({ lower: start.format('YYYY-MM-DD'), upper: start.add(1, 'year').format('YYYY-MM-DD') });
+    }
+    throw new Error('Unexpected period');
+  }
+}
+
+module.exports = MomentDateRange;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Jun 29 2017 10:41:14 GMT+1000 (AUS Eastern Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

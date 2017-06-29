@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>ContinuousRanges.js - Documentation</title>
+    <title>RangeSets.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">ContinuousRanges.js</h1>
+    <h1 class="page-title">RangeSets.js</h1>
     
 
     
@@ -37,40 +37,115 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Range = require('./Types/Range.js');
+            <pre class="prettyprint source linenums"><code>const RangeSet = require('./Types/RangeSet');
+const IntRange = require('./DiscreteRanges').IntRange;
+const StrRange = require('./DiscreteRanges').StrRange;
+const FloatRange = require('./ContinuousRanges').FloatRange;
+const DateRange = require('./MomentDateRanges').DateRange;
+const DateTimeRange = require('./MomentDateRanges').DateTimeRange;
 const utils = require('./utils');
 
 
-class FloatRange extends Range {
+class IntRangeSet extends RangeSet {
   /**
-  @class FloatRange
-  @extends Range
-  @description Range that operates on float.
-  @param {object} settings - The settings of the range.
-  @param {number} [settings.lower=null] - The lower end of the range
-  @param {number} [settings.upper=null] - The upper end of the range
-  @param {boolean} [settings.lowerInc=true] - ``true`` if lower end should be included in range.
-  @param {boolean} [settings.upperInc=false] ``true`` if upper end should be included in range.
-  @mixes OffsetableRangeMixin
+  @class IntRangeSet
+  @extends RangeSet
+  @description RangeSet that operates on ints.
+  @param {array} [ranges=[]] - The Ranges to include in the set.
+  @mixes OffsetableRangeSetMixin
+  @mixes DiscreteRangeSetMixin
   */
-  constructor(settings = {}) {
-    settings.type = 'float';
+  constructor(ranges = []) {
+    const settings = {
+      type: IntRange,
+      ranges,
+    };
     super(settings);
-    Object.assign(this, utils.OffsetableRangeMixin);
-    /**
-    @memberof FloatRange
-    @description The type of values in the range.
-    */
-    this.type = settings.type;
+    Object.assign(this, utils.DiscreteRangeSetMixin);
+    Object.assign(this, utils.OffsetableRangeSetMixin);
   }
+}
 
-  isValidScalar(scalar) {
-    return !isNaN(scalar);
+class StrRangeSet extends RangeSet {
+  /**
+  @class StrRangeSet
+  @extends RangeSet
+  @description RangeSet that operates on strings.
+  @param {array} [ranges=[]] - The Ranges to include in the set.
+  @mixes DiscreteRangeSetMixin
+  */
+  constructor(ranges = []) {
+    const settings = {
+      type: StrRange,
+      ranges,
+    };
+    super(settings);
+    Object.assign(this, utils.DiscreteRangeSetMixin);
+  }
+}
+
+class FloatRangeSet extends RangeSet {
+  /**
+  @class FloatRangeSet
+  @extends RangeSet
+  @description RangeSet that operates on floats.
+  @param {array} [ranges=[]] - The Ranges to include in the set.
+  @mixes OffsetableRangeSetMixin
+  */
+  constructor(ranges = []) {
+    const settings = {
+      type: FloatRange,
+      ranges,
+    };
+    super(settings);
+    Object.assign(this, utils.OffsetableRangeSetMixin);
+  }
+}
+
+class DateRangeSet extends RangeSet {
+  /**
+  @class DateRangeSet
+  @extends RangeSet
+  @description RangeSet that operates on Dates.
+  @param {array} [ranges=[]] - The Ranges to include in the set.
+  @mixes OffsetableRangeSetMixin
+  @mixes DiscreteRangeSetMixin
+  */
+  constructor(ranges = []) {
+    const settings = {
+      type: DateRange,
+      ranges,
+    };
+    super(settings);
+    Object.assign(this, utils.DiscreteRangeSetMixin);
+    Object.assign(this, utils.OffsetableRangeSetMixin);
+  }
+}
+
+class DateTimeRangeSet extends RangeSet {
+  /**
+  @class DateTimeRangeSet
+  @extends RangeSet
+  @description RangeSet that operates on DateTimes.
+  @param {array} [ranges=[]] - The Ranges to include in the set.
+  @mixes OffsetableRangeSetMixin
+  */
+  constructor(ranges = []) {
+    const settings = {
+      type: DateTimeRange,
+      ranges,
+    };
+    super(settings);
+    Object.assign(this, utils.OffsetableRangeSetMixin);
   }
 }
 
 module.exports = {
-  FloatRange,
+  IntRangeSet,
+  StrRangeSet,
+  FloatRangeSet,
+  DateRangeSet,
+  DateTimeRangeSet,
 };
 </code></pre>
         </article>
