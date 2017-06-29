@@ -9,7 +9,7 @@ even dates. [Documentation.](http://jaspermiles.me/intervalsJS/)
 ## Installation
 To install intervalsJS into your npm project, run the command
 ```
-npm install intervalsJS --save
+npm install intervals-js --save
 ```
 ## A brief example
 Imagine, you are building a calendar and you want to be able to display all
@@ -18,7 +18,7 @@ intervalsJS!
 
 First, make sure you require intervalsJS
 ```
-const intervalsJS = require('intervalsJS');
+const intervalsJS = require('intervals-js');
 ```
 
 Then, using a DateRange we can get a range representing January in the year 2000.

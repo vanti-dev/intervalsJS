@@ -1,5 +1,5 @@
 {
-  "name": "intervalsJS",
+  "name": "intervals-js",
   "version": "1.0.0",
   "description": "A Javascript library for working with intervals ",
   "main": "intervalsJS.js",
