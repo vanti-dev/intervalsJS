@@ -1,6 +1,7 @@
 # intervalsJS
 [![Build Status](https://travis-ci.org/Tehmo3/Intervals-In-Node.svg?branch=master)](https://travis-ci.org/Tehmo3/Intervals-In-Node)
 [![codecov](https://codecov.io/gh/Tehmo3/Intervals-In-Node/branch/master/graph/badge.svg)](https://codecov.io/gh/Tehmo3/Intervals-In-Node)
+[![npm version](https://badge.fury.io/js/intervals-js.svg)](https://badge.fury.io/js/intervals-js)
 
 Spans is a Javascript library for working with intervals. This library can be
 useful any time you find yourself working with intervals of numbers, strings or
