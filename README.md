@@ -1,6 +1,6 @@
 # intervalsJS
-[![Build Status](https://travis-ci.org/Tehmo3/Intervals-In-Node.svg?branch=master)](https://travis-ci.org/Tehmo3/Intervals-In-Node)
-[![codecov](https://codecov.io/gh/Tehmo3/Intervals-In-Node/branch/master/graph/badge.svg)](https://codecov.io/gh/Tehmo3/Intervals-In-Node)
+[![Build Status](https://travis-ci.org/Tehmo3/intervalsJS.svg?branch=master)](https://travis-ci.org/Tehmo3/intervalsJS)
+[![codecov](https://codecov.io/gh/Tehmo3/intervalsJS/branch/master/graph/badge.svg)](https://codecov.io/gh/Tehmo3/intervalsJS)
 [![npm version](https://badge.fury.io/js/intervals-js.svg)](https://badge.fury.io/js/intervals-js)
 
 intervalsJS is a node.js module for working with intervals. This library can be
