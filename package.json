@@ -1,6 +1,6 @@
 {
   "name": "intervals-js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Javascript library for working with intervals ",
   "main": "intervalsJS.js",
   "scripts": {
