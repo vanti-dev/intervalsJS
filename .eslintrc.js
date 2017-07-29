@@ -8,11 +8,7 @@ module.exports = {
         "no-underscore-dangle": "off",
         "no-param-reassign": "off",
         "class-methods-use-this": "off",
-        'no-restricted-syntax': [
-                                'error',
-                                'ForInStatement',
-                                'LabeledStatement',
-                                'WithStatement',
-                                ]
+        'no-restricted-syntax': [ 'error', 'ForInStatement', 'LabeledStatement','WithStatement']
+
     }
 };
