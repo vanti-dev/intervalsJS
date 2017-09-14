@@ -5,7 +5,7 @@
 
 intervalsJS is a node.js module for working with intervals. This library can be
 useful any time you find yourself working with intervals of numbers, strings or
-even dates. [Documentation.](http://jaspermiles.me/intervalsJS/)
+even dates. [Documentation.](http://jbmiles.github.io/intervalsJS/)
 
 ## Installation
 To install intervalsJS into your npm project, run the command
