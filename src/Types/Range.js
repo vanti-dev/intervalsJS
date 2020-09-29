@@ -217,10 +217,7 @@ class Range {
   */
   contains(other) {
     if (this.isValidRange(other)) {
-      if ((!other || other.startsAfter(this)) && other.endsBefore(this)) {
-        return true;
-      }
-      return false;
+      return !this.startsAfter(other) && !this.endsBefore(other);
     } else if (this.isValidScalar(other)) {
       let isInLower = true;
       if (this.lower !== null) {
@@ -467,7 +464,7 @@ class Range {
   startsAfter(other) {
     if (this.isValidRange(other)) {
       if (this.lower === other.lower) {
-        return other.lowerInc || !this.lowerInc;
+        return other.lowerInc && !this.lowerInc;
       } else if (this.lower === null) {
         return false;
       } else if (other.lower === null) {
