@@ -486,7 +486,7 @@ class Range {
   endsBefore(other) {
     if (this.isValidRange(other)) {
       if (this.upper === other.upper) {
-        return other.upperInc || !this.upperInc;
+        return other.upperInc && !this.upperInc;
       } else if (this.upper === null) {
         return false;
       } else if (other.upper === null) {
