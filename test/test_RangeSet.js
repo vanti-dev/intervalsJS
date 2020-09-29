@@ -82,6 +82,10 @@ describe('IntRangeSet', function() {
     assert(empty.isEqual(new range.StrRangeSet().empty()));
 
     expect(() => set.remove(1.4)).to.throw(Error);
+
+    const intSet = new range.IntRangeSet([new range.IntRange({lower: 10, upper: 20}), new range.IntRange({lower: 30, upper: 40})]);
+    intSet.remove(new range.IntRange({upper: 40}));
+    assert(intSet.isEmpty);
   });
 
   it('Tests Union', function() {
