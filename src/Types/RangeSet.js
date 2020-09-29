@@ -164,6 +164,7 @@ class RangeSet {
 
             if (this._list[i].isEmpty) {
               this._list.splice(i, 1);
+              continue; // don't i+1 as we just removed an item
             }
           } catch (e) {
             const one = r.copy();
