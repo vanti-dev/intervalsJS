@@ -101,6 +101,9 @@ describe('Basic Range Functionality', function() {
     assert(!IntRange.endsBefore(-10));
     assert(IntRange.endsBefore(IntRangeUnbounded));
     assert(!IntRangeNoUB.endsBefore(endsBeforeRange));
+    // zero upper bounds
+    assert(!new range.IntRange({upper: 0}).endsBefore(new range.IntRange({upper: 0})));
+    assert(new range.IntRange({upper: 0}).endsBefore(new range.IntRange({upper: 0, upperInc: true})));
     expect(() => IntRange.endsBefore('a')).to.throw(Error);
   });
 
@@ -256,6 +259,9 @@ describe('Basic Range Functionality', function() {
 
     IntRange2.replace({lower: 3});
     assert(!IntRange.leftOf(IntRange2));
+
+    // zero bounds
+    assert(new range.IntRange({upper: 0}).leftOf(IntRange));
 
     expect(() => IntRange.leftOf(1)).to.throw(Error);
   });
