@@ -1,6 +1,6 @@
 {
   "name": "intervals-js",
-  "version": "1.0.4-vanti",
+  "version": "1.0.5-vanti",
   "description": "A Javascript library for working with intervals ",
   "main": "intervalsJS.js",
   "scripts": {
