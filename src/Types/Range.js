@@ -232,7 +232,10 @@ class Range {
 
       let isInUpper = true;
       if (this.upper) {
-        isInUpper = (this.upper >= other);
+        isInUpper = (this.upper > other);
+        if (this.upperInc) {
+          isInUpper = (this.upper >= other);
+        }
       }
       return isInLower && isInUpper;
     }
