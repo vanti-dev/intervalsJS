@@ -223,7 +223,7 @@ class Range {
       return false;
     } else if (this.isValidScalar(other)) {
       let isInLower = true;
-      if (this.lower) {
+      if (this.lower !== null) {
         isInLower = (this.lower < other);
         if (this.lowerInc) {
           isInLower = this.lower <= other;
@@ -231,7 +231,7 @@ class Range {
       }
 
       let isInUpper = true;
-      if (this.upper) {
+      if (this.upper !== null) {
         isInUpper = (this.upper > other);
         if (this.upperInc) {
           isInUpper = (this.upper >= other);
@@ -282,7 +282,7 @@ class Range {
       b = this;
     }
 
-    if (!a.upper || !b.lower) {
+    if (a.upper === null || b.lower === null) {
       return true;
     }
     return a.upper > b.lower || (a.upper === b.lower && a.upperInc && b.lowerInc);
@@ -490,9 +490,9 @@ class Range {
     if (this.isValidRange(other)) {
       if (this.upper === other.upper) {
         return other.upperInc || !this.upperInc;
-      } else if (!this.upper) {
+      } else if (this.upper === null) {
         return false;
-      } else if (!other.upper) {
+      } else if (other.upper === null) {
         return true;
       }
       return this.upper <= other.upper;
