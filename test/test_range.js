@@ -232,6 +232,14 @@ describe('Basic Range Functionality', function() {
 
     assert(IntRange.difference(IntRange2).upper === 20);
     expect(() => IntRange.difference(1)).to.throw(Error);
+
+    expect(new range.IntRange({upper: 10}).difference(new range.IntRange({upper: 5}))
+        .isEqual(new range.IntRange({lower: 5, upper: 10})));
+
+    expect(new range.IntRange({lower: 5}).difference(new range.IntRange({lower: 10}))
+        .isEqual(new range.IntRange({lower: 5, upper: 10})));
+
+    assert(new range.IntRange({upper: 5}).difference(new range.IntRange({upper: 10})).isEmpty);
   });
 
 

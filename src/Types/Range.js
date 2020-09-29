@@ -378,7 +378,7 @@ class Range {
       throw new Error('Other range must not be within this range');
     } else if (this.endsBefore(other)) {
       return this.copy().replace({ upper: other.lower, upperInc: !other.lowerInc });
-    } else if (this.startsAfter(other)) {
+    } else if (this.startsAfter(other) || this.startsWith(other)) {
       return this.copy().replace({ lower: other.upper, lowerInc: !other.upperInc });
     }
     return this.copy().empty();
