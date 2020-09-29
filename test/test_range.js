@@ -122,6 +122,9 @@ describe('Basic Range Functionality', function() {
     assert(!IntRange.contains(IntRangeUnbounded));
 
     expect(() => IntRange.contains('a')).to.throw(Error);
+
+    assert(!new range.IntRange({upper: 10}).contains(10));
+    assert(new range.IntRange({upper: 10, upperInc: true}).contains(10));
   });
 
 
