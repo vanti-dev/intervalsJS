@@ -331,7 +331,7 @@ class Range {
       b = this;
     }
 
-    if (a.upper <= b.lower && !a.adjacent(b)) {
+    if (!a.overlap(b) && !a.adjacent(b)) {
       throw new Error('Ranges must be either adjacent or overlapping');
     }
 
