@@ -192,6 +192,18 @@ describe('Basic Range Functionality', function() {
         .to.eql(new range.IntRange({upper: 20}));
     expect(new range.IntRange({upper: 10}).union(new range.IntRange({lower: 0, upper: 20})))
         .to.eql(new range.IntRange({upper: 20}));
+
+    expect(new range.IntRange({lower: 10}).union(new range.IntRange({lower: 20})))
+        .to.eql(new range.IntRange({lower: 10}));
+    expect(new range.IntRange({lower: 20}).union(new range.IntRange({lower: 10})))
+        .to.eql(new range.IntRange({lower: 10}));
+    expect(new range.IntRange({upper: 10}).union(new range.IntRange({upper: 20})))
+        .to.eql(new range.IntRange({upper: 20}));
+    expect(new range.IntRange({upper: 20}).union(new range.IntRange({upper: 10})))
+        .to.eql(new range.IntRange({upper: 20}));
+
+    expect(new range.IntRange({lower: 10}).union(new range.IntRange({upper: 20})))
+        .to.eql(new range.IntRange({}));
   });
 
 
