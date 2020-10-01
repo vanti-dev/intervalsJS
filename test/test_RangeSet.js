@@ -66,6 +66,13 @@ describe('IntRangeSet', function() {
     assert(rangeset.isEqual(secondRangeSet));
   });
 
+  it('Tests add unbounded', function() {
+    const r = new range.IntRangeSet([new range.IntRange({lower: 0, upper: 20})]);
+    r.add(new range.IntRange({lower: 10}));
+    const e = new range.IntRangeSet([new range.IntRange({lower: 0})]);
+    expect(r).to.eql(e);
+  });
+
   it('Tests remove', function() {
     const set = new range.StrRangeSet([new range.StrRange({ upper: 'b'}), new range.StrRange({ lower: 'h'})]);
     const equalTo = new range.StrRangeSet([new range.StrRange({upper: 'b'}), new range.StrRange({lower: 'h', upper: 'j'}), new range.StrRange({lower: 'm'})]);

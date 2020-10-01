@@ -182,6 +182,16 @@ describe('Basic Range Functionality', function() {
     expect(() => IntRange.union(IntRange2)).to.throw(Error);
 
     expect(() => IntRange.union(1)).to.throw(Error);
+
+    // unbounded union
+    expect(new range.IntRange({lower: 0, upper: 20}).union(new range.IntRange({lower: 10})))
+        .to.eql(new range.IntRange({lower: 0}));
+    expect(new range.IntRange({lower: 10}).union(new range.IntRange({lower: 0, upper: 20})))
+        .to.eql(new range.IntRange({lower: 0}));
+    expect(new range.IntRange({lower: 0, upper: 20}).union(new range.IntRange({upper: 10})))
+        .to.eql(new range.IntRange({upper: 20}));
+    expect(new range.IntRange({upper: 10}).union(new range.IntRange({lower: 0, upper: 20})))
+        .to.eql(new range.IntRange({upper: 20}));
   });
 
 

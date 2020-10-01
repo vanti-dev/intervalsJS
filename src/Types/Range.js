@@ -340,6 +340,9 @@ class Range {
     if (a.upper === b.upper) {
       upper = a.upper;
       upperInc = a.upperInc || b.upperInc;
+    } else if (b.upper === null) {
+      upper = null;
+      upperInc = false;
     } else if (a.upper < b.upper) {
       upper = b.upper;
       upperInc = b.upperInc;
